@@ -1,0 +1,23 @@
+{
+  "name": "webstart-cli",
+  "version": "5.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "webstart-cli": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Felix Wagner",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.22.5",
+    "@inquirer/prompts": "^2.1.1",
+    "chalk": "^5.2.0",
+    "fs-extra": "^11.1.1",
+    "shelljs": "^0.8.5"
+  },
+  "packageManager": "yarn@3.6.0"
+}

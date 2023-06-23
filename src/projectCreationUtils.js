@@ -1,0 +1,52 @@
+import * as fs from 'fs';
+import shell from 'shelljs';
+import chalk from 'chalk';
+
+
+export async function createProjectFolder(projectPath) {
+  if (fs.existsSync(projectPath)) {
+    console.log(chalk.red(`Folder ${projectPath} exists. Delete or use another name.`))
+    return false
+  }
+
+  fs.mkdirSync(projectPath)
+  return true
+}
+
+export async function initNodeNpm(pathToParentDirectory, pathToProject) {
+  shell.cd(pathToParentDirectory)
+  const result = shell.exec(`npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-npm --no-tailwind`)
+
+  if (result.code !== 0) {
+    return false
+  }
+
+  return true
+}
+
+export async function initNodeYarn(pathToParentDirectory, pathToProject) {
+
+  shell.cd(pathToParentDirectory)
+  // set yarn version in parent dict so installation does not fail
+  shell.exec('yarn set version stable')
+  // clean up package.json thats created when switching yarn versions
+  shell.rm('package.json')
+
+  const result = shell.exec(`npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-yarn --no-tailwind`)
+
+  shell.cd(pathToProject)
+  // set yarn version for new project
+  shell.exec('yarn set version stable')
+
+  // clean up parent dict
+  shell.cd(pathToParentDirectory)
+  shell.rm('-rf', '.yarn')
+  shell.rm('.yarnrc.yml')
+
+  if (result.code !== 0) {
+    return false
+  }
+
+  return true
+
+}
