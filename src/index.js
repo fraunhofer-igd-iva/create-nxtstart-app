@@ -3,7 +3,7 @@
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn } from './projectCreationUtils.js';
 import { addPackages } from './packageInstallationUtils.js';
-import { addGeneralFiles, addIndexFiles, addExamples } from './exampleCreationUtils.js';
+import { addGeneralFiles, addIndexFiles, addExamples, updateNextConfigI18n } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -33,3 +33,6 @@ await addPackages(packageManager, packages, targetPath)
 await addGeneralFiles(targetPath)
 await addIndexFiles(targetPath)
 await addExamples(targetPath, examples)
+if(examples.includes('i18n')) {
+  await updateNextConfigI18n(targetPath)
+}
