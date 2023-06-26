@@ -52,11 +52,43 @@ export async function updateNextConfigI18n(projectPath) {
     ).replace(
       /const nextConfig = {/g,
       `const { i18n } = require('./next-i18next.config')
-      
+
 const nextConfig = {`
     )
     fsStandard.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
        if (err) return console.log(err)
     })
+  })
+}
+
+export async function updateEnvPrisma(projectPath) {
+  fsStandard.appendFile(path.join(projectPath, '.env'), 
+`
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+  
+DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
+
+`, function (err) {
+    if (err) throw err
+  })
+}
+
+export async function updateEnvNextAuth(projectPath) {
+  fsStandard.appendFile(path.join(projectPath, '.env'), 
+`
+# Next Auth Variables
+# TODO remove 
+GITHUB_ID=93222600017a00c6e424
+GITHUB_SECRET=1f44c75dcb0c51fd6347bc206ff714c2dd5c021d
+
+NEXTAUTH_URL=http://localhost:3000
+
+SECRET=qwertysecretForTheN3xtJ5Template
+
+`, function (err) {
+    if (err) throw err
   })
 }

@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import path from 'path';
 import shell from 'shelljs';
 import chalk from 'chalk';
 
@@ -51,5 +52,17 @@ export async function initNodeYarn(pathToParentDirectory, pathToProject) {
   }
 
   return true
+}
 
+export async function addEnvFile(projectPath) {
+  fs.writeFile(path.join(projectPath, '.env'), `# General Variables
+
+NEXT_BACKEND_URL=http://127.0.0.1:3000
+
+  `, function(err) {
+    if(err) {
+        return console.log(err)
+    }
+    console.log(chalk.green('Env file created!'))
+  }) 
 }

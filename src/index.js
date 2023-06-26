@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
-import { initNodeNpm, initNodeYarn } from './projectCreationUtils.js';
+import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages } from './packageInstallationUtils.js';
-import { addGeneralFiles, addIndexFiles, addExamples, updateNextConfigI18n } from './exampleCreationUtils.js';
+import { addGeneralFiles, addIndexFiles, addExamples, updateNextConfigI18n, updateEnvPrisma, updateEnvNextAuth } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -25,6 +25,7 @@ if(packageManager === 'npm') {
 } else if(packageManager === 'yarn') {
   await initNodeYarn(CURR_DIR, targetPath)
 }
+await addEnvFile(targetPath)
 console.log(chalk.green('Done creating nextjs project structure.'))
 
 // add packages selected by the user
@@ -38,4 +39,14 @@ await addExamples(targetPath, examples)
 // additional config changes for i18n
 if(examples.includes('i18n')) {
   await updateNextConfigI18n(targetPath)
+}
+
+// additional file changes for prisma
+if(packages.includes('prisma')) {
+  await updateEnvPrisma(targetPath)
+}
+
+// additional file changes for nextAuth
+if(packages.includes('nextAuth')) {
+  await updateEnvNextAuth(targetPath)
 }
