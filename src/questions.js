@@ -20,7 +20,8 @@ export const getPackageManager = async () => await select({
 export const getPackages = async () => await checkbox({
   message: 'Select your packages',
   choices: [
-    { name: 'Material UI', value: 'mui', checked: true },
+    // mui added by default
+    { name: 'Material UI', value: 'mui', disabled: true },
     //{ name: 'Tailwind CSS', value: 'tailwind' },
     new Separator(),
     { name: 'React Redux + Toolkit', value: 'redux' },
