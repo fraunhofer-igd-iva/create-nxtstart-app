@@ -38,6 +38,9 @@ export async function initNodeYarn(pathToParentDirectory, pathToProject) {
   // set yarn version for new project
   shell.exec('yarn set version stable')
 
+  // disable default telemetry
+  shell.exec('yarn next telemetry disable')
+
   // clean up parent dict
   shell.cd(pathToParentDirectory)
   shell.rm('-rf', '.yarn')
