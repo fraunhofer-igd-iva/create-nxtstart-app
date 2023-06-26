@@ -173,7 +173,7 @@ export async function addPrismaRunScript(projectPath) {
 		}
 		const result = data.replace(
 			/"lint": "next lint"/g,
-			`"lint": "next lint"
+			`"lint": "next lint",
 	"db:generate": "yarn pnpify prisma generate"`
 		).replace(
       /"dependencies": {/g,
