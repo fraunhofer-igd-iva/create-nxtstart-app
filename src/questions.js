@@ -28,7 +28,7 @@ export const getPackages = async () => await checkbox({
     { name: 'D3 JS', value: 'd3' },
     { name: 'Next Auth', value: 'nextAuth' },
     { name: 'Prisma DB', value: 'prisma' },
-    { name: 'Internationalization', value: 'i18n' },
+    { name: 'Internationalization', value: 'i18n', disabled: true },
     { name: 'Progressive Web App', value: 'pwa' },
     { name: 'Cypress Testing', value: 'cypress' },
     new Separator(),

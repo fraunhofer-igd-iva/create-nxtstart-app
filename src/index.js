@@ -12,8 +12,9 @@ import chalk from 'chalk';
 const projectName = await getProjectName()
 const packageManager = await getPackageManager()
 const packages = await getPackages()
-// per default add mui
+// per default add mui and i18n
 packages.push('mui')
+packages.push('i18n')
 const examples = await getExamples(packages)
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
