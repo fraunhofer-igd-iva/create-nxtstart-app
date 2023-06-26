@@ -2,8 +2,8 @@
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
-import { addPackages } from './packageInstallationUtils.js';
-import { addGeneralFiles, addIndexFiles, addExamples, updateNextConfigI18n, updateEnvPrisma, updateEnvNextAuth } from './exampleCreationUtils.js';
+import { addPackages, addPrismaRunScript, updateEnvPrisma } from './packageInstallationUtils.js';
+import { addGeneralFiles, addIndexFiles, addExamples, updateNextConfigI18n, updateEnvNextAuth } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -44,6 +44,7 @@ if(examples.includes('i18n')) {
 // additional file changes for prisma
 if(packages.includes('prisma')) {
   await updateEnvPrisma(targetPath)
+  await addPrismaRunScript(targetPath)
 }
 
 // additional file changes for nextAuth

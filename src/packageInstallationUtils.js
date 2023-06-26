@@ -147,3 +147,34 @@ export async function addPackages(packageManager, packageNamesUser, path) {
 	}
 	return true
 }
+
+export async function updateEnvPrisma(projectPath) {
+  fsStandard.appendFile(path.join(projectPath, '.env'), 
+`
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+  
+DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
+
+`, function (err) {
+    if (err) throw err
+  })
+}
+
+export async function addPrismaRunScript(projectPath) {
+	fsStandard.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
+		if (err) {
+			return console.log(err)
+		}
+		const result = data.replace(
+			/"lint": "next lint"/g,
+			`"lint": "next lint"
+	"db:generate": "yarn pnpify prisma generate"`
+		)
+		fsStandard.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
+			if (err) return console.log(err)
+		})
+	})
+}
