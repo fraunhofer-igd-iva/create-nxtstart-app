@@ -33,6 +33,8 @@ await addPackages(packageManager, packages, targetPath)
 await addGeneralFiles(targetPath)
 await addIndexFiles(targetPath)
 await addExamples(targetPath, examples)
+
+// additional config changes for i18n
 if(examples.includes('i18n')) {
   await updateNextConfigI18n(targetPath)
 }
