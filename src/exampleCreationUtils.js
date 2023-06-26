@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import chalk from 'chalk';
 
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -57,6 +58,7 @@ const nextConfig = {`
     )
     fsStandard.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
        if (err) return console.log(err)
+       console.log(chalk.green('Added NextAuth config!'))
     })
   })
 }
@@ -75,5 +77,6 @@ SECRET=qwertysecretForTheN3xtJ5Template
 
 `, function (err) {
     if (err) throw err
+    console.log(chalk.green('Added NextAuth .env!'))
   })
 }
