@@ -65,14 +65,15 @@ const nextConfig = {`
 
 export async function updateEnvNextAuth(projectPath) {
   fsStandard.appendFile(path.join(projectPath, '.env'), 
-  //TODO remove the variables
 `
 # Next Auth Variables
-GITHUB_ID=93222600017a00c6e424
-GITHUB_SECRET=1f44c75dcb0c51fd6347bc206ff714c2dd5c021d
+GITHUB_ID=<enter github id>
+GITHUB_SECRET=<enter github secret>
 
+# Update according to your deployment address (You can leave this for local development)
 NEXTAUTH_URL=http://localhost:3000
 
+# You should replace this secret when deploying your application
 SECRET=qwertysecretForTheN3xtJ5Template
 
 `, function (err) {

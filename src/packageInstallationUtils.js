@@ -157,7 +157,8 @@ export async function updateEnvPrisma(projectPath) {
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
 # Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
-  
+
+# Example connection string for mysql, update to match your used database and database user
 DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
 
 `, function (err) {
