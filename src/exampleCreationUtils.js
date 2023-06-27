@@ -33,7 +33,7 @@ export async function addExamples(projectPath, examples) {
     if (fsStandard.existsSync(templatePath)) {
       fsExtra.copy(templatePath, projectPath, err => {
         if (err) return console.error(err)
-        console.log(chalk.green(`Updated ${element} files successfully!`))
+        console.log(chalk.green(`Added ${element} files successfully!`))
       })
     } else {
       console.log(chalk.red(`No example filse found for ${element}!`))
@@ -65,9 +65,9 @@ const nextConfig = {`
 
 export async function updateEnvNextAuth(projectPath) {
   fsStandard.appendFile(path.join(projectPath, '.env'), 
+  //TODO remove the variables
 `
 # Next Auth Variables
-# TODO remove 
 GITHUB_ID=93222600017a00c6e424
 GITHUB_SECRET=1f44c75dcb0c51fd6347bc206ff714c2dd5c021d
 
