@@ -136,9 +136,7 @@ export default function D3Page(props: D3PageProps) {
           Two different kinds of D3 graphs.
           The bar chart is rendered using svg objects,
           the multi line chart uses the d3 canvas.
-          To see the updating behaviour of the bar chart see
         </Typography>
-        <MuiNextLink href={'/sse'} label={'Server Sent Events'} />
         <Box sx={{ display: 'flex', flexDirection: 'row', mt: 4 }}>
           <Button variant={'contained'} onClick={randomCityUpdate} sx={{ mx: 2 }}>Random Update</Button>
         </Box>
