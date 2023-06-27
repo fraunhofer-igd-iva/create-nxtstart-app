@@ -42,12 +42,12 @@ export async function addExamples(projectPath, examples) {
 }
 
 export async function updateNextConfigI18n(projectPath) {
-  fsStandard.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err,data) {
+  fsStandard.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
     }
     const result = data.replace(
-      /reactStrictMode: true,/g, 
+      /reactStrictMode: true,/g,
       `reactStrictMode: true,
   i18n: i18n,`
     ).replace(
@@ -57,15 +57,15 @@ export async function updateNextConfigI18n(projectPath) {
 const nextConfig = {`
     )
     fsStandard.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
-       if (err) return console.log(err)
-       console.log(chalk.green('Added NextAuth config!'))
+      if (err) return console.log(err)
+      console.log(chalk.green('Added NextAuth config!'))
     })
   })
 }
 
 export async function updateEnvNextAuth(projectPath) {
-  fsStandard.appendFile(path.join(projectPath, '.env'), 
-`
+  fsStandard.appendFile(path.join(projectPath, '.env'),
+    `
 # Next Auth Variables
 GITHUB_ID=<enter github id>
 GITHUB_SECRET=<enter github secret>

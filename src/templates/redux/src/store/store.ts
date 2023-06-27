@@ -1,14 +1,14 @@
-import {Action, combineReducers, configureStore, ThunkAction} from '@reduxjs/toolkit';
+import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import counterReducer from './slices/counterSlice';
 import themeReducer from './slices/themeSlice';
 
 const combinedReducer = combineReducers({
-    counter: counterReducer,
-    theme: themeReducer,
+  counter: counterReducer,
+  theme: themeReducer,
 })
 
 const makeStore = () => configureStore({
-    reducer: combinedReducer,
+  reducer: combinedReducer,
 })
 
 export const store = makeStore()

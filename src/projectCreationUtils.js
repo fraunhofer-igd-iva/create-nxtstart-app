@@ -59,10 +59,10 @@ export async function addEnvFile(projectPath) {
 
 NEXT_BACKEND_URL=http://127.0.0.1:3000
 
-  `, function(err) {
-    if(err) {
-        return console.log(err)
+  `, function (err) {
+    if (err) {
+      return console.log(err)
     }
     console.log(chalk.green('Env file created!'))
-  }) 
+  })
 }

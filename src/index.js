@@ -20,9 +20,9 @@ const examples = await getExamples(packages)
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
 const targetPath = path.join(CURR_DIR, projectName)
-if(packageManager === 'npm') {
+if (packageManager === 'npm') {
   await initNodeNpm(CURR_DIR, targetPath)
-} else if(packageManager === 'yarn') {
+} else if (packageManager === 'yarn') {
   await initNodeYarn(CURR_DIR, targetPath)
 }
 await addEnvFile(targetPath)
@@ -37,17 +37,17 @@ await addIndexFiles(targetPath)
 await addExamples(targetPath, examples)
 
 // additional config changes for i18n
-if(examples.includes('i18n')) {
+if (examples.includes('i18n')) {
   await updateNextConfigI18n(targetPath)
 }
 
 // additional file changes for prisma
-if(packages.includes('prisma')) {
+if (packages.includes('prisma')) {
   await updateEnvPrisma(targetPath)
   await addPrismaRunScript(targetPath)
 }
 
 // additional file changes for nextAuth
-if(packages.includes('nextAuth')) {
+if (packages.includes('nextAuth')) {
   await updateEnvNextAuth(targetPath)
 }

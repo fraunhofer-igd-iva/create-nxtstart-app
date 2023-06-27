@@ -1,6 +1,6 @@
 export type Data = {
-    label: string
-    value: number
-    totalDataPoints: number
+  label: string
+  value: number
+  totalDataPoints: number
 }
 

@@ -1,13 +1,13 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {AppState} from '../store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AppState } from '../store';
 
 // declaring the types for our state
 export type CounterState = {
-    value: number;
+  value: number;
 }
 
 const initialState: CounterState = {
-    value: 0,
+  value: 0,
 }
 
 // Redux Toolkit allows us to write "mutating" logic in reducers.
@@ -15,26 +15,26 @@ const initialState: CounterState = {
 // and produces a brand new immutable state based off those changes
 
 export const counterSlice = createSlice({
-    name: 'counter',
-    initialState,
-    reducers: {
-        increment: state => {
-            state.value++;
-        },
-        decrement: state => {
-            state.value--;
-        },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload;
-        },
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: state => {
+      state.value++;
     },
+    decrement: state => {
+      state.value--;
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload;
+    },
+  },
 })
 
 // actions
 export const {
-    increment,
-    decrement,
-    incrementByAmount,
+  increment,
+  decrement,
+  incrementByAmount,
 } = counterSlice.actions
 
 // selectors

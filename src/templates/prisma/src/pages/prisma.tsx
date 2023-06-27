@@ -1,54 +1,54 @@
 import React from 'react';
-import {Typography, Box} from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import Head from 'next/head';
-import {prisma} from '../util/prismaClient';
-import {city} from '.prisma/client';
-import {GetServerSideProps} from 'next';
-import {serverSideTranslations} from 'next-i18next/serverSideTranslations';
-import {useTranslation} from 'next-i18next';
+import { prisma } from '../util/prismaClient';
+import { city } from '.prisma/client';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 interface PrismaPageProps {
-    cities: city[],
-    message: string,
+  cities: city[],
+  message: string,
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: any) => {
-    const cities = await prisma.city.findMany({where: {Population: {gte: 1000000}}, orderBy: {Population: 'desc'}})
-    return {
-        props: {
-            ...(await serverSideTranslations(locale ?? 'en', [
-                'common',
-                'prismaPage',
-            ])),
-            cities: cities,
-            message: 'cityList',
-        }
+  const cities = await prisma.city.findMany({ where: { Population: { gte: 1000000 } }, orderBy: { Population: 'desc' } })
+  return {
+    props: {
+      ...(await serverSideTranslations(locale ?? 'en', [
+        'common',
+        'prismaPage',
+      ])),
+      cities: cities,
+      message: 'cityList',
     }
+  }
 }
 
 export default function PrismaPage(props: PrismaPageProps) {
 
-    const { t } = useTranslation(['prismaPage'])
+  const { t } = useTranslation(['prismaPage'])
 
-    return (
-        <div>
-            <Head>
-                <title>Prisma Test</title>
-            </Head>
-            <Box sx={{my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
-                    {t('cityList')}
-                </Typography>
-                {
-                    props.cities.map(city =>
-                        <Box key={city.ID}>
-                            <Typography>
-                                {city.Name} - {city.Population}
-                            </Typography>
-                        </Box>
-                    )
-                }
+  return (
+    <div>
+      <Head>
+        <title>Prisma Test</title>
+      </Head>
+      <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+          {t('cityList')}
+        </Typography>
+        {
+          props.cities.map(city =>
+            <Box key={city.ID}>
+              <Typography>
+                {city.Name} - {city.Population}
+              </Typography>
             </Box>
-        </div>
-    )
+          )
+        }
+      </Box>
+    </div>
+  )
 }
