@@ -14,6 +14,12 @@ const packageBundles = {
 		],
 		devDep: [],
 	},
+	swr: {
+		dep: [
+			'swr',
+		],
+		devDep: [],
+	},
 	mui: {
 		dep: [
 			'@fontsource/roboto',
