@@ -32,14 +32,6 @@ const libraries: IndexCardProps[] = [
         additionalLinks: [],
     },
     {
-        imageLink: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png',
-        title: 'Tailwind CSS',
-        description: 'Well suited for responsive designs as it\'s more flexible than the Material UI Grid in some cases. Could replace the Material UI styling props as the main styling library. Discover the styling possibilities provided by Tailwind CSS.',
-        hrefDocs: 'https://tailwindcss.com/docs/installation',
-        hrefExample: '/responsive',
-        additionalLinks: [],
-    },
-    {
         imageLink: 'https://raw.githubusercontent.com/reduxjs/redux/master/logo/logo.png',
         title: 'React Redux + Toolkit',
         description: 'Allows easy state management across pages and components in your react application. The toolkit reduces needed code for the state store.',
