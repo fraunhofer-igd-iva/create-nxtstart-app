@@ -113,8 +113,8 @@ const packageBundles = {
 	},
 }
 
-export async function addPackages(packageManager, packageNamesUser, path) {
-	shell.cd(path)
+export async function addPackages(packageManager, packageNamesUser, projectPath) {
+	shell.cd(projectPath)
 
 	// add general packages
 	const packageNames = ['general', ...packageNamesUser]
