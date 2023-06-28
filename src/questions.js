@@ -36,7 +36,6 @@ export const getPackages = async () => await checkbox({
     { name: 'Server-Sent-Events', value: 'sse' },
     { name: 'Server-Sent-Events Proxy', value: 'sseProxy' },
     { name: 'Web Worker', value: 'webWorker' },
-    { name: 'File Upload', value: 'fileUpload' },
     new Separator('=============================='),
   ],
 })
@@ -59,7 +58,6 @@ export const getExamples = async (packages) => await checkbox({
     { name: 'Server-Sent-Events', value: 'sse', disabled: !packages.includes('sse') },
     { name: 'Server-Sent-Events Proxy', value: 'sseProxy', disabled: !packages.includes('sseProxy') },
     { name: 'Web Worker', value: 'webWorker', disabled: !packages.includes('webWorker') },
-    { name: 'File Upload', value: 'fileUpload', disabled: !packages.includes('fileUpload') },
     new Separator('=============================='),
   ],
 })
