@@ -1,5 +1,4 @@
-import * as fsExtra from 'fs-extra';
-import * as fsStandard from 'fs';
+import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import chalk from 'chalk';
@@ -8,46 +7,22 @@ import chalk from 'chalk';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export async function addGeneralFiles(projectPath, examples) {
+export function addExample(projectPath, element) {
   // copies general templates directory with subdirectories and files
-  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'general'), projectPath, async (err) => {
-    if (err) return console.error(err)
-    // make sure this happens after copying the general version of the NavBar
-    // this version of the NavBar includes the User management
-    if(examples.includes('nextAuth')) {
-      await addNextAuthNavBar(projectPath)
-    }
-    console.log(chalk.green('Updated general files successfully!'))
-  })
-}
-
-export async function addIndexFiles(projectPath) {
-  // copies general templates directory with subdirectories and files
-  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'index'), projectPath, err => {
-    if (err) return console.error(err)
-    console.log(chalk.green('Added custom index page successfully!'))
-  })
-}
-
-export async function addExamples(projectPath, examples) {
-  // copies general templates directory with subdirectories and files
-  for (let index = 0; index < examples.length; index++) {
-    const element = examples[index]
-    const templatePath = path.join(path.join(__dirname, 'templates'), element)
-    // only attempt to copy if folder exists
-    if (fsStandard.existsSync(templatePath)) {
-      fsExtra.copy(templatePath, projectPath, err => {
-        if (err) return console.error(err)
-        console.log(chalk.green(`Added ${element} files successfully!`))
-      })
-    } else {
-      console.log(chalk.red(`No example filse found for ${element}!`))
-    }
+  const templatePath = path.join(path.join(__dirname, 'templates'), element)
+  // only attempt to copy if folder exists
+  if (fs.existsSync(templatePath)) {
+    fs.cpSync(templatePath, projectPath, { recursive: true }, err => {
+      if (err) return console.error(err)
+      console.log(chalk.green(`Added ${element} files successfully!`))
+    })
+  } else {
+    console.log(chalk.red(`No example filse found for ${element}!`))
   }
 }
 
-export async function updateNextConfigI18n(projectPath) {
-  fsStandard.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
+export function updateNextConfigI18n(projectPath) {
+  fs.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
     }
@@ -61,15 +36,15 @@ export async function updateNextConfigI18n(projectPath) {
 
 const nextConfig = {`
     )
-    fsStandard.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
+    fs.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
       if (err) return console.log(err)
       console.log(chalk.green('Added NextAuth config!'))
     })
   })
 }
 
-export async function updateEnvNextAuth(projectPath) {
-  fsStandard.appendFile(path.join(projectPath, '.env'),
+export function updateEnvNextAuth(projectPath) {
+  fs.appendFile(path.join(projectPath, '.env'),
     `
 # Next Auth Variables
 GITHUB_ID=<enter github id>
@@ -87,9 +62,28 @@ SECRET=qwertysecretForTheN3xtJ5Template
   })
 }
 
-export async function addNextAuthNavBar(projectPath) {
+export function addCypressRunScripts(projectPath) {
+  fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err)
+    }
+    const result = data.replace(
+      /"start": "next start",/g,
+      `"start": "next start",
+  "test": "cypress run",
+  "cypressGui": "yarn run cypress open",`
+    )
+
+    fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
+      if (err) return console.log(err)
+      console.log(chalk.green('Added Cypress run scripts!'))
+    })
+  })
+}
+
+export function addNextAuthNavBar(projectPath) {
   // copies general templates directory with subdirectories and files
-  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'nextAuthNavBar'), projectPath, err => {
+  fs.cpSync(path.join(path.join(__dirname, 'templates'), 'nextAuthNavBar'), projectPath, { recursive: true }, err => {
     if (err) return console.error(err)
     console.log(chalk.green('Updated NavBar to include NextAuth successfully!'))
   })
