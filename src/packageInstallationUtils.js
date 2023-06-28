@@ -1,6 +1,6 @@
 import shell from 'shelljs';
 import chalk from 'chalk';
-import * as fsStandard from 'fs';
+import * as fs from 'fs';
 import path from 'path';
 
 
@@ -156,8 +156,8 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   return true
 }
 
-export async function updateEnvPrisma(projectPath) {
-  fsStandard.appendFile(path.join(projectPath, '.env'),
+export function updateEnvPrisma(projectPath) {
+  fs.appendFile(path.join(projectPath, '.env'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
@@ -173,8 +173,8 @@ DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
   })
 }
 
-export async function addPrismaRunScript(projectPath) {
-  fsStandard.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
+export function addPrismaRunScript(projectPath) {
+  fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
     }
@@ -188,7 +188,7 @@ export async function addPrismaRunScript(projectPath) {
 	".prisma": "link:./prisma/.prisma/",`
     )
 
-    fsStandard.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
+    fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
       if (err) return console.log(err)
       console.log(chalk.green('Added Prisma run script!'))
     })
