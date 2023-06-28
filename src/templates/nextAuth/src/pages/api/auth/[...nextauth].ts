@@ -1,8 +1,6 @@
 import NextAuth, { SessionStrategy } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
-import CredentialsProvider from 'next-auth/providers/credentials';
-import { prisma } from '../../../util/prismaClient';
 
 export const authOptions = {
   // Configure one or more authentication providers
