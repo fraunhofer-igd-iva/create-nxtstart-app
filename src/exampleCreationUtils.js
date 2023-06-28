@@ -21,7 +21,7 @@ export function addExample(projectPath, element) {
   }
 }
 
-export function updateNextConfigI18n(projectPath) {
+export async function updateNextConfigI18n(projectPath) {
   fs.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
@@ -43,7 +43,7 @@ const nextConfig = {`
   })
 }
 
-export function updateEnvNextAuth(projectPath) {
+export async function updateEnvNextAuth(projectPath) {
   fs.appendFile(path.join(projectPath, '.env'),
     `
 # Next Auth Variables
@@ -59,25 +59,6 @@ SECRET=qwertysecretForTheN3xtJ5Template
 `, function (err) {
     if (err) throw err
     console.log(chalk.green('Added NextAuth .env!'))
-  })
-}
-
-export function addCypressRunScripts(projectPath) {
-  fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
-    if (err) {
-      return console.log(err)
-    }
-    const result = data.replace(
-      /"start": "next start",/g,
-      `"start": "next start",
-  "test": "cypress run",
-  "cypressGui": "yarn run cypress open",`
-    )
-
-    fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
-      if (err) return console.log(err)
-      console.log(chalk.green('Added Cypress run scripts!'))
-    })
   })
 }
 

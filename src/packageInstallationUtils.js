@@ -156,7 +156,7 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   return true
 }
 
-export function updateEnvPrisma(projectPath) {
+export async function updateEnvPrisma(projectPath) {
   fs.appendFile(path.join(projectPath, '.env'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
@@ -173,24 +173,36 @@ DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
   })
 }
 
-export function addPrismaRunScript(projectPath) {
+export async function addRunScripts(projectPath, packages) {
   fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
     }
-    const result = data.replace(
-      /"lint": "next lint"/g,
-      `"lint": "next lint",
+    let result = data
+    if (packages.includes('prisma')) {
+      result = result.replace(
+        /"lint": "next lint"/g,
+        `"lint": "next lint",
 	"db:generate": "yarn pnpify prisma generate"`
-    ).replace(
-      /"dependencies": {/g,
-      `"dependencies": {
+      ).replace(
+        /"dependencies": {/g,
+        `"dependencies": {
 	".prisma": "link:./prisma/.prisma/",`
-    )
+      )
+    }
+
+    if (packages.includes('cypress')) {
+      result = result.replace(
+        /"start": "next start",/g,
+        `"start": "next start",
+    "test": "cypress run",
+    "cypressGui": "yarn run cypress open",`
+      )
+    }
 
     fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
       if (err) return console.log(err)
-      console.log(chalk.green('Added Prisma run script!'))
+      console.log(chalk.green('Added run scripts!'))
     })
   })
 }

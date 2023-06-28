@@ -2,8 +2,8 @@
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
-import { addPackages, addPrismaRunScript, updateEnvPrisma } from './packageInstallationUtils.js';
-import { addExample, updateNextConfigI18n, updateEnvNextAuth, addNextAuthNavBar, addCypressRunScripts } from './exampleCreationUtils.js';
+import { addPackages, addRunScripts, updateEnvPrisma } from './packageInstallationUtils.js';
+import { addExample, updateNextConfigI18n, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -30,7 +30,10 @@ console.log(chalk.green('Done creating nextjs project structure.'))
 
 // add packages selected by the user
 addPackages(packageManager, packages, targetPath)
-  .then(() => {
+  .then(async () => {
+    // add run scripts to package.json
+    await addRunScripts(targetPath, packages)
+    
     // add additional files and examples selected by the user
     examples.map(async element => {
       addExample(targetPath, element)
@@ -44,22 +47,16 @@ addPackages(packageManager, packages, targetPath)
 
     // additional config changes for i18n
     if (examples.includes('i18n')) {
-      updateNextConfigI18n(targetPath)
+      await updateNextConfigI18n(targetPath)
     }
 
     // additional file changes for prisma
     if (packages.includes('prisma')) {
-      updateEnvPrisma(targetPath)
-      addPrismaRunScript(targetPath)
+      await updateEnvPrisma(targetPath)
     }
 
     // additional file changes for nextAuth
     if (packages.includes('nextAuth')) {
-      updateEnvNextAuth(targetPath)
-    }
-
-    // additional file changes for cypress
-    if (packages.includes('cypress')) {
-      addCypressRunScripts(targetPath)
+      await updateEnvNextAuth(targetPath)
     }
   })
