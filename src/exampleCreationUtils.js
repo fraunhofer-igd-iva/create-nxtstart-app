@@ -8,10 +8,15 @@ import chalk from 'chalk';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export async function addGeneralFiles(projectPath) {
+export async function addGeneralFiles(projectPath, examples) {
   // copies general templates directory with subdirectories and files
-  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'general'), projectPath, err => {
+  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'general'), projectPath, async (err) => {
     if (err) return console.error(err)
+    // make sure this happens after copying the general version of the NavBar
+    // this version of the NavBar includes the User management
+    if(examples.includes('nextAuth')) {
+      await addNextAuthNavBar(projectPath)
+    }
     console.log(chalk.green('Updated general files successfully!'))
   })
 }
@@ -79,5 +84,13 @@ SECRET=qwertysecretForTheN3xtJ5Template
 `, function (err) {
     if (err) throw err
     console.log(chalk.green('Added NextAuth .env!'))
+  })
+}
+
+export async function addNextAuthNavBar(projectPath) {
+  // copies general templates directory with subdirectories and files
+  fsExtra.copy(path.join(path.join(__dirname, 'templates'), 'nextAuthNavBar'), projectPath, err => {
+    if (err) return console.error(err)
+    console.log(chalk.green('Updated NavBar to include NextAuth successfully!'))
   })
 }

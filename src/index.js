@@ -32,7 +32,7 @@ console.log(chalk.green('Done creating nextjs project structure.'))
 await addPackages(packageManager, packages, targetPath)
 
 // add additional files and examples selected by the user
-await addGeneralFiles(targetPath)
+await addGeneralFiles(targetPath, examples)
 await addIndexFiles(targetPath)
 await addExamples(targetPath, examples)
 
