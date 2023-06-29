@@ -199,7 +199,7 @@ export async function addRunScripts(projectPath, packages) {
         /"start": "next start",/g,
         `"start": "next start",
     "test": "cypress run",
-    "cypressGui": "yarn run cypress open",`
+    "cypressGui": "cypress open",`
       )
     }
 
