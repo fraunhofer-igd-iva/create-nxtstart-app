@@ -9,7 +9,7 @@ Currently Material UI and the internationalization framework are non optional an
 ## General
 
 - Fill the `.env` file with necessary variables in places where webstart placed placeholder data
-- Run the project using `yarn run dev` from the project root
+- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
 - Webstart creates a `/webstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 
 ## I18n - Internationalization
@@ -28,19 +28,19 @@ To see the responsive behavior of Mui components take a look at the example page
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` and generate the client using `yarn run db:generate`.
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm).
 
 ### For later changes to the database:
 To update the db using prisma.scheme:
 - Update File
-- Run `yarn prisma db push` (may reset tables or entire database)
-- OR do proper migrate using `yarn prisma migrate dev`
-- Run `yarn run db:generate` (generates prisma client)
+- Run `yarn prisma db push` (or `npx prisma db push` for npm) (may reset tables or entire database)
+- OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
+- Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 To receive update from database:
 - Update DB
-- Run `yarn prisma db pull` (updates schema)
-- Run `yarn run db:generate` (generates prisma client)
+- Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
+- Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 ## Next Auth
 
@@ -50,7 +50,7 @@ The example is using Github in the `.env`. See the [Docs](https://next-auth.js.o
 
 ## Cypress Testing
 
-Run tests using `yarn run test` or open the GUI using `yarn run cypressGui`.
+Run tests using `yarn run test` (or `npm run test` for npm) or open the GUI using `yarn run cypressGui` (or `npm run cypressGui` for npm).
 
 The example specifications for the authentication (including the test for the restricted api route) won't work for the current webstart as it requires an admin login, but the concept of writing tests should still become clear.
 
@@ -65,8 +65,8 @@ The example depends on D3 graphs and therefore cannot be used without installing
 
 # Deployment of your project
 
-To create an optimized production build run the command `yarn run build`.
-To run the build created in the `.next` folder you can run `yarn run start`.
+To create an optimized production build run the command `yarn run build` (or `npm run build` for npm).
+To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
 
 # Development on Webstart
 
