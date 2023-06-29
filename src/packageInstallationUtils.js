@@ -179,6 +179,7 @@ export async function addRunScripts(projectPath, packages) {
       return console.log(err)
     }
     let result = data
+    
     if (packages.includes('prisma')) {
       result = result.replace(
         /"lint": "next lint"/g,
