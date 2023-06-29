@@ -51,7 +51,7 @@ export const getExamples = async (packages) => await checkbox({
     { name: 'D3 JS', value: 'd3', disabled: !packages.includes('d3') },
     { name: 'Next Auth', value: 'nextAuth', disabled: !packages.includes('nextAuth') },
     { name: 'Prisma DB', value: 'prisma', disabled: !packages.includes('prisma') },
-    { name: 'Internationalization', value: 'i18n', disabled: !packages.includes('i18n') },
+    { name: 'Internationalization', value: 'i18n', disabled: true },
     { name: 'Progressive Web App', value: 'pwa', disabled: !packages.includes('pwa') },
     { name: 'Cypress Testing', value: 'cypress', disabled: !packages.includes('cypress') },
     new Separator(),

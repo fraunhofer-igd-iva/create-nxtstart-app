@@ -11,11 +11,10 @@ import chalk from 'chalk';
 // Query setup data from user
 const projectName = await getProjectName()
 const packageManager = await getPackageManager()
-const packages = await getPackages()
 // per default add mui and i18n
-packages.push('mui')
-packages.push('i18n')
-const examples = ['general', 'index', ...await getExamples(packages)]
+const packages = ['mui', 'i18n', ...await getPackages()]
+// per default add general files, the custom index page and the internationalization files
+const examples = ['general', 'index', 'i18n', ...await getExamples(packages)]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
