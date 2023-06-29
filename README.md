@@ -10,7 +10,7 @@ Currently Material UI and the internationalization framework are non optional an
 
 - Fill the `.env` file with necessary variables in places where webstart placed placeholder data
 - Run the project using `yarn run dev` from the project root
-- The Cards on the landing page may link to non existing examples if you chose to not include some in your project.
+- Webstart creates a `/webstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 
 ## I18n - Internationalization
 
@@ -58,6 +58,10 @@ The example specifications for the authentication (including the test for the re
 
 The example provides a basic service worker, manifest.json and necessary assets to get started. See `/worker/index.js` to edit the service worker.
 To disable PWA edit `/next.config.js`.
+
+## Server-Sent-Events
+
+The example depends on D3 graphs and therefore cannot be used without installing D3 and its examples.
 
 # Deployment of your project
 
