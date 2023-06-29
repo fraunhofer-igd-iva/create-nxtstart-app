@@ -3,7 +3,7 @@
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma } from './packageInstallationUtils.js';
-import { addExample, updateNextConfigI18n, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
+import { addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -33,6 +33,8 @@ addPackages(packageManager, packages, targetPath)
   .then(async () => {
     // add run scripts to package.json
     await addRunScripts(targetPath, packages)
+    // update next config
+    await updateNextConfig(targetPath, packages)
     
     // add additional files and examples selected by the user
     examples.map(async element => {
@@ -43,11 +45,6 @@ addPackages(packageManager, packages, targetPath)
     // this version of the NavBar includes the User management
     if (examples.includes('nextAuth')) {
       addNextAuthNavBar(targetPath)
-    }
-
-    // additional config changes for i18n
-    if (examples.includes('i18n')) {
-      await updateNextConfigI18n(targetPath)
     }
 
     // additional file changes for prisma

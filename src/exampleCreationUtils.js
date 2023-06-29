@@ -21,21 +21,40 @@ export function addExample(projectPath, element) {
   }
 }
 
-export async function updateNextConfigI18n(projectPath) {
+export async function updateNextConfig(projectPath, packages) {
   fs.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
     }
-    const result = data.replace(
-      /reactStrictMode: true,/g,
-      `reactStrictMode: true,
+    let result = data
+    
+    if (packages.includes('i18n')) {
+      result = result.replace(
+        /reactStrictMode: true,/g,
+        `reactStrictMode: true,
   i18n: i18n,`
-    ).replace(
-      /const nextConfig = {/g,
-      `const { i18n } = require('./next-i18next.config')
-
+      ).replace(
+        /const nextConfig = {/g,
+        `const { i18n } = require('./next-i18next.config')
+  
 const nextConfig = {`
-    )
+      )
+    }
+    
+    if (packages.includes('pwa')) {
+      result = result.replace(
+        /module.exports = nextConfig/g,
+        `module.exports = withPWA(nextConfig)`
+      ).replace(
+        /const nextConfig = {/g,
+        `// disable service worker in development to prevent warning spam https://github.com/GoogleChrome/workbox/issues/1790.
+// enable again to test service worker locally
+const withPWA = require('next-pwa')({dest: 'public', disable: process.env.NODE_ENV === 'development'})
+  
+const nextConfig = {`
+      )
+    }
+
     fs.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
       if (err) return console.log(err)
       console.log(chalk.green('Added NextAuth config!'))
