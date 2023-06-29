@@ -10,6 +10,19 @@ Currently Material UI and the internationalization framework are non optional an
 
 - Fill the `.env` file with necessary variables in places where webstart placed placeholder data
 - Run the project using `yarn run dev` from the project root
+- The Cards on the landing page may link to non existing examples if you chose to not include some in your project.
+
+## I18n - Internationalization
+
+By default webstart projects come with internationalization options.
+Under `/public/locales` the different languages are placed. Each language directory contains multiple json files that can be as granular as necessary.
+Using these translations can be done as seen in `/src/pages/index.tsx` and `/src/components/NavBar.tsx` using serverSideTranslations.
+
+## Material UI
+
+Used as the main design library. Use the sx prop on the Mui components for styling. This can be done using shared styles across components or component specific styles.
+Additionally the theme is provided by Material UI and light/dark mode is implemented by default.
+To see the responsive behavior of Mui components take a look at the example page linked on the landing page.
 
 ## Prisma
 
