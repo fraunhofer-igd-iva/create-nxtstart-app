@@ -35,6 +35,12 @@ Set the necessary variables in `.env` and create the necessary applications on t
 
 The example is using Github in the `.env`. See the [Docs](https://next-auth.js.org/configuration/providers/oauth#built-in-providers) for more details.
 
+## Cypress Testing
+
+Run tests using `yarn run test` or open the GUI using `yarn run cypressGui`.
+
+The example specifications for the authentication won't work for the current webstart as it requires an admin login, but the concept of writing tests should still become clear.
+
 ## Progressive Web App
 
 The example provides a basic service worker, manifest.json and necessary assets to get started. See `/worker/index.js` to edit the service worker.
