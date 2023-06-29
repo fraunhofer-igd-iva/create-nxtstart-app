@@ -39,7 +39,7 @@ The example is using Github in the `.env`. See the [Docs](https://next-auth.js.o
 
 Run tests using `yarn run test` or open the GUI using `yarn run cypressGui`.
 
-The example specifications for the authentication won't work for the current webstart as it requires an admin login, but the concept of writing tests should still become clear.
+The example specifications for the authentication (including the test for the restricted api route) won't work for the current webstart as it requires an admin login, but the concept of writing tests should still become clear.
 
 ## Progressive Web App
 
