@@ -134,7 +134,10 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   for (let i = 0; i < packageNames.length; i++) {
     const packageName = packageNames[i]
     packageBundles[packageName].dep.forEach(name => {
-      cmdDep += ` ${name}`
+      // @yarnpkg/pnpify not needed for npm
+      if(packageManager !== 'npm' || name !== '@yarnpkg/pnpify') {
+        cmdDep += ` ${name}`
+      }
     })
     packageBundles[packageName].devDep.forEach(name => {
       cmdDevDep += ` ${name}`
@@ -175,7 +178,7 @@ DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
   })
 }
 
-export async function addRunScripts(projectPath, packages) {
+export async function addRunScripts(projectPath, packages, packageManager) {
   fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
@@ -183,11 +186,15 @@ export async function addRunScripts(projectPath, packages) {
     let result = data
     
     if (packages.includes('prisma')) {
-      result = result.replace(
-        /"lint": "next lint"/g,
-        `"lint": "next lint",
+      // only need special run script for yarn
+      if(packageManager === 'yarn') {
+        result = result.replace(
+          /"lint": "next lint"/g,
+          `"lint": "next lint",
 	"db:generate": "yarn pnpify prisma generate"`
-      ).replace(
+        )
+      }
+      result = result.replace(
         /"dependencies": {/g,
         `"dependencies": {
 	".prisma": "link:./prisma/.prisma/",`

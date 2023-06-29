@@ -32,7 +32,7 @@ console.log(chalk.green('Done creating nextjs project structure.'))
 addPackages(packageManager, packages, targetPath)
   .then(async () => {
     // add run scripts to package.json
-    await addRunScripts(targetPath, packages)
+    await addRunScripts(targetPath, packages, packageManager)
     // update next config
     await updateNextConfig(targetPath, packages)
     
