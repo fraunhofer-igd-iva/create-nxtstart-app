@@ -1,7 +1,5 @@
-import { defineConfig } from 'cypress';
-
-export default defineConfig({
+module.exports = {
   e2e: {
     baseUrl: 'http://localhost:3000',
   },
-})
+};
