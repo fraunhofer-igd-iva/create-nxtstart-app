@@ -5,6 +5,7 @@ import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
 import { useAppDispatch } from '../store/hooks';
 import { switchTheme } from '../store/slices/themeSlice';
 import LanguageSelector from './LanguageSelector';
+import examples from '../../webstart.config.json';
 
 interface LinkTabProps {
   value: string,
@@ -30,19 +31,26 @@ const TABS = [
     label: 'Home',
     pathname: '/'
   },
-  {
-    label: 'Redux',
-    pathname: '/redux'
-  },
-  {
-    label: 'Server-Sent-Events',
-    pathname: '/sse'
-  },
-  {
+]
+// done this way to make the navbar dynamically present appropriate tabs after creation using webstart, can be removed and all tabs moved directly into the object above
+if(examples.includes('mui')) {
+  TABS.push({
     label: 'Responsive Design',
     pathname: '/responsive'
-  },
-]
+  })
+}
+if(examples.includes('redux')) {
+  TABS.push({
+    label: 'Redux',
+    pathname: '/redux'
+  })
+}
+if(examples.includes('sse')) {
+  TABS.push({
+    label: 'Server-Sent-Events',
+    pathname: '/sse'
+  })
+}
 
 const validatePath = (path: string) => {
   const tabPaths = TABS.map(tab => tab.pathname)
