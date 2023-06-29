@@ -1,9 +1,3 @@
-# Development
-
-- Install packages using `npm install`
-- Install the cli locally using `npm install -g`
-- Run the cli in any command prompt using `webstart-cli`
-
 # Usage
 
 After installing the webstart-cli package, run the app in any command prompt using `webstart-cli`.
@@ -40,3 +34,19 @@ To receive update from database:
 Set the necessary variables in `.env` and create the necessary applications on the third party sites you want to use.
 
 The example is using Github in the `.env`. See the [Docs](https://next-auth.js.org/configuration/providers/oauth#built-in-providers) for more details.
+
+## Progressive Web App
+
+The example provides a basic service worker, manifest.json and necessary assets to get started. See `/worker/index.js` to edit the service worker.
+To disable PWA edit `/next.config.js`.
+
+# Deployment of your project
+
+To create an optimized production build run the command `yarn run build`.
+To run the build created in the `.next` folder you can run `yarn run start`.
+
+# Development on Webstart
+
+- Install packages using `npm install`
+- Install the cli locally using `npm install -g`
+- Run the cli in any command prompt using `webstart-cli`
