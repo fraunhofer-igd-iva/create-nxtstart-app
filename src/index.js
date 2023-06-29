@@ -3,7 +3,7 @@
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma } from './packageInstallationUtils.js';
-import { addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
+import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -24,6 +24,7 @@ if (packageManager === 'npm') {
 } else if (packageManager === 'yarn') {
   await initNodeYarn(CURR_DIR, targetPath)
 }
+await addExamplesJson(targetPath, examples)
 await addEnvFile(targetPath)
 console.log(chalk.green('Done creating nextjs project structure.'))
 

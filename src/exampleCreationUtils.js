@@ -7,6 +7,15 @@ import chalk from 'chalk';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
+export async function addExamplesJson(projectPath, examples) {
+  fs.writeFile(path.join(projectPath, 'webstart.config.json'), JSON.stringify(examples), function (err) {
+    if (err) {
+      return console.log(err)
+    }
+    console.log(chalk.green('Webstart config json created!'))
+  })
+}
+
 export function addExample(projectPath, element) {
   // copies general templates directory with subdirectories and files
   const templatePath = path.join(path.join(__dirname, 'templates'), element)
