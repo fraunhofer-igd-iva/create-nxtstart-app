@@ -5,6 +5,11 @@ This NextJS project was bootstrapped using the Webstart CLI.
 - Fill the `.env` file with necessary variables in places where webstart placed placeholder data
 - If you selected Prisma, refer to the corresponding section of this README before running your app
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
+- Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Webstart creates a `/webstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 
 # Package specific information
