@@ -1,9 +1,4 @@
 import React from 'react';
-// Load roboto font for entire application
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { lightTheme, darkTheme } from '../styles/theme';
 import { selectTheme, setTheme } from '../store/slices/themeSlice';

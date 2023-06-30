@@ -22,7 +22,6 @@ const packageBundles = {
   },
   mui: {
     dep: [
-      '@fontsource/roboto',
       '@mui/icons-material',
       '@mui/material',
     ],
