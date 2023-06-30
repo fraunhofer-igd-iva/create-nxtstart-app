@@ -3,7 +3,7 @@
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma } from './packageInstallationUtils.js';
-import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar } from './exampleCreationUtils.js';
+import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -41,12 +41,6 @@ addPackages(packageManager, packages, targetPath)
       addExample(targetPath, element)
     })
 
-    // make sure this happens after copying the general version of the NavBar
-    // this version of the NavBar includes the User management
-    if (examples.includes('nextAuth')) {
-      addNextAuthNavBar(targetPath)
-    }
-
     // additional file changes for prisma
     if (packages.includes('prisma')) {
       await updateEnvPrisma(targetPath)
@@ -55,5 +49,15 @@ addPackages(packageManager, packages, targetPath)
     // additional file changes for nextAuth
     if (packages.includes('nextAuth')) {
       await updateEnvNextAuth(targetPath)
+    }
+
+    // make sure this happens after copying the general version of the NavBar
+    // this version of the NavBar includes the User management
+    if (examples.includes('nextAuth')) {
+      addNextAuthNavBar(targetPath)
+    }
+
+    if (examples.includes('cypress')) {
+      addEmptyCypressDirectories(targetPath)
     }
   })

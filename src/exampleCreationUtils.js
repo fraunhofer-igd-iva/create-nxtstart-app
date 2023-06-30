@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import chalk from 'chalk';
+import shell from 'shelljs';
 
 
 const __filename = fileURLToPath(import.meta.url)
@@ -96,4 +97,10 @@ export function addNextAuthNavBar(projectPath) {
     if (err) return console.error(err)
     console.log(chalk.green('Updated NavBar to include NextAuth successfully!'))
   })
+}
+
+export function addEmptyCypressDirectories(projectPath) {
+  // create empty directories for testing package that won't be present otherwise
+  shell.mkdir('-p', path.join(path.join(projectPath, 'cypress'), 'screenshots'), path.join(path.join(projectPath, 'cypress'), 'videos'))
+  console.log(chalk.green(`Added empty cypress directories successfully!`))
 }
