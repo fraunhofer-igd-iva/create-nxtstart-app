@@ -4,7 +4,6 @@ import Head from 'next/head';
 import { Data } from '../util/types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import BarChart from '../components/d3/BarChart';
-import MuiNextLink from '../components/MuiNextLink';
 import ScatterPlot, { DataPoint } from '../components/d3/ScatterPlot';
 
 interface D3PageProps {
