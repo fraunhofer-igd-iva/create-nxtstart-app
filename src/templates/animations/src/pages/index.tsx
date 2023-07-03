@@ -6,6 +6,7 @@ import IndexCard, { IndexCardProps } from '../components/IndexCard';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import examples from '../../webstart.config.json';
+import { motion } from 'framer-motion';
 
 const libraries: IndexCardProps[] = [
   {
@@ -163,13 +164,25 @@ export default function LandingPage() {
         </Typography>
 
         <Box sx={{ width: '95dvw', p: 1, display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {
-              libraries.map(lib =>
-                <IndexCard key={lib.title} imageLink={lib.imageLink} title={lib.title} description={lib.description} hrefDocs={lib.hrefDocs} hrefExample={lib.hrefExample} additionalLinks={lib.additionalLinks} />
-              )
-            }
-          </Box>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, x: 0, y: 500 },
+              enter: { opacity: 1, x: 0, y: 0 },
+              exit: { opacity: 0, x: 0, y: 500 },
+            }}
+            initial='hidden' // Set the initial state to variants.hidden
+            animate='enter' // Animated state to variants.enter
+            exit='exit' // Exit state to variants.exit
+            transition={{ type: 'linear' }}
+          >
+            <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {
+                libraries.map(lib =>
+                  <IndexCard key={lib.title} imageLink={lib.imageLink} title={lib.title} description={lib.description} hrefDocs={lib.hrefDocs} hrefExample={lib.hrefExample} additionalLinks={lib.additionalLinks} />
+                )
+              }
+            </Box>
+          </motion.div>
         </Box>
       </Container>
     </div>

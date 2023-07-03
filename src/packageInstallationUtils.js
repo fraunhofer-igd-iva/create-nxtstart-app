@@ -27,6 +27,12 @@ const packageBundles = {
     ],
     devDep: [],
   },
+  animations: {
+    dep: [
+      'framer-motion',
+    ],
+    devDep: [],
+  },
   tailwind: {
     dep: [
       'tailwindcss',

@@ -22,6 +22,7 @@ export const getPackages = async () => await checkbox({
   choices: [
     // mui added by default
     { name: 'Material UI', value: 'mui', disabled: true },
+    { name: 'Page Transitions, Animations', value: 'animations' },
     //{ name: 'Tailwind CSS', value: 'tailwind' },
     new Separator(),
     { name: 'React Redux + Toolkit', value: 'redux' },
@@ -44,6 +45,7 @@ export const getExamples = async (packages) => await checkbox({
   message: 'Select provided example code',
   choices: [
     { name: 'Material UI', value: 'mui', disabled: !packages.includes('mui') },
+    { name: 'Page Transitions, Animations', value: 'animations', disabled: !packages.includes('animations') },
     //{ name: 'Tailwind CSS', value: 'tailwind', disabled: !packages.includes('tailwind') },
     new Separator(),
     { name: 'React Redux + Toolkit', value: 'redux', disabled: !packages.includes('redux') },
