@@ -92,7 +92,6 @@ SECRET=qwertysecretForTheN3xtJ5Template
 }
 
 export function addNextAuthNavBar(projectPath) {
-  // copies general templates directory with subdirectories and files
   fs.cpSync(path.join(path.join(__dirname, 'templates'), 'nextAuthNavBar'), projectPath, { recursive: true }, err => {
     if (err) return console.error(err)
     console.log(chalk.green('Updated NavBar to include NextAuth successfully!'))
