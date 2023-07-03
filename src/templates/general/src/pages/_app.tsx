@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
     <CacheProvider value={clientSideEmotionCache}>
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-        <title>yarn-next</title>
+        <title>Webstart 5.0</title>
         <link rel='icon' href='/favicon.ico' />
         <meta name='description' content='NextJS Webdevelopment Template' />
       </Head>
