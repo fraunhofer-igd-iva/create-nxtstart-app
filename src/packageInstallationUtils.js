@@ -221,3 +221,17 @@ export async function addRunScripts(projectPath, packages, packageManager) {
     })
   })
 }
+
+export async function runFinalInstall(packageManager, projectPath) {
+  shell.cd(projectPath)
+
+  let cmd = packageManager === 'yarn' ? 'yarn install' : 'npm install';
+  const result = shell.exec(cmd)
+
+  console.log(chalk.green(`Final install using "${cmd}"`))
+
+  if (result.code !== 0) {
+    return false
+  }
+  return true
+}

@@ -2,7 +2,7 @@
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
-import { addPackages, addRunScripts, updateEnvPrisma } from './packageInstallationUtils.js';
+import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
 import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
@@ -35,7 +35,7 @@ addPackages(packageManager, packages, targetPath)
     await addRunScripts(targetPath, packages, packageManager)
     // update next config
     await updateNextConfig(targetPath, packages)
-    
+
     // add additional files and examples selected by the user
     examples.map(async element => {
       addExample(targetPath, element)
@@ -60,4 +60,7 @@ addPackages(packageManager, packages, targetPath)
     if (examples.includes('cypress')) {
       addEmptyCypressDirectories(targetPath)
     }
+  })
+  .then(async () => {
+    await runFinalInstall(packageManager, targetPath)
   })
