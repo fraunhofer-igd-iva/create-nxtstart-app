@@ -118,7 +118,7 @@ export async function getStaticProps({ locale }: any) {
   }
 }
 
-export default function LandingPage(): JSX.Element {
+export default function LandingPage() {
 
   // could only give namespace 'indexPage' as common is not used on this page directly (only in the NavBar through Layout)
   // but this way the syntax of declaring which namespace to use can be shown
