@@ -98,6 +98,13 @@ export function addNextAuthNavBar(projectPath) {
   })
 }
 
+export function addNextAuthAndAnimation(projectPath) {
+  fs.cpSync(path.join(path.join(__dirname, 'templates'), 'nextAuthAndAnimation'), projectPath, { recursive: true }, err => {
+    if (err) return console.error(err)
+    console.log(chalk.green('Updated _app to include NextAuth and Animation Provider successfully!'))
+  })
+}
+
 export function addEmptyCypressDirectories(projectPath) {
   // create empty directories for testing package that won't be present otherwise
   shell.mkdir('-p', path.join(path.join(projectPath, 'cypress'), 'screenshots'), path.join(path.join(projectPath, 'cypress'), 'videos'))

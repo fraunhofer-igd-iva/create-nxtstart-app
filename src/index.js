@@ -2,8 +2,8 @@
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
-import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall, addNextAuthProvider } from './packageInstallationUtils.js';
-import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
+import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
+import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories, addNextAuthAndAnimation } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -49,7 +49,6 @@ addPackages(packageManager, packages, targetPath)
     // additional file changes for nextAuth
     if (packages.includes('nextAuth')) {
       await updateEnvNextAuth(targetPath)
-      await addNextAuthProvider(targetPath)
     }
 
     // make sure this happens after copying the general version of the NavBar
@@ -60,6 +59,11 @@ addPackages(packageManager, packages, targetPath)
 
     if (examples.includes('cypress')) {
       addEmptyCypressDirectories(targetPath)
+    }
+
+    // additional file changes if both nextAuth and animations are installed
+    if (packages.includes('nextAuth') && packages.includes('animations')) {
+      addNextAuthAndAnimation(targetPath)
     }
   })
   .then(async () => {
