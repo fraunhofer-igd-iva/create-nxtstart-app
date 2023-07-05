@@ -19,7 +19,7 @@ const inter = Inter({ subsets: ['latin'] })
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache()
 
-function MyApp({ Component, pageProps: { session, ...rest }, router }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
 
   const preservedI18nContext = React.useContext(I18nContext)
 
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps: { session, ...rest }, router }: AppProps)
         <SessionProvider session={session}>
           <Provider store={store}>
             <AppThemeProvider>
-              <Layout key={router.asPath}>
+              <Layout>
                 <I18nContext.Provider value={preservedI18nContext}>
                   {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                   <CssBaseline />
