@@ -222,6 +222,41 @@ export async function addRunScripts(projectPath, packages, packageManager) {
   })
 }
 
+export async function addNextAuthProvider(projectPath) {
+  fs.readFile(path.join(path.join(path.join(projectPath, 'src'), 'pages'), '_app.tsx'), 'utf8', function (err, data) {
+    if (err) {
+      return console.log(err)
+    }
+    let result = data
+
+    result = result.replace(
+      /\/\/ If loading a variable font, you don't need to specify the font weight/g,
+      `import { SessionProvider } from 'next-auth/react';
+
+// If loading a variable font, you don't need to specify the font weight`
+    )
+    result = result.replace(
+      /pageProps: { ...rest }/g,
+      `pageProps: { session, ...rest }`
+    )
+    result = result.replace(
+      /<main className={inter.className}>/g,
+      `<main className={inter.className}>
+      <SessionProvider session={session}>`
+    )
+    result = result.replace(
+      /<\/main>/g,
+      `</SessionProvider>
+      </main>`
+    )
+
+    fs.writeFile(path.join(path.join(path.join(projectPath, 'src'), 'pages'), '_app.tsx'), result, 'utf8', function (err) {
+      if (err) return console.log(err)
+      console.log(chalk.green('Added next auth provider to _app.tsx!'))
+    })
+  })
+}
+
 export async function runFinalInstall(packageManager, projectPath) {
   shell.cd(projectPath)
 

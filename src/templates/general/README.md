@@ -14,7 +14,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 # Package specific information
 
-Currently Material UI and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
+Currently Material UI, the Redux store and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
 ## I18n - Internationalization
 

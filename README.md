@@ -2,7 +2,7 @@
 
 After installing the webstart-cli package, run the app in any command prompt using `webstart-cli`.
 Follow the instructions presented by the interface.
-Currently Material UI and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages.
+Currently Material UI, the Redux store and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages.
 
 # Necessary steps after creating your project
 

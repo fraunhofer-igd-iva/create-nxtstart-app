@@ -2,7 +2,7 @@
 
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
-import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
+import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall, addNextAuthProvider } from './packageInstallationUtils.js';
 import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
 import * as path from 'path';
 import chalk from 'chalk';
@@ -11,10 +11,10 @@ import chalk from 'chalk';
 // Query setup data from user
 const projectName = await getProjectName()
 const packageManager = await getPackageManager()
-// per default add mui and i18n
-const packages = ['mui', 'i18n', ...await getPackages()]
-// per default add general files, the custom index page and the internationalization files
-const examples = ['general', 'index', 'i18n', ...await getExamples(packages)]
+// per default add mui, redux and i18n
+const packages = ['mui', 'i18n', 'redux', ...await getPackages()]
+// per default add general files, the custom index page, redux store and the internationalization files
+const examples = ['general', 'index', 'redux', 'i18n', ...await getExamples(packages)]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
@@ -49,6 +49,7 @@ addPackages(packageManager, packages, targetPath)
     // additional file changes for nextAuth
     if (packages.includes('nextAuth')) {
       await updateEnvNextAuth(targetPath)
+      await addNextAuthProvider(targetPath)
     }
 
     // make sure this happens after copying the general version of the NavBar
