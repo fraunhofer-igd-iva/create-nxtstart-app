@@ -10,7 +10,7 @@ import Layout from '../components/Layout';
 import '../styles/globals.css';
 import AppThemeProvider from '../components/AppThemeProvider';
 import { SessionProvider } from 'next-auth/react';
-import { appWithTranslation, I18nContext } from 'next-i18next';
+import { appWithTranslation } from 'next-i18next';
 import { Inter } from 'next/font/google';
 
 // If loading a variable font, you don't need to specify the font weight
@@ -20,8 +20,6 @@ const inter = Inter({ subsets: ['latin'] })
 const clientSideEmotionCache = createEmotionCache()
 
 function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
-
-  const preservedI18nContext = React.useContext(I18nContext)
 
   return (
     <CacheProvider value={clientSideEmotionCache}>
@@ -36,11 +34,9 @@ function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
           <Provider store={store}>
             <AppThemeProvider>
               <Layout>
-                <I18nContext.Provider value={preservedI18nContext}>
-                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                  <CssBaseline />
-                  <Component {...rest} />
-                </I18nContext.Provider>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                <CssBaseline />
+                <Component {...rest} />
               </Layout>
             </AppThemeProvider>
           </Provider>
