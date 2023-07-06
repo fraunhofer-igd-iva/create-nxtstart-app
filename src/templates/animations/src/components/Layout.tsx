@@ -2,19 +2,35 @@ import React, { PropsWithChildren } from 'react';
 import NavBar from './NavBar';
 import Footer, { footerHeight } from './Footer';
 import { Box } from '@mui/material';
-import PageTransition from '../components/PageTransition';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
-export default React.forwardRef(function Layout({ children }: PropsWithChildren, ref: React.ForwardedRef<HTMLDivElement>) {
+export default function Layout({ children }: PropsWithChildren) {
+
+  const router = useRouter()
+
+  const variants = {
+    hidden: { opacity: 0, x: -200, y: 0 },
+    enter: { opacity: 1, x: 0, y: 0 },
+    exit: { opacity: 0, x: 0, y: -100 },
+  }
 
   return (
     <Box>
       <NavBar />
-      <Box sx={{ pb: footerHeight }}>
-        <PageTransition ref={ref}>
+      <motion.main
+        key={router.asPath}
+        variants={variants} // Pass the variant object into Framer Motion
+        initial='hidden' // Set the initial state to variants.hidden
+        animate='enter' // Animated state to variants.enter
+        exit='exit' // Exit state (used later) to variants.exit
+        transition={{ type: 'linear' }} // Set the transition to linear
+      >
+        <Box sx={{ pb: footerHeight }}>
           {children}
-        </PageTransition>
-      </Box>
+        </Box>
+      </motion.main>
       <Footer />
     </Box>
   )
-})
+}
