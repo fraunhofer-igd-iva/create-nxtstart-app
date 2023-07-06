@@ -34,6 +34,7 @@ function MyApp({ Component, pageProps: { ...rest } }: AppProps) {
       <main className={inter.className}>
         <Provider store={store}>
           <AppThemeProvider>
+            {/* both, animated presence and the key prop can be moved down around and into Component to create per page transitins */}
             <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
               <Layout>
                 <I18nContext.Provider value={preservedI18nContext}>
