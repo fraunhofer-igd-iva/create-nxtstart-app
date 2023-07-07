@@ -18,7 +18,7 @@ describe('Auth Process', () => {
         // we should be redirected to /admin
         cy.url().should('include', '/admin')
 
-        // FIXME just logging out didnt update the admin page in the test environment (does in normal clients) so we force reload the page
+        // just logging out didn't update the admin page in the test environment (does in normal clients) so we force reload the page
         cy.visit('/')
         cy.visit('/admin')
 
