@@ -79,6 +79,9 @@ export async function updateEnvNextAuth(projectPath) {
 GITHUB_ID=<enter github id>
 GITHUB_SECRET=<enter github secret>
 
+GOOGLE_CLIENT_ID=<enter google id>
+GOOGLE_CLIENT_SECRET=<enter google secret>
+
 # Update according to your deployment address (You can leave this for local development)
 NEXTAUTH_URL=http://localhost:3000
 
