@@ -48,3 +48,6 @@ yarn-error.log*
 # cypress
 /cypress/screenshots
 /cypress/videos
+
+.pnp.*
+prisma/*
