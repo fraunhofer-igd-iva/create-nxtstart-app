@@ -82,7 +82,8 @@ const packageBundles = {
     dep: [
       'next-pwa',
       '@babel/core',
-      'babel-loader'
+      'babel-loader',
+      'webpack'
     ],
     devDep: [],
   },

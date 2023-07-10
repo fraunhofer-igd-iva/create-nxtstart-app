@@ -3,7 +3,8 @@
 import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
-import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories, addNextAuthAndAnimation } from './exampleCreationUtils.js';
+import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
+import { postProcessFile } from './filePostProcessor.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -12,9 +13,9 @@ import chalk from 'chalk';
 const projectName = await getProjectName()
 const packageManager = await getPackageManager()
 // per default add mui, redux and i18n
-const packages = ['mui', 'i18n', 'redux', ...await getPackages()]
+const packages = ['mui', 'i18n', ...await getPackages()]
 // per default add general files, the custom index page, redux store and the internationalization files
-const examples = ['general', 'index', 'redux', 'i18n', ...await getExamples(packages)]
+const examples = ['general', 'index', 'i18n', ...await getExamples(packages)]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
@@ -60,12 +61,9 @@ addPackages(packageManager, packages, targetPath)
     if (examples.includes('cypress')) {
       addEmptyCypressDirectories(targetPath)
     }
-
-    // additional file changes if both nextAuth and animations are installed
-    if (packages.includes('nextAuth') && packages.includes('animations')) {
-      addNextAuthAndAnimation(targetPath)
-    }
   })
   .then(async () => {
     await runFinalInstall(packageManager, targetPath)
+    // post process _app.tsx, only pass the relevant packages for the file
+    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), packages, ['redux', 'nextAuth', 'animations'])
   })
