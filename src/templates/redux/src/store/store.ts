@@ -1,10 +1,8 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import counterReducer from './slices/counterSlice';
-import themeReducer from './slices/themeSlice';
 
 const combinedReducer = combineReducers({
   counter: counterReducer,
-  theme: themeReducer,
 })
 
 const makeStore = () => configureStore({

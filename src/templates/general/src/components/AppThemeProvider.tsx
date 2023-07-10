@@ -1,19 +1,16 @@
 import React from 'react';
-import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { lightTheme, darkTheme } from '../styles/theme';
-import { selectTheme, setTheme } from '../store/slices/themeSlice';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
 
 interface ComponentProps {
+  activeTheme: 'light' | 'dark',
+  setActiveTheme: (newMode: 'light' | 'dark') => void,
   children?: React.ReactNode
 }
 
 export default function AppThemeProvider(props: ComponentProps) {
 
-  const mode = useAppSelector(selectTheme)
-  const dispatch = useAppDispatch()
-  const [activeTheme, setActiveTheme] = React.useState(mode === 'dark' ? darkTheme : lightTheme)
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -26,14 +23,10 @@ export default function AppThemeProvider(props: ComponentProps) {
       if (fromLocalStorage && (fromLocalStorage === 'dark' || fromLocalStorage === 'light')) {
         newMode = fromLocalStorage
       }
-      dispatch(setTheme(newMode))
       setMounted(true)
+      props.setActiveTheme(newMode)
     }
-  }, [dispatch])
-
-  React.useEffect(() => {
-    setActiveTheme(mode === 'dark' ? darkTheme : lightTheme)
-  }, [mode])
+  })
 
   return (
     <Box>
@@ -45,7 +38,7 @@ export default function AppThemeProvider(props: ComponentProps) {
       }
       {
         mounted &&
-        <ThemeProvider theme={activeTheme}>
+        <ThemeProvider theme={props.activeTheme === 'light' ? lightTheme : darkTheme}>
           {props.children}
         </ThemeProvider>
       }
