@@ -97,7 +97,7 @@ export default function BarChart(props: BarChartProps) {
         if (d3ScaleX.current) {
           const bandwidth = d3ScaleX.current.bandwidth()
 
-          let selection: string[] = []
+          const selection: string[] = []
           // Test which bands are within the selection area
           for (const value of d3ScaleX.current.domain()) {
             const bandStart = d3ScaleX.current(value) as number;
