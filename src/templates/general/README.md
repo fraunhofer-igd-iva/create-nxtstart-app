@@ -14,7 +14,11 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 # Package specific information
 
-Currently Material UI, the Redux store and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
+Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
+
+## Code Style
+
+To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor.
 
 ## I18n - Internationalization
 
