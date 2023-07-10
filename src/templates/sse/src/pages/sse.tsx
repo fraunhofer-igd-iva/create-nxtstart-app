@@ -4,8 +4,9 @@ import Head from 'next/head';
 import { Data } from '../util/types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import BarChart from '../components/d3/BarChart';
+import { GetStaticPropsContext } from 'next';
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [

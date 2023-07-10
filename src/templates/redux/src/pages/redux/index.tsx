@@ -6,8 +6,9 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { decrement, increment, incrementByAmount, selectCount } from '../../store/slices/counterSlice';
 import MuiNextLink from '../../components/MuiNextLink';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetStaticPropsContext } from 'next';
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [

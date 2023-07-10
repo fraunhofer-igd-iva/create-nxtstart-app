@@ -3,8 +3,9 @@ import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Box, Button } from '@mui/material';
 import { pi } from '../../webWorker/worker';
+import { GetStaticPropsContext } from 'next';
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [

@@ -2,8 +2,9 @@ import React from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetStaticPropsContext } from 'next';
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [
@@ -17,7 +18,7 @@ export async function getStaticProps({ locale }: any) {
 export default function BackendProxyPage() {
 
   const [source, setSource] = React.useState<EventSource | undefined>(undefined)
-  const [dataArray, setDataArray] = React.useState<any[]>([])
+  const [dataArray, setDataArray] = React.useState<{id: string}[]>([])
   const [connectionId, setConnectionId] = React.useState<string | undefined>(undefined)
 
   // something like this can be used to properly kill the connection after receiving all events (requires knowledge about total number of events)

@@ -5,13 +5,14 @@ import { Data } from '../util/types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import BarChart from '../components/d3/BarChart';
 import ScatterPlot, { DataPoint } from '../components/d3/ScatterPlot';
+import { GetStaticPropsContext } from 'next';
 
 interface D3PageProps {
   dataCities: Data[],
   dataScatter: DataPoint[],
 }
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   const dataCities: Data[] = [
     { label: 'Mumbai (Bombay)', value: 10500000, totalDataPoints: 50 },
     { label: 'Seoul', value: 9981619, totalDataPoints: 50 },

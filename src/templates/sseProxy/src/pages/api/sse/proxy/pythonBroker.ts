@@ -36,7 +36,7 @@ export default async function handler(
     res.write('')
 
     const newSource = new EventSource(`${pythonBackendIp}/data/sse`)
-    newSource.onmessage = (event: any) => {
+    newSource.onmessage = (event) => {
       if (event.lastEventId) {
         if (!includesSseConnection(event.lastEventId)) {
           addSseConnection(event.lastEventId, newSource)

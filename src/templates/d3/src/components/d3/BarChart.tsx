@@ -112,10 +112,9 @@ export default function BarChart(props: BarChartProps) {
         if (d3Brush.current) {
           const svg = d3.select(d3Container.current)
 
-          // @ts-ignore
           // This removes the grey brush area as soon as the selection has been done
           // Remove this if you want the selection area to persist
-          svg.select('.brush').call(d3Brush.current.move, null)
+          svg.select('.brush').call(d3Brush.current.move as () => void)
         }
       } else {
         // Selection reset - in case you want to do something here

@@ -13,7 +13,7 @@ export default function LanguageSelector() {
   const languages: readonly string[] = i18nextConfig.i18n.locales
 
   const handleChange = (event: SelectChangeEvent) => {
-    i18n.changeLanguage(event.target.value).then(() => { })
+    i18n.changeLanguage(event.target.value)
     // set cookie that overrides the default accepted language header and saves user choice
     document.cookie = `NEXT_LOCALE=${event.target.value}; max-age=31536000; path=/`
   }

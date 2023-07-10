@@ -6,16 +6,12 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      // @ts-ignore
-      clientId: process.env.GITHUB_ID,
-      // @ts-ignore
-      clientSecret: process.env.GITHUB_SECRET,
+      clientId: process.env.GITHUB_ID as string,
+      clientSecret: process.env.GITHUB_SECRET as string,
     }),
     GoogleProvider({
-      // @ts-ignore
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      // @ts-ignore
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       // see warning on https://next-auth.js.org/providers/google
       authorization: {
         params: {

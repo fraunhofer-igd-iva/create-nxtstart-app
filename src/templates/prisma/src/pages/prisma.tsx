@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 import Head from 'next/head';
 import { prisma } from '../util/prismaClient';
 import { city } from '../../prisma/.prisma/client';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 
@@ -12,7 +12,7 @@ interface PrismaPageProps {
   message: string,
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ locale }: any) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }: GetServerSidePropsContext) => {
   const cities = await prisma.city.findMany({ where: { Population: { gte: 1000000 } }, orderBy: { Population: 'desc' } })
   return {
     props: {

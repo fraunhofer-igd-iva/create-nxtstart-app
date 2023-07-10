@@ -6,6 +6,7 @@ import IndexCard, { IndexCardProps } from '../components/IndexCard';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import examples from '../../webstart.config.json';
+import { GetStaticPropsContext } from 'next';
 
 const libraries: IndexCardProps[] = [
   {
@@ -15,6 +16,14 @@ const libraries: IndexCardProps[] = [
     hrefDocs: 'https://nextjs.org/docs',
     hrefExample: undefined,
     additionalLinks: [{ label: 'YT Tutorial', href: 'https://www.youtube.com/watch?v=9P8mASSREYM&list=PLC3y8-rFHvwgC9mj0qv972IO5DmD-H0ZH' }],
+  },
+  {
+    imageLink: 'https://avatars.githubusercontent.com/u/6019716?s=48&v=4',
+    title: 'ESLint + Prettier',
+    description: 'ESLint and Prettier can be used to enforce codestyle across the project. Run the lint run configuration or setup automatic linting depending on your code editor.',
+    hrefDocs: 'https://eslint.org/',
+    hrefExample: undefined,
+    additionalLinks: [{ label: 'Prettier', href: 'https://prettier.io/' }],
   },
   {
     imageLink: 'https://swr.vercel.app/favicon/safari-pinned-tab.svg',
@@ -114,7 +123,7 @@ const libraries: IndexCardProps[] = [
   },
 ]
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [

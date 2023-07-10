@@ -3,8 +3,9 @@ import { Box, Grid, Typography } from '@mui/material';
 import Head from 'next/head';
 import MuiGridExample from '../components/MuiGridExample';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetStaticPropsContext } from 'next';
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', [
