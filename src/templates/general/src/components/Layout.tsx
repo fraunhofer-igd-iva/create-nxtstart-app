@@ -1,14 +1,20 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import Footer, { footerHeight } from './Footer';
 import { Box } from '@mui/material';
 
-export default function Layout({ children }: PropsWithChildren) {
+interface LayoutProps {
+  setActiveTheme: (newMode: 'light' | 'dark') => void,
+  children?: React.ReactNode
+}
+
+export default function Layout(props: LayoutProps) {
+  
   return (
     <Box>
-      <NavBar />
+      <NavBar setActiveTheme={props.setActiveTheme} />
       <Box sx={{ pb: footerHeight }}>
-        {children}
+        {props.children}
       </Box>
       <Footer />
     </Box>

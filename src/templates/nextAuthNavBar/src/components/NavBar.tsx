@@ -2,11 +2,13 @@ import React from 'react';
 import { AppBar, IconButton, Tab, Tabs, Box, useTheme, Menu, MenuItem, Typography, Button, Tooltip, Avatar } from '@mui/material';
 import { useRouter } from 'next/router';
 import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material';
-import { useAppDispatch } from '../store/hooks';
-import { switchTheme } from '../store/slices/themeSlice';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import LanguageSelector from './LanguageSelector';
 import examples from '../../webstart.config.json';
+
+interface NavBarProps {
+  setActiveTheme: (newMode: 'light' | 'dark') => void,
+}
 
 interface LinkTabProps {
   value: string,
@@ -58,12 +60,11 @@ const validatePath = (path: string) => {
   return tabPaths.includes(path) ? path : false
 }
 
-export default function NavBar() {
+export default function NavBar(props: NavBarProps) {
 
   const { data: session } = useSession()
   const router = useRouter()
   const theme = useTheme()
-  const appDispatch = useAppDispatch()
   const [activeTab, setActiveTab] = React.useState<string | false>(false)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
@@ -101,7 +102,8 @@ export default function NavBar() {
   }
 
   const handleChangeTheme = () => {
-    appDispatch(switchTheme())
+    props.setActiveTheme(theme.palette.mode === 'dark' ? 'light' : 'dark')
+    window.localStorage.setItem('themeMode', theme.palette.mode === 'dark' ? 'light' : 'dark')
   }
 
   const a11yProps = (pathname: string) => {

@@ -1,11 +1,16 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import Footer, { footerHeight } from './Footer';
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
-export default function Layout({ children }: PropsWithChildren) {
+interface LayoutProps {
+  setActiveTheme: (newMode: 'light' | 'dark') => void,
+  children?: React.ReactNode
+}
+
+export default function Layout(props: LayoutProps) {
 
   const router = useRouter()
 
@@ -17,7 +22,7 @@ export default function Layout({ children }: PropsWithChildren) {
 
   return (
     <Box>
-      <NavBar />
+      <NavBar setActiveTheme={props.setActiveTheme} />
       <motion.main
         key={router.asPath}
         variants={variants} // Pass the variant object into Framer Motion
@@ -27,7 +32,7 @@ export default function Layout({ children }: PropsWithChildren) {
         transition={{ type: 'linear' }} // Set the transition to linear
       >
         <Box sx={{ pb: footerHeight }}>
-          {children}
+          {props.children}
         </Box>
       </motion.main>
       <Footer />
