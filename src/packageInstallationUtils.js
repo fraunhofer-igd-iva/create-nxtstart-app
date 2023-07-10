@@ -14,6 +14,15 @@ const packageBundles = {
     ],
     devDep: [],
   },
+  linting: {
+    dep: [],
+    devDep: [
+      '@typescript-eslint/eslint-plugin',
+      '@typescript-eslint/parser',
+      'eslint-config-prettier',
+      'prettier',
+    ]
+  },
   swr: {
     dep: [
       'swr',

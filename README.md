@@ -2,7 +2,7 @@
 
 After installing the webstart-cli package, run the app in any command prompt using `webstart-cli`.
 Follow the instructions presented by the interface.
-Currently Material UI, the Redux store and the internationalization framework are non optional and will be installed by default as they are relevant for all example pages.
+Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
 # Necessary steps after creating your project
 
@@ -16,6 +16,10 @@ You can start editing the page by modifying `pages/index.tsx`. The page auto-upd
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Webstart creates a `/webstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
+
+## Code Style
+
+To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor.
 
 ## I18n - Internationalization
 

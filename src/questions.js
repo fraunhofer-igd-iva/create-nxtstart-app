@@ -35,6 +35,7 @@ export const getPackages = async () => await checkbox({
     new Separator('Internationalization'),
     { name: 'Progressive Web App', value: 'pwa' },
     { name: 'Cypress Testing', value: 'cypress' },
+    { name: 'Prettier Code Formatting', value: 'linting' },
     new Separator(),
     { name: 'Server-Sent-Events', value: 'sse' },
     { name: 'Server-Sent-Events Proxy', value: 'sseProxy' },
@@ -44,7 +45,7 @@ export const getPackages = async () => await checkbox({
 })
 
 export const getExamples = async (packages) => await checkbox({
-  message: 'Select provided example code',
+  message: 'Select provided example code and configurations',
   choices: [
     { name: 'Material UI', value: 'mui', disabled: !packages.includes('mui') },
     { name: 'Page Transitions, Animations', value: 'animations', disabled: !packages.includes('animations') },
@@ -59,6 +60,7 @@ export const getExamples = async (packages) => await checkbox({
     new Separator('Internationalization'),
     { name: 'Progressive Web App', value: 'pwa', disabled: !packages.includes('pwa') },
     { name: 'Cypress Testing', value: 'cypress', disabled: !packages.includes('cypress') },
+    { name: 'Prettier Code Formatting', value: 'linting', disabled: !packages.includes('linting') },
     new Separator(),
     { name: 'Server-Sent-Events', value: 'sse', disabled: !packages.includes('sse') },
     { name: 'Server-Sent-Events Proxy', value: 'sseProxy', disabled: !packages.includes('sseProxy') },
