@@ -31,6 +31,7 @@ export const getPackages = async () => await checkbox({
     { name: 'D3 JS', value: 'd3' },
     { name: 'Next Auth', value: 'nextAuth' },
     { name: 'Prisma DB', value: 'prisma' },
+    // i18n added by default
     //{ name: 'Internationalization', value: 'i18n', disabled: true },
     new Separator('Internationalization'),
     { name: 'Progressive Web App', value: 'pwa' },
@@ -56,6 +57,7 @@ export const getExamples = async (packages) => await checkbox({
     { name: 'D3 JS', value: 'd3', disabled: !packages.includes('d3') },
     { name: 'Next Auth', value: 'nextAuth', disabled: !packages.includes('nextAuth') },
     { name: 'Prisma DB', value: 'prisma', disabled: !packages.includes('prisma') },
+    // files for i18n also added by default
     //{ name: 'Internationalization', value: 'i18n', disabled: true },
     new Separator('Internationalization'),
     { name: 'Progressive Web App', value: 'pwa', disabled: !packages.includes('pwa') },
