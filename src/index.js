@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-import { getProjectName, getPackageManager, getPackages, getExamples } from './questions.js';
+import { getProjectName, getPackageManager, getPackages, getExamples, getRunPrettier } from './questions.js';
 import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
 import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
-import { postProcessFile } from './filePostProcessor.js';
+import { postProcessFile, runPrettier } from './filePostProcessor.js';
 import * as path from 'path';
 import chalk from 'chalk';
 
@@ -67,3 +67,12 @@ addPackages(packageManager, packages, targetPath)
     // post process _app.tsx, only pass the relevant packages for the file
     await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), packages, ['redux', 'nextAuth', 'animations'])
   })
+
+if(examples.includes('linting')) {
+  setTimeout(async () =>  {
+    const runP = await getRunPrettier()
+    if (runP) {
+      runPrettier(targetPath, packageManager)
+    }
+  }, 3000)
+}

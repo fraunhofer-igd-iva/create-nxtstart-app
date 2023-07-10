@@ -1,4 +1,4 @@
-import { input, select, checkbox, Separator } from '@inquirer/prompts';
+import { input, select, checkbox, Separator, confirm } from '@inquirer/prompts';
 
 
 export const getProjectName = async () => (await input({ message: 'Enter the project name, only lowercase!' })).toLowerCase()
@@ -70,3 +70,5 @@ export const getExamples = async (packages) => await checkbox({
     new Separator('=============================='),
   ],
 })
+
+export const getRunPrettier = async () => await confirm({ message: 'Run prettier once? (recommended)', default: true })

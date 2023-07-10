@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import * as fs from 'fs';
+import shell from 'shelljs';
 
 export async function postProcessFile(filePath, chosenPackages, relevantPackagesList) {
   fs.readFile(filePath, 'utf8', function (err, data) {
@@ -25,4 +26,14 @@ export async function postProcessFile(filePath, chosenPackages, relevantPackages
       console.log(chalk.green('Post processed _app.tsx!'))
     })
   })
+}
+
+export function runPrettier(projectPath, packageManager) {
+  shell.cd(projectPath)
+  if (packageManager === 'yarn') {
+    shell.exec('yarn prettier . --write')
+  } else if (packageManager === 'npm') {
+    shell.exec('npx prettier . --write')
+  }
+  console.log(chalk.green(`Ran prettier successfully!`))
 }

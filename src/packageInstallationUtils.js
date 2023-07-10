@@ -225,6 +225,29 @@ export async function addRunScripts(projectPath, packages, packageManager) {
       )
     }
 
+    if (packages.includes('linting')) {
+      if (packageManager === 'yarn') {
+        result = result.replace(
+          /"lint": "next lint"/g,
+          `"lint": "next lint",
+    "prettierCheck": "yarn prettier . --check",
+    "prettierFix": "yarn prettier . --write",`
+        )
+      } else if (packageManager === 'npm') {
+        result = result.replace(
+          /"lint": "next lint"/g,
+          `"lint": "next lint",
+    "prettierCheck": "npx prettier . --check",
+    "prettierFix": "npx prettier . --write",`
+        )
+      }
+    }
+
+    result = result.replace(
+      /,,/g,
+      ","
+    )
+
     fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
       if (err) return console.log(err)
       console.log(chalk.green('Added run scripts!'))
