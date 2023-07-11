@@ -37,7 +37,7 @@ To see the responsive behavior of Mui components take a look at the example page
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm).
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the sample database for MariaDB that can be obtained [here](https://www.mariadbtutorial.com/getting-started/mariadb-sample-database/). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
 To update the db using prisma.scheme:
