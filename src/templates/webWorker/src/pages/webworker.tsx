@@ -1,31 +1,27 @@
-import React from 'react';
-import Head from 'next/head';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Box, Button } from '@mui/material';
-import { pi } from '../../webWorker/worker';
-import { GetStaticPropsContext } from 'next';
+import React from 'react'
+import Head from 'next/head'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { Box, Button } from '@mui/material'
+import { pi } from '../../webWorker/worker'
+import { GetStaticPropsContext } from 'next'
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', [
-        'common',
-      ])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
       // Will be passed to the page component as props
     },
   }
 }
 
 export default function WebWorkerPage() {
-
   const workerRef = React.useRef<Worker>()
   const jsonWorkerRef = React.useRef<Worker>()
   const txtWorkerRef = React.useRef<Worker>()
 
   React.useEffect(() => {
     workerRef.current = new Worker(new URL('../../webWorker/worker.ts', import.meta.url))
-    workerRef.current.onmessage = (event: MessageEvent<number>) =>
-      alert(`WebWorker Response => ${event.data}`)
+    workerRef.current.onmessage = (event: MessageEvent<number>) => alert(`WebWorker Response => ${event.data}`)
     return () => {
       workerRef.current?.terminate()
     }
@@ -69,7 +65,9 @@ export default function WebWorkerPage() {
     if (file) {
       if (file.size > 450 * 1024 * 1024) {
         for (let i = 0; i < file.size; i += 450 * 1024 * 1024) {
-          txtWorkerRef.current?.postMessage(file.slice(i, i + 450 * 1024 * 1024 < file.size ? i + 450 * 1024 * 1024 : file.size))
+          txtWorkerRef.current?.postMessage(
+            file.slice(i, i + 450 * 1024 * 1024 < file.size ? i + 450 * 1024 * 1024 : file.size)
+          )
         }
       } else {
         txtWorkerRef.current?.postMessage(file)
@@ -97,13 +95,11 @@ export default function WebWorkerPage() {
             type={'file'}
             accept={'.json'}
             hidden
-            onChange={
-              event => {
-                if (event.target.files) {
-                  sendJson(event.target.files[0])
-                }
+            onChange={(event) => {
+              if (event.target.files) {
+                sendJson(event.target.files[0])
               }
-            }
+            }}
           />
         </Button>
       </Box>
@@ -114,13 +110,11 @@ export default function WebWorkerPage() {
             type={'file'}
             accept={'.txt'}
             hidden
-            onChange={
-              event => {
-                if (event.target.files) {
-                  sendTxt(event.target.files[0])
-                }
+            onChange={(event) => {
+              if (event.target.files) {
+                sendTxt(event.target.files[0])
               }
-            }
+            }}
           />
         </Button>
       </Box>

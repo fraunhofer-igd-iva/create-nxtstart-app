@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Data } from '@/util/types';
-import { prisma } from '@/util/prismaClient';
-import { v4 as uuidV4 } from 'uuid';
+import { Data } from '@/util/types'
+import { prisma } from '@/util/prismaClient'
+import { v4 as uuidV4 } from 'uuid'
 
 const sseConnections: string[] = []
 
@@ -22,10 +22,7 @@ const closeSseConnection = (id: string) => {
   }
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === 'GET') {
     // establish SSE connection with client
     res.setHeader('Content-Type', 'text/event-stream')
@@ -46,9 +43,9 @@ export default async function handler(
     const cities = await prisma.city.findMany({
       where: { Population: { gte: 1000000 } },
       orderBy: { Population: 'desc' },
-      take: numberOfDataPoints
+      take: numberOfDataPoints,
     })
-    const data: Data[] = cities.map(c => {
+    const data: Data[] = cities.map((c) => {
       return { label: c.Name, value: c.Population, totalDataPoints: numberOfDataPoints }
     })
 
@@ -67,14 +64,12 @@ export default async function handler(
         res.end()
       }
     }, 1000)
-
   } else if (req.method === 'POST') {
     // close connection to client with given id
     const connectionId = JSON.parse(req.body).id
     closeSseConnection(connectionId)
     res.status(200)
     res.end()
-
   } else {
     res.status(405)
     res.end()

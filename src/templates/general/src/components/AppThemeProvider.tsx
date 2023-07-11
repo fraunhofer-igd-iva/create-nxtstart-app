@@ -1,16 +1,15 @@
-import React from 'react';
-import { lightTheme, darkTheme } from '@/styles/theme';
-import { ThemeProvider } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import React from 'react'
+import { lightTheme, darkTheme } from '@/styles/theme'
+import { ThemeProvider } from '@mui/material/styles'
+import { Box } from '@mui/material'
 
 interface ComponentProps {
-  activeTheme: 'light' | 'dark',
-  setActiveTheme: (newMode: 'light' | 'dark') => void,
+  activeTheme: 'light' | 'dark'
+  setActiveTheme: (newMode: 'light' | 'dark') => void
   children?: React.ReactNode
 }
 
 export default function AppThemeProvider(props: ComponentProps) {
-
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -33,15 +32,11 @@ export default function AppThemeProvider(props: ComponentProps) {
       {
         // removes rendering the application with the (possibly) wrong theme on first render
         // delays displaying until app is mounted
-        !mounted &&
-        <Box sx={{ visibility: 'hidden' }}>{props.children}</Box>
+        !mounted && <Box sx={{ visibility: 'hidden' }}>{props.children}</Box>
       }
-      {
-        mounted &&
-        <ThemeProvider theme={props.activeTheme === 'light' ? lightTheme : darkTheme}>
-          {props.children}
-        </ThemeProvider>
-      }
+      {mounted && (
+        <ThemeProvider theme={props.activeTheme === 'light' ? lightTheme : darkTheme}>{props.children}</ThemeProvider>
+      )}
     </Box>
   )
 }

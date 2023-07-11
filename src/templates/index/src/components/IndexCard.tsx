@@ -1,18 +1,17 @@
-import React from 'react';
+import React from 'react'
 import { Card, CardContent, Typography, CardActions, Avatar, Link, useTheme } from '@mui/material'
-import MuiNextLink from './MuiNextLink';
+import MuiNextLink from './MuiNextLink'
 
 export interface IndexCardProps {
-  imageLink: string,
-  title: string,
-  description: string,
-  hrefDocs: string,
-  hrefExample: string | undefined,
-  additionalLinks: { label: string, href: string }[],
+  imageLink: string
+  title: string
+  description: string
+  hrefDocs: string
+  hrefExample: string | undefined
+  additionalLinks: { label: string; href: string }[]
 }
 
 export default function IndexCard(props: IndexCardProps) {
-
   const theme = useTheme()
 
   return (
@@ -28,14 +27,11 @@ export default function IndexCard(props: IndexCardProps) {
       </CardContent>
       <CardActions sx={{ p: 2, pt: 0, mt: 'auto' }}>
         <Link href={props.hrefDocs}>Docs</Link>
-        {
-          props.hrefExample &&
-          <MuiNextLink href={props.hrefExample} label={'Example'} />
-        }
-        {
-          props.additionalLinks.map((aL, index) => {
-            const color = aL.href.includes('youtube') ? theme.palette.secondary : theme.palette.primary
-            return <MuiNextLink
+        {props.hrefExample && <MuiNextLink href={props.hrefExample} label={'Example'} />}
+        {props.additionalLinks.map((aL, index) => {
+          const color = aL.href.includes('youtube') ? theme.palette.secondary : theme.palette.primary
+          return (
+            <MuiNextLink
               key={index}
               href={aL.href}
               label={aL.label}
@@ -48,8 +44,8 @@ export default function IndexCard(props: IndexCardProps) {
                 },
               }}
             />
-          })
-        }
+          )
+        })}
       </CardActions>
     </Card>
   )

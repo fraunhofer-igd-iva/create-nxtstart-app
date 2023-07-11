@@ -1,20 +1,33 @@
-import React from 'react';
-import { AppBar, IconButton, Tab, Tabs, Box, useTheme, Menu, MenuItem, Typography, Button, Tooltip, Avatar } from '@mui/material';
-import { useRouter } from 'next/router';
-import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import LanguageSelector from './LanguageSelector';
-import examples from '../../webstart.config.json';
+import React from 'react'
+import {
+  AppBar,
+  IconButton,
+  Tab,
+  Tabs,
+  Box,
+  useTheme,
+  Menu,
+  MenuItem,
+  Typography,
+  Button,
+  Tooltip,
+  Avatar,
+} from '@mui/material'
+import { useRouter } from 'next/router'
+import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
+import { useSession, signIn, signOut } from 'next-auth/react'
+import LanguageSelector from './LanguageSelector'
+import examples from '../../webstart.config.json'
 
 interface NavBarProps {
-  setActiveTheme: (newMode: 'light' | 'dark') => void,
+  setActiveTheme: (newMode: 'light' | 'dark') => void
 }
 
 interface LinkTabProps {
-  value: string,
-  disabled?: boolean,
-  label: string;
-  href: string;
+  value: string
+  disabled?: boolean
+  label: string
+  href: string
 }
 
 function LinkTab(props: LinkTabProps) {
@@ -22,7 +35,7 @@ function LinkTab(props: LinkTabProps) {
     <Tab
       component={'a'}
       onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        event.preventDefault();
+        event.preventDefault()
       }}
       {...props}
     />
@@ -32,36 +45,35 @@ function LinkTab(props: LinkTabProps) {
 const TABS = [
   {
     label: 'Home',
-    pathname: '/'
+    pathname: '/',
   },
 ]
 // done this way to make the navbar dynamically present appropriate tabs after creation using webstart, can be removed and all tabs moved directly into the object above
-if(examples.includes('mui')) {
+if (examples.includes('mui')) {
   TABS.push({
     label: 'Responsive Design',
-    pathname: '/responsive'
+    pathname: '/responsive',
   })
 }
-if(examples.includes('redux')) {
+if (examples.includes('redux')) {
   TABS.push({
     label: 'Redux',
-    pathname: '/redux'
+    pathname: '/redux',
   })
 }
-if(examples.includes('sse')) {
+if (examples.includes('sse')) {
   TABS.push({
     label: 'Server-Sent-Events',
-    pathname: '/sse'
+    pathname: '/sse',
   })
 }
 
 const validatePath = (path: string) => {
-  const tabPaths = TABS.map(tab => tab.pathname)
+  const tabPaths = TABS.map((tab) => tab.pathname)
   return tabPaths.includes(path) ? path : false
 }
 
 export default function NavBar(props: NavBarProps) {
-
   const { data: session } = useSession()
   const router = useRouter()
   const theme = useTheme()
@@ -90,7 +102,6 @@ export default function NavBar(props: NavBarProps) {
     handleCloseNavMenu()
   }
 
-
   React.useEffect(() => {
     const path = validatePath(router.pathname)
     setActiveTab(path)
@@ -110,18 +121,21 @@ export default function NavBar(props: NavBarProps) {
     return {
       id: `simple-tab-${pathname}`,
       'aria-controls': `tab-to-${pathname}`,
-    };
+    }
   }
 
   return (
     <>
-      {
-        router.pathname !== '/_error' &&
+      {router.pathname !== '/_error' && (
         <AppBar
           position={'sticky'}
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', backgroundColor: theme.palette.background.default }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: theme.palette.background.default,
+          }}
         >
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size={'large'}
@@ -151,24 +165,25 @@ export default function NavBar(props: NavBarProps) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {
-                TABS.map(
-                  (tab, index) =>
-                    <MenuItem key={index} onClick={() => handleNavigateFromMenu(tab.pathname)}>
-                      <Typography>{tab.label}</Typography>
-                    </MenuItem>
-                )
-              }
+              {TABS.map((tab, index) => (
+                <MenuItem key={index} onClick={() => handleNavigateFromMenu(tab.pathname)}>
+                  <Typography>{tab.label}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Tabs value={activeTab} onChange={handleChange} aria-label='navigation bar'>
-              {
-                TABS.map((tab, index) =>
-                  <LinkTab key={index} value={tab.pathname} label={tab.label} href={tab.pathname} {...a11yProps(tab.pathname)} />
-                )
-              }
+            <Tabs value={activeTab} onChange={handleChange} aria-label="navigation bar">
+              {TABS.map((tab, index) => (
+                <LinkTab
+                  key={index}
+                  value={tab.pathname}
+                  label={tab.label}
+                  href={tab.pathname}
+                  {...a11yProps(tab.pathname)}
+                />
+              ))}
             </Tabs>
           </Box>
 
@@ -182,24 +197,19 @@ export default function NavBar(props: NavBarProps) {
           </Box>
 
           <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', mr: 2 }}>
-            {
-              session && session.user &&
+            {session && session.user && (
               <>
                 <Tooltip title={'Open Menu'}>
                   <IconButton id={'toggle-user-menu'} onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    {
-                      session.user.name && session.user.image &&
+                    {session.user.name && session.user.image && (
                       <Avatar alt={session.user.name} src={session.user.image} />
-                    }
-                    {
-                      session.user.name && !session.user.image &&
-                      <Avatar alt={session.user.name} />
-                    }
+                    )}
+                    {session.user.name && !session.user.image && <Avatar alt={session.user.name} />}
                   </IconButton>
                 </Tooltip>
                 <Menu
                   sx={{ mt: '45px' }}
-                  id='menu-user'
+                  id="menu-user"
                   anchorEl={anchorElUser}
                   anchorOrigin={{
                     vertical: 'top',
@@ -220,19 +230,15 @@ export default function NavBar(props: NavBarProps) {
                   </MenuItem>
                 </Menu>
               </>
-            }
-            {
-              !session &&
-              <Button
-                onClick={() => signIn()}
-                sx={{ p: 0, color: theme.palette.text.primary, display: 'block' }}
-              >
+            )}
+            {!session && (
+              <Button onClick={() => signIn()} sx={{ p: 0, color: theme.palette.text.primary, display: 'block' }}>
                 Login
               </Button>
-            }
+            )}
           </Box>
         </AppBar>
-      }
+      )}
     </>
   )
 }

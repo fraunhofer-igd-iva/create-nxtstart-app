@@ -1,33 +1,32 @@
-import React from 'react';
-import { Typography, Box } from '@mui/material';
-import Head from 'next/head';
-import { prisma } from '@/util/prismaClient';
-import { city } from '../../prisma/.prisma/client';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
+import React from 'react'
+import { Typography, Box } from '@mui/material'
+import Head from 'next/head'
+import { prisma } from '@/util/prismaClient'
+import { city } from '../../prisma/.prisma/client'
+import { GetServerSideProps, GetServerSidePropsContext } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 interface PrismaPageProps {
-  cities: city[],
-  message: string,
+  cities: city[]
+  message: string
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: GetServerSidePropsContext) => {
-  const cities = await prisma.city.findMany({ where: { Population: { gte: 1000000 } }, orderBy: { Population: 'desc' } })
+  const cities = await prisma.city.findMany({
+    where: { Population: { gte: 1000000 } },
+    orderBy: { Population: 'desc' },
+  })
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', [
-        'common',
-        'prismaPage',
-      ])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common', 'prismaPage'])),
       cities: cities,
       message: 'cityList',
-    }
+    },
   }
 }
 
 export default function PrismaPage(props: PrismaPageProps) {
-
   const { t } = useTranslation(['prismaPage'])
 
   return (
@@ -39,15 +38,13 @@ export default function PrismaPage(props: PrismaPageProps) {
         <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
           {t('cityList')}
         </Typography>
-        {
-          props.cities.map(city =>
-            <Box key={city.ID}>
-              <Typography>
-                {city.Name} - {city.Population}
-              </Typography>
-            </Box>
-          )
-        }
+        {props.cities.map((city) => (
+          <Box key={city.ID}>
+            <Typography>
+              {city.Name} - {city.Population}
+            </Typography>
+          </Box>
+        ))}
       </Box>
     </div>
   )

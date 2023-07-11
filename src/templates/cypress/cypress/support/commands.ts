@@ -37,33 +37,30 @@
 // }
 
 declare namespace Cypress {
-    interface Chainable<Subject = any> {
-        adminLogin(username: string, password: string): Chainable<void>
-    }
+  interface Chainable<Subject = any> {
+    adminLogin(username: string, password: string): Chainable<void>
+  }
 }
 
 Cypress.Commands.add('adminLogin', (username: string, password: string) => {
-    cy.visit('/admin')
-    cy.contains('Login').click()
+  cy.visit('/admin')
+  cy.contains('Login').click()
 
-    cy.get('input[name=username]').type(username)
+  cy.get('input[name=username]').type(username)
 
-    // {enter} causes the form to submit but doesnt seem to work with next auth screen, so we click the button directly
-    cy.get('input[name=password]').type(password)
+  // {enter} causes the form to submit but doesnt seem to work with next auth screen, so we click the button directly
+  cy.get('input[name=password]').type(password)
 
-    cy.contains('Sign in with Admin Account').click()
+  cy.contains('Sign in with Admin Account').click()
 
-    // we should be redirected to /admin
-    cy.url().should('include', '/admin')
+  // we should be redirected to /admin
+  cy.url().should('include', '/admin')
 
-    cy.get('[id=toggle-user-menu]').click()
+  cy.get('[id=toggle-user-menu]').click()
 
-    // UI should reflect this admin being logged in
-    cy.get('[id=menu-user]')
-        .should('contain', username)
-        .should('contain', 'Logged in as:')
-        .should('contain', 'Logout')
+  // UI should reflect this admin being logged in
+  cy.get('[id=menu-user]').should('contain', username).should('contain', 'Logged in as:').should('contain', 'Logout')
 
-    // admin content is visible
-    cy.contains('Welcome Admin')
+  // admin content is visible
+  cy.contains('Welcome Admin')
 })

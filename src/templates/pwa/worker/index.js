@@ -26,11 +26,10 @@ self.__WB_DISABLE_DEV_LOGS = true
 
 // caching strategies, see https://web.dev/learn/pwa/serving/#caching-strategies
 // example using network first
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
-    fetch(event.request)
-      .catch(() => {
-        return caches.match(event.request)
-      })
+    fetch(event.request).catch(() => {
+      return caches.match(event.request)
+    })
   )
 })

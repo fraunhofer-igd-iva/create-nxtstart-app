@@ -1,15 +1,15 @@
-import React from 'react';
-import { Typography, Box, Button } from '@mui/material';
-import Head from 'next/head';
-import { Data } from '@/util/types';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import BarChart from '@/components/d3/BarChart';
-import ScatterPlot, { DataPoint } from '@/components/d3/ScatterPlot';
-import { GetStaticPropsContext } from 'next';
+import React from 'react'
+import { Typography, Box, Button } from '@mui/material'
+import Head from 'next/head'
+import { Data } from '@/util/types'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import BarChart from '@/components/d3/BarChart'
+import ScatterPlot, { DataPoint } from '@/components/d3/ScatterPlot'
+import { GetStaticPropsContext } from 'next'
 
 interface D3PageProps {
-  dataCities: Data[],
-  dataScatter: DataPoint[],
+  dataCities: Data[]
+  dataScatter: DataPoint[]
 }
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
@@ -63,9 +63,8 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     { label: 'Buenos Aires', value: 2982146, totalDataPoints: 50 },
     { label: 'Hyderabad', value: 2964638, totalDataPoints: 50 },
     { label: 'Casablanca', value: 2940623, totalDataPoints: 50 },
-    { label: 'Chicago', value: 2896016, totalDataPoints: 50 }
+    { label: 'Chicago', value: 2896016, totalDataPoints: 50 },
   ]
-
 
   const x: number[] = Array.from({ length: 40 }, () => Math.floor(Math.random() * 40))
   const y: number[] = Array.from({ length: 40 }, () => Math.floor(Math.random() * 40))
@@ -78,9 +77,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', [
-        'common',
-      ])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
       // Will be passed to the page component as props
       dataCities: dataCities,
       dataScatter: dataScatter,
@@ -95,7 +92,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
  */
 
 export default function D3Page(props: D3PageProps) {
-
   const [dataCities, setDataCities] = React.useState<Data[]>([])
   const [dataScatter, setDataScatter] = React.useState<DataPoint[]>(props.dataScatter)
 
@@ -107,7 +103,7 @@ export default function D3Page(props: D3PageProps) {
   const randomCityUpdate = () => {
     const index = Math.floor(Math.random() * dataCities.length)
     const randomValue = Math.floor(Math.random() * 10000000)
-    setDataCities(prev => {
+    setDataCities((prev) => {
       prev[index].value = randomValue
       return Array.of(...prev)
     })
@@ -117,10 +113,10 @@ export default function D3Page(props: D3PageProps) {
     const index = Math.floor(Math.random() * dataScatter.length)
     const randomValueX = Math.floor(Math.random() * 40)
     const randomValueY = Math.floor(Math.random() * 40)
-    setDataScatter(prev => {
+    setDataScatter((prev) => {
       prev[index] = {
         x: randomValueX,
-        y: randomValueY
+        y: randomValueY,
       }
       return Array.of(...prev)
     })
@@ -133,30 +129,37 @@ export default function D3Page(props: D3PageProps) {
       </Head>
       <Box sx={{ my: 8, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
-          Two different kinds of D3 graphs.
-          The bar chart is rendered using svg objects,
-          the multi line chart uses the d3 canvas.
+          Two different kinds of D3 graphs. The bar chart is rendered using svg objects, the multi line chart uses the
+          d3 canvas.
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'row', mt: 4 }}>
-          <Button variant={'contained'} onClick={randomCityUpdate} sx={{ mx: 2 }}>Random Update</Button>
+          <Button variant={'contained'} onClick={randomCityUpdate} sx={{ mx: 2 }}>
+            Random Update
+          </Button>
         </Box>
-        <Box sx={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          py: 4,
-        }}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            py: 4,
+          }}
+        >
           <BarChart width={1000} height={500} data={dataCities} />
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'row', mt: 4 }}>
-          <Button variant={'contained'} onClick={randomScatterUpdate} sx={{ mx: 2 }}>Random Update</Button>
+          <Button variant={'contained'} onClick={randomScatterUpdate} sx={{ mx: 2 }}>
+            Random Update
+          </Button>
         </Box>
-        <Box sx={{
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          py: 4,
-        }}>
+        <Box
+          sx={{
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            py: 4,
+          }}
+        >
           <ScatterPlot width={500} height={500} data={dataScatter} />
         </Box>
       </Box>

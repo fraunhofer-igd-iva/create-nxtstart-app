@@ -1,11 +1,11 @@
-import React from 'react';
-import * as d3 from 'd3';
-import { useTheme } from '@mui/material';
+import React from 'react'
+import * as d3 from 'd3'
+import { useTheme } from '@mui/material'
 
-const TICK_MARKER_SIZE = 6;
-const POINT_RADIUS = 2;
+const TICK_MARKER_SIZE = 6
+const POINT_RADIUS = 2
 
-export type DataPoint = { x: number, y: number }
+export type DataPoint = { x: number; y: number }
 
 /**
  * Computes the linear scales for the x and y dimension for the given data and chart sizes
@@ -22,9 +22,9 @@ function getScales(data: DataPoint[], chartWidth: number, chartHeight: number) {
 /**
  * Returns the data ranges (min/max) for the x and y dimension
  */
-function computeDataRange(data: DataPoint[]): { rangeX: number[], rangeY: number[] } {
+function computeDataRange(data: DataPoint[]): { rangeX: number[]; rangeY: number[] } {
   if (data.length === 0) {
-    throw new Error("Input data array is empty")
+    throw new Error('Input data array is empty')
   }
   let minX = data[0].x
   let maxX = data[0].x
@@ -32,10 +32,18 @@ function computeDataRange(data: DataPoint[]): { rangeX: number[], rangeY: number
   let maxY = data[0].y
 
   for (const point of data) {
-    if (point.x < minX) { minX = point.x }
-    if (point.x > maxX) { maxX = point.x }
-    if (point.y < minY) { minY = point.y }
-    if (point.y > maxY) { maxY = point.y }
+    if (point.x < minX) {
+      minX = point.x
+    }
+    if (point.x > maxX) {
+      maxX = point.x
+    }
+    if (point.y < minY) {
+      minY = point.y
+    }
+    if (point.y > maxY) {
+      maxY = point.y
+    }
   }
   return {
     rangeX: [minX, maxX],
@@ -46,23 +54,33 @@ function computeDataRange(data: DataPoint[]): { rangeX: number[], rangeY: number
 /**
  * Tests if the points are within the polygon. Used for mouse lasso selection
  */
-function getPointsWithinPolygon(polygonPoints: { x: number, y: number }[], testPoints: DataPoint[]): DataPoint[] {
+function getPointsWithinPolygon(polygonPoints: { x: number; y: number }[], testPoints: DataPoint[]): DataPoint[] {
   const numPolygonPoints = polygonPoints.length
 
   // Setup bounding box
   const boundingBox = computeDataRange(polygonPoints)
 
-  const insidePoints: DataPoint[] = [];
+  const insidePoints: DataPoint[] = []
   for (const p of testPoints) {
     // Test bounding box
-    if (p.x < boundingBox.rangeX[0] || p.x > boundingBox.rangeX[1] || p.y < boundingBox.rangeY[0] || p.y > boundingBox.rangeY[1]) {
+    if (
+      p.x < boundingBox.rangeX[0] ||
+      p.x > boundingBox.rangeX[1] ||
+      p.y < boundingBox.rangeY[0] ||
+      p.y > boundingBox.rangeY[1]
+    ) {
       continue
     }
     // Test polygon via ray tracing
-    let isInside = false;
+    let isInside = false
     for (let i = 0, j = numPolygonPoints - 1; i < numPolygonPoints; j = i++) {
-      if ((polygonPoints[i].y > p.y) != (polygonPoints[j].y > p.y) &&
-        p.x < (polygonPoints[j].x - polygonPoints[i].x) * (p.y - polygonPoints[i].y) / (polygonPoints[j].y - polygonPoints[i].y) + polygonPoints[i].x) {
+      if (
+        polygonPoints[i].y > p.y != polygonPoints[j].y > p.y &&
+        p.x <
+          ((polygonPoints[j].x - polygonPoints[i].x) * (p.y - polygonPoints[i].y)) /
+            (polygonPoints[j].y - polygonPoints[i].y) +
+            polygonPoints[i].x
+      ) {
         isInside = !isInside
       }
     }
@@ -83,7 +101,6 @@ interface ScatterPlotProps {
 
 const margin = { top: 10, right: 20, bottom: 20, left: 20 }
 
-
 export default function ScatterPlot(props: ScatterPlotProps) {
   const theme = useTheme()
 
@@ -98,7 +115,7 @@ export default function ScatterPlot(props: ScatterPlotProps) {
 
   /** State for lasso selection */
   const mouseDown = React.useRef<boolean>(false)
-  const mouseSelectionPoints = React.useRef<{ x: number, y: number }[]>([])
+  const mouseSelectionPoints = React.useRef<{ x: number; y: number }[]>([])
 
   const canvasWidth = Math.floor(props.width)
   const canvasHeight = Math.floor(props.height)
@@ -145,7 +162,7 @@ export default function ScatterPlot(props: ScatterPlotProps) {
       canvasRef.current.onmouseup = () => {
         if (props.onSelection && mouseSelectionPoints.current.length > 2) {
           // Convert to data domain coordinates
-          const polygonPoints = mouseSelectionPoints.current.map(point => ({
+          const polygonPoints = mouseSelectionPoints.current.map((point) => ({
             x: d3ScaleX.current!.invert(point.x - margin.left),
             y: d3ScaleY.current!.invert(point.y - margin.top),
           }))
@@ -172,11 +189,11 @@ export default function ScatterPlot(props: ScatterPlotProps) {
     draw()
   }
 
-  function getCoordinatesFromMouseEvent(canvas: HTMLCanvasElement, event: MouseEvent): { x: number, y: number } {
+  function getCoordinatesFromMouseEvent(canvas: HTMLCanvasElement, event: MouseEvent): { x: number; y: number } {
     const rect = canvas.getBoundingClientRect()
     return {
-      x: (event.clientX - rect.left) / (rect.right - rect.left) * canvasWidth,
-      y: (event.clientY - rect.top) / (rect.bottom - rect.top) * canvasHeight
+      x: ((event.clientX - rect.left) / (rect.right - rect.left)) * canvasWidth,
+      y: ((event.clientY - rect.top) / (rect.bottom - rect.top)) * canvasHeight,
     }
   }
 
@@ -187,20 +204,21 @@ export default function ScatterPlot(props: ScatterPlotProps) {
   /**
    * This useEffect block is run every time the data or component sizes change. We will do every chart updates here.
    */
-  React.useEffect(() => {
-    if (canvasRef.current) {
-      const { chartWidth, chartHeight } = getChartSize()
-      const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
+  React.useEffect(
+    () => {
+      if (canvasRef.current) {
+        const { chartWidth, chartHeight } = getChartSize()
+        const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
 
-      d3ScaleX.current = xScale
-      d3ScaleY.current = yScale
+        d3ScaleX.current = xScale
+        d3ScaleY.current = yScale
 
-      draw()
-    }
-  },
+        draw()
+      }
+    },
     /* The dependency array of useEffect. This block will run every time the input data or size change */
-    [props.data, props.width, props.height])
-
+    [props.data, props.width, props.height]
+  )
 
   function adaptToDevicePixelRatio(ctx: CanvasRenderingContext2D) {
     const dpi = window.devicePixelRatio || 1
@@ -278,7 +296,7 @@ export default function ScatterPlot(props: ScatterPlotProps) {
 
     // Axis ticks
     ctx.beginPath()
-    xScale.ticks().forEach(tick => {
+    xScale.ticks().forEach((tick) => {
       const x = xScale(tick)
       ctx.moveTo(x, 0)
       ctx.lineTo(x, TICK_MARKER_SIZE)
@@ -309,12 +327,12 @@ export default function ScatterPlot(props: ScatterPlotProps) {
 
     // Axis ticks
     ctx.beginPath()
-    yScale.ticks().forEach(tick => {
+    yScale.ticks().forEach((tick) => {
       const y = yScale(tick)
-      ctx.moveTo(- TICK_MARKER_SIZE, y)
+      ctx.moveTo(-TICK_MARKER_SIZE, y)
       ctx.lineTo(0, y)
       ctx.stroke()
-      ctx.fillText(tick.toString(), - TICK_MARKER_SIZE - 2, y)
+      ctx.fillText(tick.toString(), -TICK_MARKER_SIZE - 2, y)
     })
     ctx.closePath()
   }
@@ -341,7 +359,7 @@ export default function ScatterPlot(props: ScatterPlotProps) {
     const linePoints = mouseSelectionPoints.current
     const numLinePoints = linePoints.length
     if (numLinePoints <= 1) {
-      return;
+      return
     }
 
     ctx.fillStyle = 'rgba(150,150,150,0.4)'
@@ -356,11 +374,5 @@ export default function ScatterPlot(props: ScatterPlotProps) {
     ctx.stroke()
   }
 
-  return (
-    <canvas
-      width={canvasWidth}
-      height={canvasHeight}
-      ref={canvasRef}
-    />
-  )
+  return <canvas width={canvasWidth} height={canvasHeight} ref={canvasRef} />
 }

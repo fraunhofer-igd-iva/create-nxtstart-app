@@ -1,19 +1,19 @@
-import React from 'react';
-import { AppBar, IconButton, Tab, Tabs, Box, useTheme, Menu, MenuItem, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material';
-import LanguageSelector from './LanguageSelector';
-import examples from '../../webstart.config.json';
+import React from 'react'
+import { AppBar, IconButton, Tab, Tabs, Box, useTheme, Menu, MenuItem, Typography } from '@mui/material'
+import { useRouter } from 'next/router'
+import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
+import LanguageSelector from './LanguageSelector'
+import examples from '../../webstart.config.json'
 
 interface NavBarProps {
-  setActiveTheme: (newMode: 'light' | 'dark') => void,
+  setActiveTheme: (newMode: 'light' | 'dark') => void
 }
 
 interface LinkTabProps {
-  value: string,
-  disabled?: boolean,
-  label: string;
-  href: string;
+  value: string
+  disabled?: boolean
+  label: string
+  href: string
 }
 
 function LinkTab(props: LinkTabProps) {
@@ -21,7 +21,7 @@ function LinkTab(props: LinkTabProps) {
     <Tab
       component={'a'}
       onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        event.preventDefault();
+        event.preventDefault()
       }}
       {...props}
     />
@@ -31,36 +31,35 @@ function LinkTab(props: LinkTabProps) {
 const TABS = [
   {
     label: 'Home',
-    pathname: '/'
+    pathname: '/',
   },
 ]
 // done this way to make the navbar dynamically present appropriate tabs after creation using webstart, can be removed and all tabs moved directly into the object above
-if(examples.includes('mui')) {
+if (examples.includes('mui')) {
   TABS.push({
     label: 'Responsive Design',
-    pathname: '/responsive'
+    pathname: '/responsive',
   })
 }
-if(examples.includes('redux')) {
+if (examples.includes('redux')) {
   TABS.push({
     label: 'Redux',
-    pathname: '/redux'
+    pathname: '/redux',
   })
 }
-if(examples.includes('sse')) {
+if (examples.includes('sse')) {
   TABS.push({
     label: 'Server-Sent-Events',
-    pathname: '/sse'
+    pathname: '/sse',
   })
 }
 
 const validatePath = (path: string) => {
-  const tabPaths = TABS.map(tab => tab.pathname)
+  const tabPaths = TABS.map((tab) => tab.pathname)
   return tabPaths.includes(path) ? path : false
 }
 
 export default function NavBar(props: NavBarProps) {
-
   const router = useRouter()
   const theme = useTheme()
   const [activeTab, setActiveTab] = React.useState<string | false>(false)
@@ -78,7 +77,6 @@ export default function NavBar(props: NavBarProps) {
     router.push(path)
     handleCloseNavMenu()
   }
-
 
   React.useEffect(() => {
     const path = validatePath(router.pathname)
@@ -99,18 +97,21 @@ export default function NavBar(props: NavBarProps) {
     return {
       id: `simple-tab-${pathname}`,
       'aria-controls': `tab-to-${pathname}`,
-    };
+    }
   }
 
   return (
     <>
-      {
-        router.pathname !== '/_error' &&
+      {router.pathname !== '/_error' && (
         <AppBar
           position={'sticky'}
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', backgroundColor: theme.palette.background.default }}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: theme.palette.background.default,
+          }}
         >
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size={'large'}
@@ -140,24 +141,25 @@ export default function NavBar(props: NavBarProps) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {
-                TABS.map(
-                  (tab, index) =>
-                    <MenuItem key={index} onClick={() => handleNavigateFromMenu(tab.pathname)}>
-                      <Typography>{tab.label}</Typography>
-                    </MenuItem>
-                )
-              }
+              {TABS.map((tab, index) => (
+                <MenuItem key={index} onClick={() => handleNavigateFromMenu(tab.pathname)}>
+                  <Typography>{tab.label}</Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Tabs value={activeTab} onChange={handleChange} aria-label='navigation bar'>
-              {
-                TABS.map((tab, index) =>
-                  <LinkTab key={index} value={tab.pathname} label={tab.label} href={tab.pathname} {...a11yProps(tab.pathname)} />
-                )
-              }
+            <Tabs value={activeTab} onChange={handleChange} aria-label="navigation bar">
+              {TABS.map((tab, index) => (
+                <LinkTab
+                  key={index}
+                  value={tab.pathname}
+                  label={tab.label}
+                  href={tab.pathname}
+                  {...a11yProps(tab.pathname)}
+                />
+              ))}
             </Tabs>
           </Box>
 
@@ -170,7 +172,7 @@ export default function NavBar(props: NavBarProps) {
             </IconButton>
           </Box>
         </AppBar>
-      }
+      )}
     </>
   )
 }

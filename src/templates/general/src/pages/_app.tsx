@@ -1,18 +1,18 @@
-import React from 'react';
-import Head from 'next/head';
-import { AppProps } from 'next/app';
-<%redux%>import { Provider } from 'react-redux';
-import { store } from '@/store/store';</%redux%>
-import CssBaseline from '@mui/material/CssBaseline';
-import { CacheProvider } from '@emotion/react';
-import createEmotionCache from '@/styles/createEmotionCache';
-import Layout from '@/components/Layout';
-import '@/styles/globals.css';
-import AppThemeProvider from '@/components/AppThemeProvider';
-<%nextAuth%>import { SessionProvider } from 'next-auth/react';</%nextAuth%>
-import { appWithTranslation<%animations%>, I18nContext</%animations%> } from 'next-i18next';
-import { Inter } from 'next/font/google';
-<%animations%>import { AnimatePresence } from 'framer-motion';</%animations%>
+import React from 'react'
+import Head from 'next/head'
+import { AppProps } from 'next/app'
+<%redux%>import { Provider } from 'react-redux'
+import { store } from '@/store/store'</%redux%>
+import CssBaseline from '@mui/material/CssBaseline'
+import { CacheProvider } from '@emotion/react'
+import createEmotionCache from '@/styles/createEmotionCache'
+import Layout from '@/components/Layout'
+import '@/styles/globals.css'
+import AppThemeProvider from '@/components/AppThemeProvider'
+<%nextAuth%>import { SessionProvider } from 'next-auth/react'</%nextAuth%>
+import { appWithTranslation<%animations%>, I18nContext</%animations%> } from 'next-i18next'
+import { Inter } from 'next/font/google'
+<%animations%>import { AnimatePresence } from 'framer-motion'</%animations%>
 
 // If loading a variable font, you don't need to specify the font weight
 const inter = Inter({ subsets: ['latin'] })
@@ -21,7 +21,6 @@ const inter = Inter({ subsets: ['latin'] })
 const clientSideEmotionCache = createEmotionCache()
 
 function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
-
   <%animations%>const preservedI18nContext = React.useContext(I18nContext)</%animations%>
 
   const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light')

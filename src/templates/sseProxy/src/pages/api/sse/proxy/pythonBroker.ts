@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import EventSource from 'eventsource';
+import EventSource from 'eventsource'
 
 const pythonBackendIp = 'http://127.0.0.1:5000'
 
@@ -22,10 +22,7 @@ const closeSseConnection = (id: string) => {
   }
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     res.setHeader('Content-Type', 'text/event-stream')
     res.setHeader('Cache-Control', 'no-cache,no-transform')
@@ -47,14 +44,12 @@ export default async function handler(
         }
       }
     }
-
   } else if (req.method === 'POST') {
     // close connection to client with given id
     const connectionId = JSON.parse(req.body).id
     closeSseConnection(connectionId)
     res.status(200)
     res.end()
-
   } else {
     res.status(405)
     res.end()

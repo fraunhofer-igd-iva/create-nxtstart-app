@@ -1,29 +1,27 @@
-import React from 'react';
+import React from 'react'
 import Head from 'next/head'
-import styles from '../../styles/Home.module.css'
-import { Button, TextField, Container, Typography, Box } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { decrement, increment, incrementByAmount, selectCount } from '../../store/slices/counterSlice';
-import MuiNextLink from '../../components/MuiNextLink';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetStaticPropsContext } from 'next';
+import styles from '@/styles/Home.module.css'
+import { Button, TextField, Container, Typography, Box, useTheme } from '@mui/material'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { decrement, increment, incrementByAmount, selectCount } from '@/store/slices/counterSlice'
+import MuiNextLink from '@/components/MuiNextLink'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { GetStaticPropsContext } from 'next'
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'en', [
-        'common',
-      ])),
+      ...(await serverSideTranslations(locale ?? 'en', ['common'])),
       // Will be passed to the page component as props
     },
   }
 }
 
 export default function ReduxPage() {
-
-  const dispatch = useAppDispatch();
-  const count = useAppSelector(selectCount);
-  const [incrementAmount, setIncrementAmount] = React.useState<number>(0);
+  const dispatch = useAppDispatch()
+  const count = useAppSelector(selectCount)
+  const theme = useTheme()
+  const [incrementAmount, setIncrementAmount] = React.useState<number>(0)
 
   return (
     <div>
@@ -40,13 +38,14 @@ export default function ReduxPage() {
             alignItems: 'center',
           }}
         >
-          <Typography component='h1' color='primary'>
-            Material UI v5 with Next.js in TypeScript
+          <Typography variant={'body1'} color={'primary'}>
+            Redux provides Components for sharing state across your application and between pages.
           </Typography>
-          <Typography component='h2' color='secondary'>
-            Boilerplate for building faster.
-          </Typography>
-          <MuiNextLink href={'/redux/pageTwo'} label={'Link to site accessing this state'} />
+          <MuiNextLink
+            href={'/redux/pageTwo'}
+            label={'Link to site accessing this state'}
+            sx={{ color: theme.palette.secondary.main, textDecorationColor: theme.palette.secondary.main }}
+          />
         </Box>
         <div className={styles.row}>
           <div className={styles.column}>
@@ -59,12 +58,8 @@ export default function ReduxPage() {
           </div>
 
           <div className={styles.textColumn}>
-            <Typography>
-              current number:
-            </Typography>
-            <Typography variant='h2'>
-              {count}
-            </Typography>
+            <Typography>current number:</Typography>
+            <Typography variant="h2">{count}</Typography>
           </div>
 
           <div className={styles.column}>

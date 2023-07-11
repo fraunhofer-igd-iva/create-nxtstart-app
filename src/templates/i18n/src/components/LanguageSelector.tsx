@@ -1,12 +1,11 @@
-import React from 'react';
-import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material';
-import { useTranslation } from 'next-i18next';
+import React from 'react'
+import { Box, FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 import i18nextConfig from '../../next-i18next.config'
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function LanguageSelector() {
-
   const { t, i18n } = useTranslation()
   const router = useRouter()
 
@@ -28,14 +27,13 @@ export default function LanguageSelector() {
           onChange={handleChange}
           variant={'standard'}
         >
-          {
-            languages.map((lang: string) =>
-              <MenuItem key={lang} value={lang}>
-                <Link href={router.pathname} locale={lang}>
-                  {t('lang_' + lang)}
-                </Link>
-              </MenuItem>)
-          }
+          {languages.map((lang: string) => (
+            <MenuItem key={lang} value={lang}>
+              <Link href={router.pathname} locale={lang}>
+                {t('lang_' + lang)}
+              </Link>
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>

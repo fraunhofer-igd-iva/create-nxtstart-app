@@ -3,4 +3,3 @@ export type Data = {
   value: number
   totalDataPoints: number
 }
-
