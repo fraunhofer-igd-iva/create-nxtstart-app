@@ -37,6 +37,9 @@ export async function updateNextConfig(projectPath, packages) {
       return console.log(err)
     }
     let result = data
+
+    result = `/* eslint-disable @typescript-eslint/no-var-requires */
+    `.concat(result)
     
     if (packages.includes('i18n')) {
       result = result.replace(
