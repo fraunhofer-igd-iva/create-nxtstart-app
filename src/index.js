@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { getProjectName, getPackageManager, getPackages, getExamples, getRunPrettier } from './questions.js';
-import { initNodeNpm, initNodeYarn, addEnvFile } from './projectCreationUtils.js';
+import { initNodeNpm, initNodeYarn, addEnvFile, checkProjectFolder } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
 import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addNextAuthNavBar, addEmptyCypressDirectories } from './exampleCreationUtils.js';
 import { postProcessFile, runPrettier } from './filePostProcessor.js';
@@ -20,6 +20,11 @@ const examples = ['general', 'index', 'i18n', ...await getExamples(packages)]
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
 const targetPath = path.join(CURR_DIR, projectName)
+
+if (!checkProjectFolder(targetPath)) {
+  throw new Error(chalk.red(`Folder ${targetPath} exists. Delete or use another name.`))
+}
+
 if (packageManager === 'npm') {
   await initNodeNpm(CURR_DIR, targetPath)
 } else if (packageManager === 'yarn') {

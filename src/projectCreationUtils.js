@@ -4,13 +4,10 @@ import shell from 'shelljs';
 import chalk from 'chalk';
 
 
-export async function createProjectFolder(projectPath) {
+export function checkProjectFolder(projectPath) {
   if (fs.existsSync(projectPath)) {
-    console.log(chalk.red(`Folder ${projectPath} exists. Delete or use another name.`))
     return false
   }
-
-  fs.mkdirSync(projectPath)
   return true
 }
 
