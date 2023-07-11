@@ -2,13 +2,13 @@ import React from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/app';
 <%redux%>import { Provider } from 'react-redux';
-import { store } from '../store/store';</%redux%>
+import { store } from '@/store/store';</%redux%>
 import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import createEmotionCache from '../styles/createEmotionCache';
-import Layout from '../components/Layout';
-import '../styles/globals.css';
-import AppThemeProvider from '../components/AppThemeProvider';
+import createEmotionCache from '@/styles/createEmotionCache';
+import Layout from '@/components/Layout';
+import '@/styles/globals.css';
+import AppThemeProvider from '@/components/AppThemeProvider';
 <%nextAuth%>import { SessionProvider } from 'next-auth/react';</%nextAuth%>
 import { appWithTranslation<%animations%>, I18nContext</%animations%> } from 'next-i18next';
 import { Inter } from 'next/font/google';

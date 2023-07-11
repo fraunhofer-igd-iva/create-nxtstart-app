@@ -1,5 +1,5 @@
 import React from 'react';
-import { lightTheme, darkTheme } from '../styles/theme';
+import { lightTheme, darkTheme } from '@/styles/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, useTheme } from '@mui/material';
-import MuiNextLink from '../components/MuiNextLink';
+import MuiNextLink from '@/components/MuiNextLink';
 
 export const footerHeight = '40px'
 

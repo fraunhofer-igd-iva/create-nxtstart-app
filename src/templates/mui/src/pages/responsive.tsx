@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import Head from 'next/head';
-import MuiGridExample from '../components/MuiGridExample';
+import MuiGridExample from '@/components/MuiGridExample';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticPropsContext } from 'next';
 

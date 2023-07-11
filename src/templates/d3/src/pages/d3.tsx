@@ -1,10 +1,10 @@
 import React from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import Head from 'next/head';
-import { Data } from '../util/types';
+import { Data } from '@/util/types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import BarChart from '../components/d3/BarChart';
-import ScatterPlot, { DataPoint } from '../components/d3/ScatterPlot';
+import BarChart from '@/components/d3/BarChart';
+import ScatterPlot, { DataPoint } from '@/components/d3/ScatterPlot';
 import { GetStaticPropsContext } from 'next';
 
 interface D3PageProps {

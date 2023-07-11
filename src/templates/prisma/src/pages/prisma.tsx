@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import Head from 'next/head';
-import { prisma } from '../util/prismaClient';
+import { prisma } from '@/util/prismaClient';
 import { city } from '../../prisma/.prisma/client';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

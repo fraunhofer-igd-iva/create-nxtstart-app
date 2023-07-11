@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '@/styles/Home.module.css'
 import { Container, Typography, Box } from '@mui/material';
-import IndexCard, { IndexCardProps } from '../components/IndexCard';
+import IndexCard, { IndexCardProps } from '@/components/IndexCard';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import examples from '../../webstart.config.json';

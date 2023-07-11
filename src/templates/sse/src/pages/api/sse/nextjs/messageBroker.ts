@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { Data } from '../../../../util/types';
-import { prisma } from '../../../../util/prismaClient';
+import { Data } from '@/util/types';
+import { prisma } from '@/util/prismaClient';
 import { v4 as uuidV4 } from 'uuid';
 
 const sseConnections: string[] = []

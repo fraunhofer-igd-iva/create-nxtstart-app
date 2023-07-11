@@ -1,6 +1,6 @@
 import React from 'react';
 import * as d3 from 'd3';
-import { Data } from '../../util/types';
+import { Data } from '@/util/types';
 import { useTheme } from '@mui/material';
 
 /**
