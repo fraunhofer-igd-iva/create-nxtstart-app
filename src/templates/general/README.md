@@ -2,6 +2,7 @@ This NextJS project was bootstrapped using the Webstart CLI.
 
 # Run your project
 
+- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed
 - Fill the `.env` file with necessary variables where webstart placed placeholder data
 - If you selected Prisma, refer to the corresponding section of this README before running your app
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root

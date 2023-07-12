@@ -8,6 +8,7 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 
 ## General
 
+- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed
 - Fill the `.env` file with necessary variables where webstart placed placeholder data
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
