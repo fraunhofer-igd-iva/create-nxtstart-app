@@ -14,7 +14,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   }
 }
 
-export default function Redux2Page() {
+export default function SWRPage() {
   const fetcher = (input: RequestInfo | URL) => fetch(input).then((res) => res.json())
   const { data, error, isLoading } = useSWR('/api/hello', fetcher)
 
