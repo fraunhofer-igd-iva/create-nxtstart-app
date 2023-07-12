@@ -12,6 +12,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function MuiGridExample() {
   const theme = useTheme()
 
+  // checkout https://mui.com/material-ui/react-grid/ for detailed grid examples and documentation
   return (
     <Paper sx={{ padding: 2, maxWidth: '100dvw', backgroundColor: 'grey.300' }}>
       <Grid container spacing={2} justifyContent={'center'} alignItems={'center'} maxWidth={'100dvw'}>

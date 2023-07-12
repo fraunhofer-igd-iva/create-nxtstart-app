@@ -15,7 +15,9 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 }
 
 export default function SWRPage() {
+  // change the fetcher according to the data that is provided by the api, in this case json
   const fetcher = (input: RequestInfo | URL) => fetch(input).then((res) => res.json())
+  // use the provided variables to render the page according to the fetching status
   const { data, error, isLoading } = useSWR('/api/hello', fetcher)
 
   const styles = {

@@ -112,6 +112,7 @@ export default function NavBar(props: NavBarProps) {
             backgroundColor: theme.palette.background.default,
           }}
         >
+          {/* responsive menu for mobile devices or small windows */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size={'large'}
@@ -149,6 +150,7 @@ export default function NavBar(props: NavBarProps) {
             </Menu>
           </Box>
 
+          {/* standard tabs menu for larger screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tabs value={activeTab} onChange={handleChange} aria-label="navigation bar">
               {TABS.map((tab, index) => (
@@ -163,6 +165,7 @@ export default function NavBar(props: NavBarProps) {
             </Tabs>
           </Box>
 
+          {/* language selector and theme mode toggle */}
           <Box sx={{ ml: 'auto', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Box sx={{ mr: 2 }}>
               <LanguageSelector />

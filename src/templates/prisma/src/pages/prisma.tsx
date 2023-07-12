@@ -14,14 +14,16 @@ interface PrismaPageProps {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: GetServerSidePropsContext) => {
   const cities = await prisma.city.findMany({
+    // find cities with a population >= 1000000
     where: { Population: { gte: 1000000 } },
+    // order results in descending order
     orderBy: { Population: 'desc' },
   })
   return {
     props: {
       ...(await serverSideTranslations(locale ?? 'en', ['common', 'prismaPage'])),
+      // add cities to props
       cities: cities,
-      message: 'cityList',
     },
   }
 }

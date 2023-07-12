@@ -13,6 +13,7 @@ export default function AppThemeProvider(props: ComponentProps) {
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
+    // initialize theme on first page visit
     if (window !== undefined) {
       let newMode: 'light' | 'dark' = 'light'
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

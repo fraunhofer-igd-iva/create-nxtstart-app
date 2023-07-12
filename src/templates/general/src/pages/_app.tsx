@@ -14,10 +14,10 @@ import { appWithTranslation<%animations%>, I18nContext</%animations%> } from 'ne
 import { Inter } from 'next/font/google'
 <%animations%>import { AnimatePresence } from 'framer-motion'</%animations%>
 
-// If loading a variable font, you don't need to specify the font weight
+// if loading a variable font, you don't need to specify the font weight
 const inter = Inter({ subsets: ['latin'] })
 
-// Client-side cache, shared for the whole session of the user in the browser.
+// client-side cache, shared for the whole session of the user in the browser
 const clientSideEmotionCache = createEmotionCache()
 
 function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {

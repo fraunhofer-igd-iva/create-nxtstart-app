@@ -8,6 +8,7 @@ interface MuiNextLinkProps {
   sx?: SxProps<Theme>
 }
 
+// link component comining next link functionality with mui design
 export default function MuiNextLink(props: MuiNextLinkProps) {
   return (
     <Link href={props.href} component={NextLink} sx={props.sx}>

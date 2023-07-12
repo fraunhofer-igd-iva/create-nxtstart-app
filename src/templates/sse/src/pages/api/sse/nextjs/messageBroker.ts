@@ -4,6 +4,7 @@ import { Data } from '@/util/types'
 import { prisma } from '@/util/prismaClient'
 import { v4 as uuidV4 } from 'uuid'
 
+// saves active connections
 const sseConnections: string[] = []
 
 const includesSseConnection = (id: string) => {

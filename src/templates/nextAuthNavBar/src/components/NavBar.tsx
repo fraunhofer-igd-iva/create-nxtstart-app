@@ -48,7 +48,7 @@ const TABS = [
     pathname: '/',
   },
 ]
-// done this way to make the navbar dynamically present appropriate tabs after creation using webstart, can be removed and all tabs moved directly into the object above
+// done this way to make the navbar dynamically present appropriate tabs after creation using the template app, can be removed and all tabs moved directly into the object above
 if (examples.includes('mui')) {
   TABS.push({
     label: 'Responsive Design',
@@ -136,10 +136,10 @@ export default function NavBar(props: NavBarProps) {
             backgroundColor: theme.palette.background.default,
           }}
         >
+          {/* responsive menu for mobile devices or small windows */}
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size={'large'}
-              aria-label={'account of current user'}
               aria-controls={'menu-appbar'}
               aria-haspopup={'true'}
               onClick={handleOpenNavMenu}
@@ -173,6 +173,7 @@ export default function NavBar(props: NavBarProps) {
             </Menu>
           </Box>
 
+          {/* standard tabs menu for larger screens */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tabs value={activeTab} onChange={handleChange} aria-label="navigation bar">
               {TABS.map((tab, index) => (
@@ -187,6 +188,7 @@ export default function NavBar(props: NavBarProps) {
             </Tabs>
           </Box>
 
+          {/* language selector and theme mode toggle */}
           <Box sx={{ ml: 'auto', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Box sx={{ mr: 2 }}>
               <LanguageSelector />
@@ -196,6 +198,7 @@ export default function NavBar(props: NavBarProps) {
             </IconButton>
           </Box>
 
+          {/* next auth login and user menu */}
           <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', mr: 2 }}>
             {session && session.user && (
               <>
@@ -209,7 +212,7 @@ export default function NavBar(props: NavBarProps) {
                 </Tooltip>
                 <Menu
                   sx={{ mt: '45px' }}
-                  id="menu-user"
+                  id={'menu-user'}
                   anchorEl={anchorElUser}
                   anchorOrigin={{
                     vertical: 'top',
