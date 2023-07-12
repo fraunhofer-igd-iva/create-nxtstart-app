@@ -2,7 +2,7 @@ This NextJS project was bootstrapped using the Webstart CLI.
 
 # Run your project
 
-- Fill the `.env` file with necessary variables in places where webstart placed placeholder data
+- Fill the `.env` file with necessary variables where webstart placed placeholder data
 - If you selected Prisma, refer to the corresponding section of this README before running your app
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -18,7 +18,7 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 
 ## Code Style
 
-To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor.
+To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor. If Prettier is chosen, additional run configurations are added.
 
 ## I18n - Internationalization
 
