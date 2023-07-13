@@ -4,7 +4,6 @@ import path from 'path';
 import chalk from 'chalk';
 import shell from 'shelljs';
 
-
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
@@ -94,13 +93,6 @@ SECRET=qwertysecretForTheN3xtJ5Template
 `, function (err) {
     if (err) throw err
     console.log(chalk.green('Added NextAuth .env!'))
-  })
-}
-
-export function addNextAuthNavBar(projectPath) {
-  fs.cpSync(path.join(path.join(__dirname, 'templates'), 'nextAuthNavBar'), projectPath, { recursive: true }, err => {
-    if (err) return console.error(err)
-    console.log(chalk.green('Updated NavBar to include NextAuth successfully!'))
   })
 }
 

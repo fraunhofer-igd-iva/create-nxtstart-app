@@ -1,9 +1,22 @@
 import React from 'react'
-import { AppBar, IconButton, Tab, Tabs, Box, useTheme, Menu, MenuItem, Typography } from '@mui/material'
+import {
+  AppBar,
+  IconButton,
+  Tab,
+  Tabs,
+  Box,
+  useTheme,
+  Menu,
+  MenuItem,
+  Typography,
+  <%nextAuth%>Button,
+  Tooltip,
+  Avatar,</%nextAuth%>
+} from '@mui/material'
 import { useRouter } from 'next/router'
 import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
+<%nextAuth%>import { useSession, signIn, signOut } from 'next-auth/react'</%nextAuth%>
 import LanguageSelector from './LanguageSelector'
-import examples from '../../webstart.config.json'
 
 interface NavBarProps {
   setActiveTheme: (newMode: 'light' | 'dark') => void
@@ -33,26 +46,19 @@ const TABS = [
     label: 'Home',
     pathname: '/',
   },
-]
-// done this way to make the navbar dynamically present appropriate tabs after creation using webstart, can be removed and all tabs moved directly into the object above
-if (examples.includes('mui')) {
-  TABS.push({
+  <%mui%>{
     label: 'Responsive Design',
     pathname: '/responsive',
-  })
-}
-if (examples.includes('redux')) {
-  TABS.push({
+  },</%mui%>
+  <%redux%>{
     label: 'Redux',
     pathname: '/redux',
-  })
-}
-if (examples.includes('sse')) {
-  TABS.push({
+  },</%redux%>
+  <%sse%>{
     label: 'Server-Sent-Events',
     pathname: '/sse',
-  })
-}
+  },</%sse%>
+]
 
 const validatePath = (path: string) => {
   const tabPaths = TABS.map((tab) => tab.pathname)
@@ -60,20 +66,30 @@ const validatePath = (path: string) => {
 }
 
 export default function NavBar(props: NavBarProps) {
+  <%nextAuth%>const { data: session } = useSession()</%nextAuth%>
   const router = useRouter()
   const theme = useTheme()
   const [activeTab, setActiveTab] = React.useState<string | false>(false)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
+  <%nextAuth%>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</%nextAuth%>
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
 
-  const handleCloseNavMenu = () => {
+  <%nextAuth%>const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget)
+  }
+
+  </%nextAuth%>const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
 
-  const handleNavigateFromMenu = (path: string) => {
+  <%nextAuth%>const handleCloseUserMenu = () => {
+    setAnchorElUser(null)
+  }
+
+  </%nextAuth%>const handleNavigateFromMenu = (path: string) => {
     router.push(path)
     handleCloseNavMenu()
   }
@@ -116,7 +132,6 @@ export default function NavBar(props: NavBarProps) {
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size={'large'}
-              aria-label={'account of current user'}
               aria-controls={'menu-appbar'}
               aria-haspopup={'true'}
               onClick={handleOpenNavMenu}
@@ -174,6 +189,49 @@ export default function NavBar(props: NavBarProps) {
               {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
           </Box>
+
+          <%nextAuth%>{/* next auth login and user menu */}
+          <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', mr: 2 }}>
+            {session && session.user && (
+              <>
+                <Tooltip title={'Open Menu'}>
+                  <IconButton id={'toggle-user-menu'} onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    {session.user.name && session.user.image && (
+                      <Avatar alt={session.user.name} src={session.user.image} />
+                    )}
+                    {session.user.name && !session.user.image && <Avatar alt={session.user.name} />}
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id={'menu-user'}
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <Typography sx={{ mx: 2 }}>Logged in as:</Typography>
+                  <Typography sx={{ mx: 2 }}>{session.user.name}</Typography>
+                  <MenuItem key={'logout'} onClick={() => signOut()}>
+                    <Typography color={'primary'}>Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </>
+            )}
+            {!session && (
+              <Button onClick={() => signIn()} sx={{ p: 0, color: theme.palette.text.primary, display: 'block' }}>
+                Login
+              </Button>
+            )}
+          </Box></%nextAuth%>
         </AppBar>
       )}
     </>

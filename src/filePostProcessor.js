@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import * as fs from 'fs';
 import shell from 'shelljs';
-import { fullPackageList } from './packageInstallationUtils';
+import { fullPackageList } from './packageInstallationUtils.js';
 
 export async function postProcessFile(filePath, chosenPackages) {
   fs.readFile(filePath, 'utf8', function (err, data) {

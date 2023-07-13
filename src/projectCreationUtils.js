@@ -3,7 +3,6 @@ import path from 'path';
 import shell from 'shelljs';
 import chalk from 'chalk';
 
-
 export function checkProjectFolder(projectPath) {
   if (fs.existsSync(projectPath)) {
     return false
