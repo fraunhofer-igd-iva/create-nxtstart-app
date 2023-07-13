@@ -158,7 +158,7 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   }
 
   if (cmdDevDep) {
-    cmdDevDep += ` ${packageManager === 'yarn' ? '--dev' : '--save-dev'}`
+    cmdDevDep += ` ${packageManager === 'yarn' ? '--dev' : '--save-dev --legacy-peer-deps'}`
     result = shell.exec(cmdDevDep)
   }
   console.log(chalk.green(`Installed using "${cmdDep}"`))
@@ -225,22 +225,17 @@ export async function addRunScripts(projectPath, packages, packageManager) {
           /"lint": "next lint"/g,
           `"lint": "next lint",
     "prettierCheck": "yarn prettier . --check",
-    "prettierFix": "yarn prettier . --write",`
+    "prettierFix": "yarn prettier . --write"`
         )
       } else if (packageManager === 'npm') {
         result = result.replace(
           /"lint": "next lint"/g,
           `"lint": "next lint",
     "prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write",`
+    "prettierFix": "npx prettier . --write"`
         )
       }
     }
-
-    result = result.replace(
-      /,,/g,
-      ","
-    )
 
     fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
       if (err) return console.log(err)
