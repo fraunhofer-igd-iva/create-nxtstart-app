@@ -70,7 +70,7 @@ addPackages(packageManager, packages, targetPath)
   .then(async () => {
     await runFinalInstall(packageManager, targetPath)
     // post process _app.tsx, only pass the relevant packages for the file
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), packages, ['redux', 'nextAuth', 'animations'])
+    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), packages)
   })
 
 if(examples.includes('linting')) {

@@ -3,6 +3,10 @@ import chalk from 'chalk';
 import * as fs from 'fs';
 import path from 'path';
 
+// update when adding new packages
+export const fullPackageList = [
+  'linting', 'swr', 'mui', 'animations', 'tailwind', 'redux', 'd3', 'nextAuth', 'prisma', 'i18n', 'pwa', 'cypress', 'sse', 'sseProxy', 'webWorker'
+]
 
 const packageBundles = {
   general: {
@@ -123,16 +127,6 @@ const packageBundles = {
   webWorker: {
     dep: [],
     devDep: [],
-  },
-  fileUpload: {
-    dep: [
-      'formidable',
-      'uuid',
-    ],
-    devDep: [
-      '@types/formidable',
-      '@types/uuid',
-    ],
   },
 }
 
