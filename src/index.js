@@ -61,9 +61,9 @@ addPackages(packageManager, packages, targetPath)
     }
   })
   .then(async () => {
-    // post process _app.tsx, only pass the relevant packages for the file
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), packages)
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), packages)
+    // post process files
+    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), examples)
+    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), examples)
   })
 
 if(examples.includes('linting')) {

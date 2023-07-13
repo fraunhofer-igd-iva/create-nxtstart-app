@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import shell from 'shelljs';
 import { fullPackageList } from './packageInstallationUtils.js';
 
-export async function postProcessFile(filePath, chosenPackages) {
+export async function postProcessFile(filePath, chosenExamples) {
   fs.readFile(filePath, 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
@@ -14,7 +14,7 @@ export async function postProcessFile(filePath, chosenPackages) {
       const curPackage = fullPackageList[i]
       result = result.replace(new RegExp(`<%${curPackage}%>([^%]+)</%${curPackage}%>`, 'gm'), (match, $1) => {
         // only remove the tags, keep enclosed code in capture group one if the current package is chosen by user
-        if(chosenPackages.includes(curPackage)) {
+        if(chosenExamples.includes(curPackage)) {
           return $1
         } else {
           return ''
