@@ -26,7 +26,7 @@ export function addExample(projectPath, element) {
       console.log(chalk.green(`Added ${element} files successfully!`))
     })
   } else {
-    console.log(chalk.red(`No example filse found for ${element}!`))
+    console.log(chalk.green(`No example files found for ${element}!`))
   }
 }
 
