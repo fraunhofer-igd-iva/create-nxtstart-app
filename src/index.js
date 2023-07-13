@@ -64,6 +64,7 @@ addPackages(packageManager, packages, targetPath)
     // post process files
     await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), examples)
     await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), examples)
+    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'Layout.tsx'), examples)
   })
 
 if(examples.includes('linting')) {
