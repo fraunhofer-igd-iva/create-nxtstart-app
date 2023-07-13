@@ -24,7 +24,7 @@ export async function postProcessFile(filePath, chosenExamples) {
 
     fs.writeFile(filePath, result, 'utf8', function (err) {
       if (err) return console.log(err)
-      console.log(chalk.green('Post processed _app.tsx!'))
+      console.log(chalk.green('Post processed file!'))
     })
   })
 }
