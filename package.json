@@ -1,6 +1,6 @@
 {
   "name": "create-nxtstart-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run the app in any command prompt with node installed using `yarn create nxtstart-app` or `npm init nxtstart-app` or install the package using `npm i -g create-nxtstart-app` and run `create-nxtstart-app` in any command prompt with node installed. Follow the instructions presented by the interface. Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.",
   "main": "src/index.js",
   "type": "module",
