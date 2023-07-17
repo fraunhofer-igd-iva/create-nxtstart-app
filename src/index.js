@@ -31,7 +31,7 @@ if (packageManager === 'npm') {
 }
 await addExamplesJson(targetPath, examples)
 await addEnvFile(targetPath)
-console.log(chalk.green('Done creating nextjs project structure.'))
+console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
 
 // add packages selected by the user
 addPackages(packageManager, packages, targetPath)
