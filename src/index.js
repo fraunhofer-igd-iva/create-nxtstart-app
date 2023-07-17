@@ -7,7 +7,18 @@ import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addEm
 import { postProcessFile, runPrettier } from './filePostProcessor.js';
 import * as path from 'path';
 import chalk from 'chalk';
+import gradient from 'gradient-string';
 
+const TITLE_TEXT = `
+ _   _  __   __  _______    _____   _______              _____    _______ 
+| \\ | | \\ \\ / / |__   __|  / ____| |__   __|     /\\     |  __ \\  |__   __|
+|  \\| |  \\ V /     | |    | (___      | |       /  \\    | |__) |    | |   
+| . \` |   > <      | |     \\___ \\     | |      / /\\ \\   |  _  /     | |   
+| |\\  |  / . \\     | |     ____) |    | |     / ____ \\  | | \\ \\     | |   
+|_| \\_| /_/ \\_\\    |_|    |_____/     |_|    /_/    \\_\\ |_|  \\_\\    |_|   
+`;
+
+console.log(gradient(['#009374', '#66BFAC', '#79B4D9', '#1F82C0']).multiline(TITLE_TEXT))
 // Query setup data from user
 const projectName = await getProjectName()
 const keepGit = await getKeepGit()

@@ -19,9 +19,9 @@
     "@babel/core": "^7.22.5",
     "@inquirer/prompts": "^2.1.1",
     "chalk": "^5.2.0",
+    "gradient-string": "^2.0.2",
     "shelljs": "^0.8.5"
   },
-  "devDependencies": {},
   "keywords": [
     "nxtstart",
     "nextjs",
