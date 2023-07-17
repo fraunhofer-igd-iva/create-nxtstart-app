@@ -8,11 +8,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export async function addExamplesJson(projectPath, examples) {
-  fs.writeFile(path.join(projectPath, 'webstart.config.json'), JSON.stringify(examples), function (err) {
+  fs.writeFile(path.join(projectPath, 'nxtstart.config.json'), JSON.stringify(examples), function (err) {
     if (err) {
       return console.log(err)
     }
-    console.log(chalk.green('Webstart config json created!'))
+    console.log(chalk.green('Nxtstart config json created!'))
   })
 }
 

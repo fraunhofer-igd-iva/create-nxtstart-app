@@ -5,7 +5,7 @@ import { Container, Typography, Box } from '@mui/material'
 import IndexCard, { IndexCardProps } from '@/components/IndexCard'
 import { useTranslation } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import examples from '../../webstart.config.json'
+import examples from '../../nxtstart.config.json'
 import { GetStaticPropsContext } from 'next'
 
 const libraries: IndexCardProps[] = [

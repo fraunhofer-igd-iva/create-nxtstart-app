@@ -1,17 +1,17 @@
-This NextJS project was bootstrapped using the Webstart CLI.
+This NextJS project was bootstrapped using the Nxtstart.
 
 # Run your project
 
-- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed
-- Fill the `.env` file with necessary variables where webstart placed placeholder data
-- If you selected Prisma, refer to the corresponding section of this README before running your app
-- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
+- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed.
+- Fill the `.env` file with necessary variables where nxtstart placed placeholder data.
+- If you selected Prisma, refer to the corresponding section of this README before running your app.
+- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-- Webstart creates a `/webstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
+- Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 
 # Package specific information
 
@@ -23,7 +23,7 @@ To enforce code style, ESLint is installed by default and Prettier can be instal
 
 ## I18n - Internationalization
 
-By default webstart projects come with internationalization options.
+By default nxtstart projects come with internationalization options.
 Under `/public/locales` the different languages are placed. Each language directory contains multiple json files that can be as granular as necessary.
 Using these translations can be done as seen in `/src/pages/index.tsx` and `/src/components/NavBar.tsx` using serverSideTranslations.
 
@@ -61,7 +61,7 @@ The example is using Github in the `.env`. See the [Docs](https://next-auth.js.o
 
 Run tests using `yarn run test` (or `npm run test` for npm) or open the GUI using `yarn run cypressGui` (or `npm run cypressGui` for npm).
 
-The example specifications for the authentication (including the test for the restricted api route) won't work for the current webstart as it requires an admin login, but the concept of writing tests should still become clear.
+The example specifications for the authentication (including the test for the restricted api route) won't work for the current nxtstart as it requires an admin login, but the concept of writing tests should still become clear.
 
 ## Progressive Web App
 
