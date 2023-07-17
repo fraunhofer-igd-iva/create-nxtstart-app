@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import { getProjectName, getPackageManager, getPackages, getExamples, getRunPrettier } from './questions.js';
-import { initNodeNpm, initNodeYarn, addEnvFile, checkProjectFolder } from './projectCreationUtils.js';
+import { getProjectName, getPackageManager, getPackages, getExamples, getRunPrettier, getKeepGit } from './questions.js';
+import { initNodeNpm, initNodeYarn, addEnvFile, checkProjectFolder, removeGit } from './projectCreationUtils.js';
 import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js';
 import { addExamplesJson, addExample, updateNextConfig, updateEnvNextAuth, addEmptyCypressDirectories } from './exampleCreationUtils.js';
 import { postProcessFile, runPrettier } from './filePostProcessor.js';
@@ -10,6 +10,7 @@ import chalk from 'chalk';
 
 // Query setup data from user
 const projectName = await getProjectName()
+const keepGit = await getKeepGit()
 const packageManager = await getPackageManager()
 // per default add mui, redux and i18n
 const packages = ['mui', 'i18n', ...await getPackages()]
@@ -31,6 +32,9 @@ if (packageManager === 'npm') {
 }
 await addExamplesJson(targetPath, examples)
 await addEnvFile(targetPath)
+if(!keepGit) {
+  await removeGit(targetPath)
+}
 console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
 
 // add packages selected by the user

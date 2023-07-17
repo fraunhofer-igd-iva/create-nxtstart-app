@@ -2,6 +2,8 @@ import { input, select, checkbox, Separator, confirm } from '@inquirer/prompts';
 
 export const getProjectName = async () => (await input({ message: 'Enter the project name, only lowercase!' })).toLowerCase()
 
+export const getKeepGit = async () => await confirm({ message: 'Initialize a git repository?', default: true })
+
 export const getPackageManager = async () => await select({
   message: 'Select a package manager',
   choices: [

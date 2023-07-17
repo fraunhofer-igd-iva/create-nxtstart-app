@@ -62,3 +62,8 @@ NEXT_BACKEND_URL=http://127.0.0.1:3000
     console.log(chalk.green('Env file created!'))
   })
 }
+
+export async function removeGit(projectPath) {
+  fs.rmSync(path.join(projectPath, '.git'), { recursive: true, force: true })
+  console.log(chalk.green('Removed .git folder!'))
+}
