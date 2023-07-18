@@ -28,10 +28,16 @@ Then, clone it to your local machine:
 gh repo clone <your-github-name>/create-nxtstart-app
 ```
 
-Then, install the project's dependencies:
+Then, install the project's dependencies and install the app locally:
 
 ```bash
-npm install
+npm install -g
+```
+
+Run the cli in any command prompt using
+
+```bash
+create-nxtstart-app
 ```
 
 ### Implement your changes

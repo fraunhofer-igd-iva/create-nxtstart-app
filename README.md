@@ -122,15 +122,9 @@ To create an optimized production build run the command `yarn run build` (or `np
 
 To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
 
-# Development on Nxtstart
+# Contributing to Nxtstart
 
-- Install packages using `npm install`
-- Install the cli locally using `npm install -g`
-- Run the cli in any command prompt using `create-nxtstart-app`
-
-## Contributing
-
-Feel free to contribute to this project but **please read the [Contributing Guidelines](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/CONTRIBUTING.md) before opening an issue or PR**.
+We appreciate every contribution to this project but **please read the [Contributing Guidelines](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/CONTRIBUTING.md) before opening an issue or PR**.
 
 # License
 
