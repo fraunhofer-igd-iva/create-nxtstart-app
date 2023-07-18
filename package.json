@@ -6,7 +6,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fraunhofer-igd-iva/create-nxtstart-app"
+    "url": "https://github.com/fraunhofer-igd-iva/create-nxtstart-app.git"
   },
   "bin": {
     "create-nxtstart-app": "src/index.js"
