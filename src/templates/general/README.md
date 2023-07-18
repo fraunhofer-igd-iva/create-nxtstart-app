@@ -1,4 +1,7 @@
-This NextJS project was bootstrapped using the Nxtstart.
+This NextJS project was bootstrapped using Nxtstart, an easy to use, interactive CLI tool to bootstrap your next web-based project aimed at students and experts alike to speed up development and provide example implementations.
+Based on NextJS and Material UI.
+
+Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt.
 
 # Run your project
 
@@ -33,6 +36,10 @@ Used as the main design library. Use the sx prop on the Mui components for styli
 Additionally the theme is provided by Material UI and light/dark mode is implemented by default.
 To see the responsive behavior of Mui components take a look at the example page linked on the landing page.
 
+## Redux
+
+We implemented Redux as an optional state manager for Nxtstart. The store can be found `/src/store/*`.
+
 ## Prisma
 
 ### Initialization
@@ -57,6 +64,10 @@ Set the necessary variables in `.env` and create the necessary applications on t
 
 The example is using Github in the `.env`. See the [Docs](https://next-auth.js.org/configuration/providers/oauth#built-in-providers) for more details.
 
+## D3
+
+For all sorts of visual analytics and other visualizations D3 provides a wide vaiety of charts and graphs with a high degree of customizability. Checkout the example page if you chose to install it under `/d3`.
+
 ## Cypress Testing
 
 Run tests using `yarn run test` (or `npm run test` for npm) or open the GUI using `yarn run cypressGui` (or `npm run cypressGui` for npm).
@@ -68,6 +79,11 @@ The example specifications for the authentication (including the test for the re
 The example provides a basic service worker, manifest.json and necessary assets to get started. See `/worker/index.js` to edit the service worker.
 To disable PWA edit `/next.config.js`.
 
+## WebWorker
+
+WebWorker provide the ability to perform expensive calculations in seperate threads without freezing the main webpage and allowing further interaction by the user without interruption.
+Check out `/webWorker/*.ts` for some examples.
+
 ## Server-Sent-Events
 
 The example depends on D3 graphs and therefore cannot be used without installing D3 and its examples.
@@ -75,4 +91,5 @@ The example depends on D3 graphs and therefore cannot be used without installing
 # Deployment of your project
 
 To create an optimized production build run the command `yarn run build` (or `npm run build` for npm).
+
 To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
