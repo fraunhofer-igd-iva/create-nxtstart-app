@@ -1,7 +1,7 @@
-import chalk from 'chalk';
-import * as fs from 'fs';
-import shell from 'shelljs';
-import { fullPackageList } from './packageInstallationUtils.js';
+import chalk from 'chalk'
+import * as fs from 'fs'
+import shell from 'shelljs'
+import { fullPackageList } from './packageInstallationUtils.js'
 
 export async function postProcessFile(filePath, chosenExamples) {
   fs.readFile(filePath, 'utf8', function (err, data) {
@@ -9,12 +9,12 @@ export async function postProcessFile(filePath, chosenExamples) {
       return console.log(err)
     }
     let result = data
-    
-    for(let i = 0; i < fullPackageList.length; i++) {
+
+    for (let i = 0; i < fullPackageList.length; i++) {
       const curPackage = fullPackageList[i]
       result = result.replace(new RegExp(`<%${curPackage}%>([^%]+)</%${curPackage}%>`, 'gm'), (match, $1) => {
         // only remove the tags, keep enclosed code in capture group one if the current package is chosen by user
-        if(chosenExamples.includes(curPackage)) {
+        if (chosenExamples.includes(curPackage)) {
           return $1
         } else {
           return ''

@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import path from 'path';
-import shell from 'shelljs';
-import chalk from 'chalk';
+import * as fs from 'fs'
+import path from 'path'
+import shell from 'shelljs'
+import chalk from 'chalk'
 
 export function checkProjectFolder(projectPath) {
   if (fs.existsSync(projectPath)) {
@@ -12,7 +12,9 @@ export function checkProjectFolder(projectPath) {
 
 export async function initNodeNpm(pathToParentDirectory, pathToProject) {
   shell.cd(pathToParentDirectory)
-  const result = shell.exec(`npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-npm --no-tailwind`)
+  const result = shell.exec(
+    `npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-npm --no-tailwind`
+  )
 
   if (result.code !== 0) {
     return false
@@ -22,14 +24,15 @@ export async function initNodeNpm(pathToParentDirectory, pathToProject) {
 }
 
 export async function initNodeYarn(pathToParentDirectory, pathToProject) {
-
   shell.cd(pathToParentDirectory)
   // set yarn version in parent dict so installation does not fail
   shell.exec('yarn set version stable')
   // clean up package.json thats created when switching yarn versions
   shell.rm('package.json')
 
-  const result = shell.exec(`npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-yarn --no-tailwind`)
+  const result = shell.exec(
+    `npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-yarn --no-tailwind`
+  )
 
   shell.cd(pathToProject)
   // set yarn version for new project
@@ -51,16 +54,20 @@ export async function initNodeYarn(pathToParentDirectory, pathToProject) {
 }
 
 export async function addEnvFile(projectPath) {
-  fs.writeFile(path.join(projectPath, '.env'), `# General Variables
+  fs.writeFile(
+    path.join(projectPath, '.env'),
+    `# General Variables
 
 NEXT_BACKEND_URL=http://127.0.0.1:3000
 
-  `, function (err) {
-    if (err) {
-      return console.log(err)
+  `,
+    function (err) {
+      if (err) {
+        return console.log(err)
+      }
+      console.log(chalk.green('Env file created!'))
     }
-    console.log(chalk.green('Env file created!'))
-  })
+  )
 }
 
 export async function removeGit(projectPath) {

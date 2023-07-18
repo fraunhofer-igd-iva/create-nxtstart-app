@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import chalk from 'chalk';
-import shell from 'shelljs';
+import * as fs from 'fs'
+import { fileURLToPath } from 'url'
+import path from 'path'
+import chalk from 'chalk'
+import shell from 'shelljs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -21,7 +21,7 @@ export function addExample(projectPath, element) {
   const templatePath = path.join(path.join(__dirname, 'templates'), element)
   // only attempt to copy if folder exists
   if (fs.existsSync(templatePath)) {
-    fs.cpSync(templatePath, projectPath, { recursive: true }, err => {
+    fs.cpSync(templatePath, projectPath, { recursive: true }, (err) => {
       if (err) return console.error(err)
       console.log(chalk.green(`Added ${element} files successfully!`))
     })
@@ -39,25 +39,24 @@ export async function updateNextConfig(projectPath, packages) {
 
     result = `/* eslint-disable @typescript-eslint/no-var-requires */
     `.concat(result)
-    
+
     if (packages.includes('i18n')) {
-      result = result.replace(
-        /reactStrictMode: true,/g,
-        `reactStrictMode: true,
+      result = result
+        .replace(
+          /reactStrictMode: true,/g,
+          `reactStrictMode: true,
   i18n: i18n,`
-      ).replace(
-        /const nextConfig = {/g,
-        `const { i18n } = require('./next-i18next.config')
+        )
+        .replace(
+          /const nextConfig = {/g,
+          `const { i18n } = require('./next-i18next.config')
   
 const nextConfig = {`
-      )
+        )
     }
-    
+
     if (packages.includes('pwa')) {
-      result = result.replace(
-        /module.exports = nextConfig/g,
-        `module.exports = withPWA(nextConfig)`
-      ).replace(
+      result = result.replace(/module.exports = nextConfig/g, `module.exports = withPWA(nextConfig)`).replace(
         /const nextConfig = {/g,
         `// disable service worker in development to prevent warning spam https://github.com/GoogleChrome/workbox/issues/1790.
 // enable again to test service worker locally
@@ -75,7 +74,8 @@ const nextConfig = {`
 }
 
 export async function updateEnvNextAuth(projectPath) {
-  fs.appendFile(path.join(projectPath, '.env'),
+  fs.appendFile(
+    path.join(projectPath, '.env'),
     `
 # Next Auth Variables
 GITHUB_ID=<enter github id>
@@ -90,14 +90,20 @@ NEXTAUTH_URL=http://localhost:3000
 # You should replace this secret when deploying your application
 SECRET=qwertysecretForTheN3xtJ5Template
 
-`, function (err) {
-    if (err) throw err
-    console.log(chalk.green('Added NextAuth .env!'))
-  })
+`,
+    function (err) {
+      if (err) throw err
+      console.log(chalk.green('Added NextAuth .env!'))
+    }
+  )
 }
 
 export function addEmptyCypressDirectories(projectPath) {
   // create empty directories for testing package that won't be present otherwise
-  shell.mkdir('-p', path.join(path.join(projectPath, 'cypress'), 'screenshots'), path.join(path.join(projectPath, 'cypress'), 'videos'))
+  shell.mkdir(
+    '-p',
+    path.join(path.join(projectPath, 'cypress'), 'screenshots'),
+    path.join(path.join(projectPath, 'cypress'), 'videos')
+  )
   console.log(chalk.green(`Added empty cypress directories successfully!`))
 }

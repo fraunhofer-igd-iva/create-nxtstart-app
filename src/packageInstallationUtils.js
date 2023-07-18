@@ -1,128 +1,87 @@
-import shell from 'shelljs';
-import chalk from 'chalk';
-import * as fs from 'fs';
-import path from 'path';
+import shell from 'shelljs'
+import chalk from 'chalk'
+import * as fs from 'fs'
+import path from 'path'
 
 // update when adding new packages
 export const fullPackageList = [
-  'linting', 'swr', 'mui', 'animations', 'tailwind', 'redux', 'd3', 'nextAuth', 'prisma', 'i18n', 'pwa', 'cypress', 'sse', 'sseProxy', 'webWorker'
+  'linting',
+  'swr',
+  'mui',
+  'animations',
+  'tailwind',
+  'redux',
+  'd3',
+  'nextAuth',
+  'prisma',
+  'i18n',
+  'pwa',
+  'cypress',
+  'sse',
+  'sseProxy',
+  'webWorker',
 ]
 
 const packageBundles = {
   general: {
-    dep: [
-      '@emotion/cache',
-      '@emotion/react',
-      '@emotion/server',
-      '@emotion/styled',
-    ],
+    dep: ['@emotion/cache', '@emotion/react', '@emotion/server', '@emotion/styled'],
     devDep: [],
   },
   linting: {
     dep: [],
-    devDep: [
-      '@typescript-eslint/eslint-plugin',
-      '@typescript-eslint/parser',
-      'eslint-config-prettier',
-      'prettier',
-    ]
+    devDep: ['@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'eslint-config-prettier', 'prettier'],
   },
   swr: {
-    dep: [
-      'swr',
-    ],
+    dep: ['swr'],
     devDep: [],
   },
   mui: {
-    dep: [
-      '@mui/icons-material',
-      '@mui/material',
-    ],
+    dep: ['@mui/icons-material', '@mui/material'],
     devDep: [],
   },
   animations: {
-    dep: [
-      'framer-motion',
-    ],
+    dep: ['framer-motion'],
     devDep: [],
   },
   tailwind: {
-    dep: [
-      'tailwindcss',
-      'postcss',
-    ],
+    dep: ['tailwindcss', 'postcss'],
     devDep: [],
   },
   redux: {
-    dep: [
-      '@reduxjs/toolkit',
-      'react-redux',
-    ],
+    dep: ['@reduxjs/toolkit', 'react-redux'],
     devDep: [],
   },
   d3: {
-    dep: [
-      'd3',
-    ],
-    devDep: [
-      '@types/d3',
-    ],
+    dep: ['d3'],
+    devDep: ['@types/d3'],
   },
   nextAuth: {
-    dep: [
-      'next-auth',
-    ],
+    dep: ['next-auth'],
     devDep: [],
   },
   prisma: {
-    dep: [
-      '@prisma/client',
-      '@yarnpkg/pnpify',
-    ],
-    devDep: [
-      'prisma',
-    ],
+    dep: ['@prisma/client', '@yarnpkg/pnpify'],
+    devDep: ['prisma'],
   },
   i18n: {
-    dep: [
-      'i18next',
-      'next-i18next',
-      'react-i18next',
-    ],
+    dep: ['i18next', 'next-i18next', 'react-i18next'],
     devDep: [],
   },
   pwa: {
-    dep: [
-      'next-pwa',
-      '@babel/core',
-      'babel-loader',
-      'webpack'
-    ],
+    dep: ['next-pwa', '@babel/core', 'babel-loader', 'webpack'],
     devDep: [],
   },
   cypress: {
     dep: [],
-    devDep: [
-      'cypress',
-    ],
+    devDep: ['cypress'],
   },
   sse: {
-    dep: [
-      'uuid',
-    ],
-    devDep: [
-      '@types/uuid',
-    ],
+    dep: ['uuid'],
+    devDep: ['@types/uuid'],
   },
   sseProxy: {
-    dep: [
-      'eventsource',
-      'uuid',
-    ],
-    devDep: [
-      '@types/eventsource',
-      '@types/uuid',
-    ],
+    dep: ['eventsource', 'uuid'],
+    devDep: ['@types/eventsource', '@types/uuid'],
   },
   webWorker: {
     dep: [],
@@ -137,18 +96,18 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   const packageNames = ['general', ...packageNamesUser]
 
   let result = 0
-  let cmdDep = packageManager === 'yarn' ? 'yarn add' : 'npm install';
-  let cmdDevDep = packageManager === 'yarn' ? 'yarn add' : 'npm install';
+  let cmdDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
+  let cmdDevDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
 
   for (let i = 0; i < packageNames.length; i++) {
     const packageName = packageNames[i]
-    packageBundles[packageName].dep.forEach(name => {
+    packageBundles[packageName].dep.forEach((name) => {
       // @yarnpkg/pnpify not needed for npm
-      if(packageManager !== 'npm' || name !== '@yarnpkg/pnpify') {
+      if (packageManager !== 'npm' || name !== '@yarnpkg/pnpify') {
         cmdDep += ` ${name}`
       }
     })
-    packageBundles[packageName].devDep.forEach(name => {
+    packageBundles[packageName].devDep.forEach((name) => {
       cmdDevDep += ` ${name}`
     })
   }
@@ -171,7 +130,8 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
 }
 
 export async function updateEnvPrisma(projectPath) {
-  fs.appendFile(path.join(projectPath, '.env'),
+  fs.appendFile(
+    path.join(projectPath, '.env'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
@@ -181,10 +141,12 @@ export async function updateEnvPrisma(projectPath) {
 # Example connection string for mysql, update to match your used database and database user
 DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
 
-`, function (err) {
-    if (err) throw err
-    console.log(chalk.green('Added Prisma Env'))
-  })
+`,
+    function (err) {
+      if (err) throw err
+      console.log(chalk.green('Added Prisma Env'))
+    }
+  )
 }
 
 export async function addRunScripts(projectPath, packages, packageManager) {
@@ -193,10 +155,10 @@ export async function addRunScripts(projectPath, packages, packageManager) {
       return console.log(err)
     }
     let result = data
-    
+
     if (packages.includes('prisma')) {
       // only need special run script for yarn
-      if(packageManager === 'yarn') {
+      if (packageManager === 'yarn') {
         result = result.replace(
           /"lint": "next lint"/g,
           `"lint": "next lint",
@@ -247,7 +209,7 @@ export async function addRunScripts(projectPath, packages, packageManager) {
 export async function runFinalInstall(packageManager, projectPath) {
   shell.cd(projectPath)
 
-  let cmd = packageManager === 'yarn' ? 'yarn install' : 'npm install';
+  let cmd = packageManager === 'yarn' ? 'yarn install' : 'npm install'
   const result = shell.exec(cmd)
 
   console.log(chalk.green(`Final install using "${cmd}"`))
