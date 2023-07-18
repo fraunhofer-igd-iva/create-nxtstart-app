@@ -1,4 +1,6 @@
-This NextJS project was bootstrapped using Nxtstart, an easy to use, interactive CLI tool to bootstrap your next web-based project aimed at students and experts alike to speed up development and provide example implementations.
+Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project.
+The template is aimed at students to get an easy access to web development with example implementations.
+It is also useful for experts to speed up prototyping. 
 Based on NextJS and Material UI.
 
 Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt.
