@@ -7,8 +7,8 @@ import shell from 'shelljs'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export async function addExamplesJson(projectPath, examples) {
-  fs.writeFile(path.join(projectPath, 'nxtstart.config.json'), JSON.stringify(examples), function (err) {
+export function addExamplesJson(projectPath, examples) {
+  fs.writeFileSync(path.join(projectPath, 'nxtstart.config.json'), JSON.stringify(examples), function (err) {
     if (err) {
       return console.log(err)
     }
@@ -28,74 +28,6 @@ export function addExample(projectPath, element) {
   } else {
     console.log(chalk.green(`No example files found for ${element}!`))
   }
-}
-
-export async function updateNextConfig(projectPath, packages) {
-  fs.readFile(path.join(projectPath, 'next.config.js'), 'utf8', function (err, data) {
-    if (err) {
-      return console.log(err)
-    }
-    let result = data
-
-    result = `/* eslint-disable @typescript-eslint/no-var-requires */
-    `.concat(result)
-
-    if (packages.includes('i18n')) {
-      result = result
-        .replace(
-          /reactStrictMode: true,/g,
-          `reactStrictMode: true,
-  i18n: i18n,`
-        )
-        .replace(
-          /const nextConfig = {/g,
-          `const { i18n } = require('./next-i18next.config')
-  
-const nextConfig = {`
-        )
-    }
-
-    if (packages.includes('pwa')) {
-      result = result.replace(/module.exports = nextConfig/g, `module.exports = withPWA(nextConfig)`).replace(
-        /const nextConfig = {/g,
-        `// disable service worker in development to prevent warning spam https://github.com/GoogleChrome/workbox/issues/1790.
-// enable again to test service worker locally
-const withPWA = require('next-pwa')({dest: 'public', disable: process.env.NODE_ENV === 'development'})
-  
-const nextConfig = {`
-      )
-    }
-
-    fs.writeFile(path.join(projectPath, 'next.config.js'), result, 'utf8', function (err) {
-      if (err) return console.log(err)
-      console.log(chalk.green('Added NextAuth config!'))
-    })
-  })
-}
-
-export async function updateEnvNextAuth(projectPath) {
-  fs.appendFile(
-    path.join(projectPath, '.env'),
-    `
-# Next Auth Variables
-GITHUB_ID=<enter github id>
-GITHUB_SECRET=<enter github secret>
-
-GOOGLE_CLIENT_ID=<enter google id>
-GOOGLE_CLIENT_SECRET=<enter google secret>
-
-# Update according to your deployment address (You can leave this for local development)
-NEXTAUTH_URL=http://localhost:3000
-
-# You should replace this secret when deploying your application
-SECRET=qwertysecretForTheN3xtJ5Template
-
-`,
-    function (err) {
-      if (err) throw err
-      console.log(chalk.green('Added NextAuth .env!'))
-    }
-  )
 }
 
 export function addEmptyCypressDirectories(projectPath) {

@@ -89,13 +89,12 @@ const packageBundles = {
   },
 }
 
-export async function addPackages(packageManager, packageNamesUser, projectPath) {
+export function addPackages(packageManager, packageNamesUser, projectPath) {
   shell.cd(projectPath)
 
   // add general packages
   const packageNames = ['general', ...packageNamesUser]
 
-  let result = 0
   let cmdDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
   let cmdDevDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
 
@@ -113,24 +112,19 @@ export async function addPackages(packageManager, packageNamesUser, projectPath)
   }
 
   if (cmdDep) {
-    result = shell.exec(cmdDep)
+    shell.exec(cmdDep)
   }
 
   if (cmdDevDep) {
     cmdDevDep += ` ${packageManager === 'yarn' ? '--dev' : '--save-dev --legacy-peer-deps'}`
-    result = shell.exec(cmdDevDep)
+    shell.exec(cmdDevDep)
   }
   console.log(chalk.green(`Installed using "${cmdDep}"`))
   console.log(chalk.green(`Installed using "${cmdDevDep}"`))
-
-  if (result.code !== 0) {
-    return false
-  }
-  return true
 }
 
-export async function updateEnvPrisma(projectPath) {
-  fs.appendFile(
+export function updateEnvPrisma(projectPath) {
+  fs.appendFileSync(
     path.join(projectPath, '.env'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
@@ -149,7 +143,32 @@ DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
   )
 }
 
-export async function addRunScripts(projectPath, packages, packageManager) {
+export function updateEnvNextAuth(projectPath) {
+  fs.appendFileSync(
+    path.join(projectPath, '.env'),
+    `
+# Next Auth Variables
+GITHUB_ID=<enter github id>
+GITHUB_SECRET=<enter github secret>
+
+GOOGLE_CLIENT_ID=<enter google id>
+GOOGLE_CLIENT_SECRET=<enter google secret>
+
+# Update according to your deployment address (You can leave this for local development)
+NEXTAUTH_URL=http://localhost:3000
+
+# You should replace this secret when deploying your application
+SECRET=qwertysecretForTheN3xtJ5Template
+
+`,
+    function (err) {
+      if (err) throw err
+      console.log(chalk.green('Added NextAuth .env!'))
+    }
+  )
+}
+
+export function addRunScripts(projectPath, packages, packageManager) {
   fs.readFile(path.join(projectPath, 'package.json'), 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
@@ -206,7 +225,7 @@ export async function addRunScripts(projectPath, packages, packageManager) {
   })
 }
 
-export async function runFinalInstall(packageManager, projectPath) {
+export function runFinalInstall(packageManager, projectPath) {
   shell.cd(projectPath)
 
   let cmd = packageManager === 'yarn' ? 'yarn install' : 'npm install'
