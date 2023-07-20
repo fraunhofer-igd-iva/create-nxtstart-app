@@ -17,7 +17,7 @@ export async function addExamplesJson(projectPath, examples) {
 }
 
 export function addExample(projectPath, element) {
-  // copies general templates directory with subdirectories and files
+  // copies specific templates directory with subdirectories and files
   const templatePath = path.join(path.join(__dirname, 'templates'), element)
   // only attempt to copy if folder exists
   if (fs.existsSync(templatePath)) {
