@@ -5,6 +5,8 @@ export const getProjectName = async () =>
 
 export const getKeepGit = async () => await confirm({ message: 'Initialize a git repository?', default: true })
 
+export const getDoInitialCommit = async () => await confirm({ message: 'perform initial commit?', default: true })
+
 export const getPackageManager = async () =>
   await select({
     message: 'Select a package manager',
