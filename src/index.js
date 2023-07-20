@@ -1,15 +1,30 @@
 #!/usr/bin/env node
 
-import { getProjectName, getPackageManager, getPackages, getExamples, getRunPrettier, getKeepGit } from './questions.js'
-import { initNodeNpm, initNodeYarn, addEnvFile, checkProjectFolder, removeGit } from './projectCreationUtils.js'
-import { addPackages, addRunScripts, updateEnvPrisma, runFinalInstall } from './packageInstallationUtils.js'
 import {
-  addExamplesJson,
-  addExample,
-  updateNextConfig,
+  getProjectName,
+  getPackageManager,
+  getPackages,
+  getExamples,
+  getRunPrettier,
+  getKeepGit,
+  getDoInitialCommit,
+} from './questions.js'
+import {
+  initNodeNpm,
+  initNodeYarn,
+  addEnvFile,
+  checkProjectFolder,
+  removeGit,
+  performInitialCommit,
+} from './projectCreationUtils.js'
+import {
+  addPackages,
+  addRunScripts,
+  updateEnvPrisma,
   updateEnvNextAuth,
-  addEmptyCypressDirectories,
-} from './exampleCreationUtils.js'
+  runFinalInstall,
+} from './packageInstallationUtils.js'
+import { addExamplesJson, addExample, addEmptyCypressDirectories } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier } from './filePostProcessor.js'
 import * as path from 'path'
 import chalk from 'chalk'
@@ -38,62 +53,90 @@ const examples = ['general', 'index', 'i18n', ...(await getExamples(packages))]
 const CURR_DIR = process.cwd()
 const targetPath = path.join(CURR_DIR, projectName)
 
-if (!checkProjectFolder(targetPath)) {
-  throw new Error(chalk.red(`Folder ${targetPath} exists. Delete or use another name.`))
+createProject()
+
+function createProject() {
+  if (!checkProjectFolder(targetPath)) {
+    throw new Error(chalk.red(`Folder ${targetPath} exists. Delete or use another name.`))
+  }
+
+  if (packageManager === 'npm') {
+    initNodeNpm(CURR_DIR, targetPath)
+  } else if (packageManager === 'yarn') {
+    initNodeYarn(CURR_DIR, targetPath)
+  }
+  addExamplesJson(targetPath, examples)
+  addEnvFile(targetPath)
+  if (!keepGit) {
+    removeGit(targetPath)
+  }
+  console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
+
+  installChosenPackages()
 }
 
-if (packageManager === 'npm') {
-  await initNodeNpm(CURR_DIR, targetPath)
-} else if (packageManager === 'yarn') {
-  await initNodeYarn(CURR_DIR, targetPath)
+function installChosenPackages() {
+  // add packages selected by the user
+  addPackages(packageManager, packages, targetPath)
+
+  updateProjectRunScripts()
 }
-await addExamplesJson(targetPath, examples)
-await addEnvFile(targetPath)
-if (!keepGit) {
-  await removeGit(targetPath)
+
+function updateProjectRunScripts() {
+  // add run scripts to package.json
+  addRunScripts(targetPath, packages, packageManager)
+
+  implementExamples()
 }
-console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
 
-// add packages selected by the user
-addPackages(packageManager, packages, targetPath)
-  .then(async () => {
-    // add run scripts to package.json
-    await addRunScripts(targetPath, packages, packageManager)
-    // update next config
-    await updateNextConfig(targetPath, packages)
-
-    // add additional files and examples selected by the user
-    examples.map(async (element) => {
-      addExample(targetPath, element)
-    })
-
-    // additional file changes for prisma
-    if (packages.includes('prisma')) {
-      await updateEnvPrisma(targetPath)
-    }
-
-    // additional file changes for nextAuth
-    if (packages.includes('nextAuth')) {
-      await updateEnvNextAuth(targetPath)
-    }
-
-    if (examples.includes('cypress')) {
-      addEmptyCypressDirectories(targetPath)
-    }
-  })
-  .then(async () => {
-    // post process files
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), examples)
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), examples)
-    await postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'Layout.tsx'), examples)
+function implementExamples() {
+  // add additional files and examples selected by the user
+  examples.map((element) => {
+    addExample(targetPath, element)
   })
 
-if (examples.includes('linting')) {
+  // additional file changes for prisma
+  if (packages.includes('prisma')) {
+    updateEnvPrisma(targetPath)
+  }
+
+  // additional file changes for nextAuth
+  if (packages.includes('nextAuth')) {
+    updateEnvNextAuth(targetPath)
+  }
+
+  if (examples.includes('cypress')) {
+    addEmptyCypressDirectories(targetPath)
+  }
+
+  postProcessFiles()
+}
+
+function postProcessFiles() {
+  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), examples)
+  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), examples)
+  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'Layout.tsx'), examples)
+  postProcessFile(path.join(targetPath, 'next.config.js'), examples)
+
+  finishCreation()
+}
+
+function finishCreation() {
+  runFinalInstall(packageManager, targetPath)
+
   setTimeout(async () => {
-    await runFinalInstall(packageManager, targetPath)
-    const runP = await getRunPrettier()
-    if (runP) {
-      runPrettier(targetPath, packageManager)
+    if (examples.includes('linting')) {
+      const runP = await getRunPrettier()
+      if (runP) {
+        runPrettier(targetPath, packageManager)
+      }
     }
-  }, 3000)
+
+    if (keepGit) {
+      const doInitialCommit = await getDoInitialCommit()
+      if (doInitialCommit) {
+        performInitialCommit(targetPath)
+      }
+    }
+  }, 1000)
 }

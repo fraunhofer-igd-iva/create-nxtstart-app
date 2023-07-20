@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import shell from 'shelljs'
 import { fullPackageList } from './packageInstallationUtils.js'
 
-export async function postProcessFile(filePath, chosenExamples) {
+export function postProcessFile(filePath, chosenExamples) {
   fs.readFile(filePath, 'utf8', function (err, data) {
     if (err) {
       return console.log(err)
@@ -24,7 +24,7 @@ export async function postProcessFile(filePath, chosenExamples) {
 
     fs.writeFile(filePath, result, 'utf8', function (err) {
       if (err) return console.log(err)
-      console.log(chalk.green('Post processed file!'))
+      console.log(chalk.green(`Post processed file ${filePath}!`))
     })
   })
 }
