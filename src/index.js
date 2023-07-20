@@ -25,7 +25,7 @@ import {
   runFinalInstall,
 } from './packageInstallationUtils.js'
 import { addExamplesJson, addExample, addEmptyCypressDirectories } from './exampleCreationUtils.js'
-import { postProcessFile, runPrettier } from './filePostProcessor.js'
+import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
 import * as path from 'path'
 import chalk from 'chalk'
 import gradient from 'gradient-string'
@@ -123,6 +123,7 @@ function postProcessFiles() {
 
 function finishCreation() {
   runFinalInstall(packageManager, targetPath)
+  removeNpmIgnore(targetPath)
 
   setTimeout(async () => {
     if (examples.includes('linting')) {

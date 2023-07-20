@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import * as fs from 'fs'
 import shell from 'shelljs'
+import path from 'path'
 import { fullPackageList } from './packageInstallationUtils.js'
 
 export function postProcessFile(filePath, chosenExamples) {
@@ -37,4 +38,9 @@ export function runPrettier(projectPath, packageManager) {
     shell.exec('npx prettier . --write')
   }
   console.log(chalk.green(`Ran prettier successfully!`))
+}
+
+export function removeNpmIgnore(projectPath) {
+  fs.rmSync(path.join(projectPath, path.join('src', '.npmignore')), { recursive: true, force: true })
+  console.log(chalk.green('Removed .npmignore!'))
 }

@@ -1,2 +1,4 @@
-# override default behavior and keep template .gitignore
-!/src/templates/general/.gitignore
+package-lock.json
+*.code-workspace
+
+/.github/workflows/*
