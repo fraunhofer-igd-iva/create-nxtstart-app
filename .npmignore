@@ -1,2 +1,2 @@
-# override default behavior and keep .gitignore
-!.gitignore
+# override default behavior and keep template .gitignore
+!/src/templates/general/.gitignore
