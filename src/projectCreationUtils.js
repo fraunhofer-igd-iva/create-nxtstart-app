@@ -10,7 +10,7 @@ export function checkProjectFolder(projectPath) {
   return true
 }
 
-export async function initNodeNpm(pathToParentDirectory, pathToProject) {
+export function initNodeNpm(pathToParentDirectory, pathToProject) {
   shell.cd(pathToParentDirectory)
   const result = shell.exec(
     `npx create-next-app@latest ${pathToProject} --ts --eslint --src-dir --no-app --import-alias @/* --use-npm --no-tailwind`
@@ -23,7 +23,7 @@ export async function initNodeNpm(pathToParentDirectory, pathToProject) {
   return true
 }
 
-export async function initNodeYarn(pathToParentDirectory, pathToProject) {
+export function initNodeYarn(pathToParentDirectory, pathToProject) {
   shell.cd(pathToParentDirectory)
   // set yarn version in parent dict so installation does not fail
   shell.exec('yarn set version stable')
@@ -53,8 +53,8 @@ export async function initNodeYarn(pathToParentDirectory, pathToProject) {
   return true
 }
 
-export async function addEnvFile(projectPath) {
-  fs.writeFile(
+export function addEnvFile(projectPath) {
+  fs.writeFileSync(
     path.join(projectPath, '.env'),
     `# General Variables
 
@@ -70,7 +70,15 @@ NEXT_BACKEND_URL=http://127.0.0.1:3000
   )
 }
 
-export async function removeGit(projectPath) {
+export function removeGit(projectPath) {
   fs.rmSync(path.join(projectPath, '.git'), { recursive: true, force: true })
   console.log(chalk.green('Removed .git folder!'))
+}
+
+export function performInitialCommit(projectPath) {
+  shell.cd(projectPath)
+  // add all files except those in .gitignore
+  shell.exec('git add .')
+  // commit
+  shell.exec('git commit -m "Initial commit"')
 }
