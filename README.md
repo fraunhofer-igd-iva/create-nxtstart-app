@@ -2,7 +2,7 @@
 
 Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project.
 The template is aimed at students to get an easy access to web development with example implementations.
-It is also useful for experts to speed up prototyping. 
+It is also useful for experts to speed up prototyping.
 The framework is based on NextJS and Material UI.
 
 Published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt, Germany.
