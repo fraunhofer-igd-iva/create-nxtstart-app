@@ -1,1 +1,2 @@
-# empty in order to override default behavior and ignore all template files
+# override default behavior and keep .gitignore
+!.gitignore
