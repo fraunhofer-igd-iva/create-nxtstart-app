@@ -29,9 +29,9 @@ function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
     <CacheProvider value={clientSideEmotionCache}>
       <Head>
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-        <title>Webstart 5.0</title>
+        <title>Nxtstart</title>
         <link rel='icon' href='/favicon.ico' />
-        <meta name='description' content='NextJS Webdevelopment Template' />
+        <meta name='description' content='Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project. The template is aimed at students to get an easy access to web development with example implementations. It is also useful for experts to speed up prototyping.' />
       </Head>
       <main className={inter.className}>
         <%nextAuth%><SessionProvider session={session}></%nextAuth%>
