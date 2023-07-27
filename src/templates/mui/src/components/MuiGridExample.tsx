@@ -30,7 +30,7 @@ export default function MuiGridExample() {
           <Grid item>
             <Item>
               <Image
-                alt="image"
+                alt={'image'}
                 src={theme.palette.mode === 'light' ? '/vercel.svg' : '/vercelLight.svg'}
                 width={288}
                 height={64}
