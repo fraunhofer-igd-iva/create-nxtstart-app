@@ -9,7 +9,6 @@ import { useTranslation } from 'next-i18next'
 
 interface PrismaPageProps {
   cities: city[]
-  message: string
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }: GetServerSidePropsContext) => {
