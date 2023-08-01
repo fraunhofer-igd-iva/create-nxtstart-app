@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppState } from '../store'
 
 // declaring the types for our state
-export type CounterState = {
+type CounterState = {
   value: number
 }
 
@@ -14,7 +14,7 @@ const initialState: CounterState = {
 // It doesn't actually mutate the state because it uses the Immer library, which detects changes to a "draft state"
 // and produces a brand new immutable state based off those changes
 
-export const counterSlice = createSlice({
+const counterSlice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
