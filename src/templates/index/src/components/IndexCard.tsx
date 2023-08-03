@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Typography, CardActions, Avatar, Link, useTheme } from '@mui/material'
+import { Card, CardContent, Typography, CardActions, Avatar, useTheme } from '@mui/material'
 import MuiNextLink from './MuiNextLink'
 
 export interface IndexCardProps {
@@ -26,7 +26,7 @@ export default function IndexCard(props: IndexCardProps) {
         </Typography>
       </CardContent>
       <CardActions sx={{ p: 2, pt: 0, mt: 'auto' }}>
-        <Link href={props.hrefDocs}>Docs</Link>
+        <MuiNextLink href={props.hrefDocs} label={'Docs'} />
         {props.hrefExample && <MuiNextLink href={props.hrefExample} label={'Example'} />}
         {props.additionalLinks.map((aL, index) => {
           const color = aL.href.includes('youtube') ? theme.palette.secondary : theme.palette.primary
@@ -36,11 +36,11 @@ export default function IndexCard(props: IndexCardProps) {
               href={aL.href}
               label={aL.label}
               sx={{
-                color: color.light,
+                color: color.main,
                 textDecorationColor: color.light,
                 '&:hover': {
-                  color: color.main,
-                  textDecorationColor: color.main,
+                  color: color.dark,
+                  textDecorationColor: color.dark,
                 },
               }}
             />

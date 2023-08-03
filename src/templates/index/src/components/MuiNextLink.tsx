@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, SxProps, Theme } from '@mui/material'
+import { Link, SxProps, Theme, useTheme } from '@mui/material'
 import NextLink from 'next/link'
 
 interface MuiNextLinkProps {
@@ -8,10 +8,24 @@ interface MuiNextLinkProps {
   sx?: SxProps<Theme>
 }
 
-// link component comining next link functionality with mui design
+// link component combining next link functionality with mui design
 export default function MuiNextLink(props: MuiNextLinkProps) {
+  const theme = useTheme()
+
   return (
-    <Link href={props.href} component={NextLink} sx={props.sx}>
+    <Link 
+      href={props.href} 
+      component={NextLink} 
+      sx={{
+        color: theme.palette.primary.main,
+        textDecorationColor: theme.palette.primary.light,
+        '&:hover': {
+          color: theme.palette.primary.dark,
+          textDecorationColor: theme.palette.primary.dark,
+        }, 
+        ...props.sx,
+      }}
+    >
       {props.label}
     </Link>
   )
