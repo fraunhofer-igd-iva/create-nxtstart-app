@@ -21,7 +21,7 @@ export default function Layout(props: LayoutProps) {
   }
   </%animations%>
   return (
-    <Box>
+    <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
       <NavBar setActiveTheme={props.setActiveTheme} />
       <Box
         sx={{
