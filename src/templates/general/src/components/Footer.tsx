@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, useTheme } from '@mui/material'
 import MuiNextLink from '@/components/MuiNextLink'
 
-export const footerHeight = '40px'
+export const footerHeight = 40 // keep multiple of 8
 
 export default function Footer() {
   const theme = useTheme()
@@ -15,7 +15,7 @@ export default function Footer() {
       borderTop: '1px solid',
       borderColor: theme.palette.text.secondary,
       width: '100%',
-      height: footerHeight,
+      height: `${footerHeight}px`,
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
