@@ -1,9 +1,10 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
-import { useAppSelector } from '@/store/hooks'
+import { Box, Button, Typography } from '@mui/material'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
 import Head from 'next/head'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { GetStaticPropsContext } from 'next'
+import { getCounterData } from '@/store/slices/counterSlice'
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
@@ -15,7 +16,12 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 }
 
 export default function Redux2Page() {
+  // access state using a function
   const counter = useAppSelector((state) => state.counter.value)
+  // or using the custom selector
+  // const counter = useAppSelector(selectCount)
+
+  const dispatch = useAppDispatch()
 
   const styles = {
     textColumn: {
@@ -33,6 +39,7 @@ export default function Redux2Page() {
       </Head>
       <Typography>Current counter:</Typography>
       <Typography variant={'h2'}>{counter}</Typography>
+      <Button onClick={() => dispatch(getCounterData())}>Update State Async</Button>
     </Box>
   )
 }
