@@ -64,7 +64,7 @@ export default function SSEPage() {
       <Head>
         <title>Server Sent Events</title>
       </Head>
-      <Box sx={{ my: 8, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
           Press START to initiate data fetching via server-sent-events. The D3 chart will dynamically update with the
           incoming data. STOP closes the connection. Press CLEAR to reset the data.
@@ -88,7 +88,7 @@ export default function SSEPage() {
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            py: 4,
+            pt: 4,
           }}
         >
           <BarChart width={1000} height={600} data={dataArray} />

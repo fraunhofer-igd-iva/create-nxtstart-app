@@ -53,7 +53,7 @@ export default function BackendProxyPage() {
       <Head>
         <title>Server Sent Events</title>
       </Head>
-      <Box sx={{ my: 8, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
           Press START to initiate data fetching via server-sent-events. STOP closes the connection. Press CLEAR to reset
           the data.
@@ -75,7 +75,7 @@ export default function BackendProxyPage() {
             justifyContent: 'center',
             width: '80dvw',
             flexWrap: 'wrap',
-            py: 4,
+            pt: 4,
           }}
         >
           {dataArray.map((entry, index) => (
