@@ -71,7 +71,7 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the sample database for MariaDB that can be obtained [here](https://www.mariadbtutorial.com/getting-started/mariadb-sample-database/). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the world sample database for MySQL that can be obtained [here](https://dev.mysql.com/doc/index-other.html). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
 
