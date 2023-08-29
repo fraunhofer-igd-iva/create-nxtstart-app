@@ -27,7 +27,7 @@ export default function Footer() {
   return (
     <Box sx={styles.footer}>
       <MuiNextLink href={'/imprint'} label={'Imprint'} sx={{ mx: 1 }} />
-      <MuiNextLink href={'/dsgvo'} label={'DSGVO'} sx={{ mx: 1 }} />
+      <MuiNextLink href={'/privacy'} label={'Privacy Policy'} sx={{ mx: 1 }} />
     </Box>
   )
 }

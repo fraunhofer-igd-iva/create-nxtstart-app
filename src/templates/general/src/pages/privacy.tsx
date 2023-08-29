@@ -12,13 +12,13 @@ export async function getStaticProps({ locale }: GetServerSidePropsContext) {
   }
 }
 
-export default function DSGVOPage() {
+export default function PrivacyPolicyPage() {
   return (
     <div>
       <Head>
-        <title>DSGVO</title>
+        <title>Privacy Policy</title>
       </Head>
-      DSGVO
+      Privacy Policy
     </div>
   )
 }
