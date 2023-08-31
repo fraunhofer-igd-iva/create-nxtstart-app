@@ -13,6 +13,7 @@ import AppThemeProvider from '@/components/AppThemeProvider'
 import { appWithTranslation<%animations%>, I18nContext</%animations%> } from 'next-i18next'
 import { Inter } from 'next/font/google'
 <%animations%>import { AnimatePresence } from 'framer-motion'</%animations%>
+import nextI18NNextConfig from '../../next-i18next.config'
 
 // if loading a variable font, you don't need to specify the font weight
 const inter = Inter({ subsets: ['latin'] })
@@ -55,4 +56,4 @@ function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
   )
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp, nextI18NNextConfig)
