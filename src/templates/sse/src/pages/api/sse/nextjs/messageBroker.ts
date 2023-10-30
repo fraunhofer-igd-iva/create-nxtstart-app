@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Data } from '@/util/types'
-import { prisma } from '@/util/prismaClient'
 import { v4 as uuidV4 } from 'uuid'
 
 // saves active connections
@@ -40,15 +39,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.write(`id: ${newConnectionId}\n\n`)
 
     // do your calculations / retrieve data and sent results back
-    const numberOfDataPoints = 10
-    const cities = await prisma.city.findMany({
-      where: { Population: { gte: 1000000 } },
-      orderBy: { Population: 'desc' },
-      take: numberOfDataPoints,
-    })
-    const data: Data[] = cities.map((c) => {
-      return { label: c.Name, value: c.Population, totalDataPoints: numberOfDataPoints }
-    })
+    const data: Data[] = [
+      { label: 'Mumbai (Bombay)', value: 10500000, totalDataPoints: 10 },
+      { label: 'Seoul', value: 9981619, totalDataPoints: 10 },
+      { label: 'São Paulo', value: 9968485, totalDataPoints: 10 },
+      { label: 'Shanghai', value: 9696300, totalDataPoints: 10 },
+      { label: 'Jakarta', value: 9604900, totalDataPoints: 10 },
+      { label: 'Karachi', value: 9269265, totalDataPoints: 10 },
+      { label: 'Istanbul', value: 8787958, totalDataPoints: 10 },
+      { label: 'Ciudad de México', value: 8591309, totalDataPoints: 10 },
+      { label: 'Moscow', value: 8389200, totalDataPoints: 10 },
+      { label: 'New York', value: 8008278, totalDataPoints: 10 },
+    ]
 
     // send results (in practice this should be in parallel with the calculations)
     let i = 0
