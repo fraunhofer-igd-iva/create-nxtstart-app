@@ -22,6 +22,12 @@ const closeSseConnection = (id: string) => {
   }
 }
 
+/**
+ * This endpoint manages server sent events containing city data
+ * @allowedMethods GET, POST
+ * @returns GET - server sent events stream containing data
+ * @returns POST - close server sent events stream using id sent in body of request
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === 'GET') {
     // establish SSE connection with client
@@ -74,7 +80,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     res.status(200)
     res.end()
   } else {
-    res.status(405)
-    res.end()
+    res.status(405).end()
   }
 }

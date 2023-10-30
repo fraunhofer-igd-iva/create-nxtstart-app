@@ -24,6 +24,12 @@ const closeSseConnection = (id: string) => {
   }
 }
 
+/**
+ * This endpoint manages forwarding of server sent events from secondary backend
+ * @allowedMethods GET, POST
+ * @returns GET - server sent events stream containing data from secondary backend
+ * @returns POST - close server sent events stream using id sent in body of request
+ */
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     res.setHeader('Content-Type', 'text/event-stream')
@@ -56,7 +62,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(200)
     res.end()
   } else {
-    res.status(405)
-    res.end()
+    res.status(405).end()
   }
 }
