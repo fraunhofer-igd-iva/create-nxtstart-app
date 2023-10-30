@@ -21,7 +21,7 @@ const inter = Inter({ subsets: ['latin'] })
 // client-side cache, shared for the whole session of the user in the browser
 const clientSideEmotionCache = createEmotionCache()
 
-function MyApp({ Component, pageProps: { session, ...rest } }: AppProps) {
+function MyApp({ Component, pageProps: { <%nextAuth%>session, </%nextAuth%>...rest } }: AppProps) {
   <%animations%>const preservedI18nContext = React.useContext(I18nContext)</%animations%>
 
   const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light')
