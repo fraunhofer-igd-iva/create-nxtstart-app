@@ -26,7 +26,7 @@ export default function IndexCard(props: IndexCardProps) {
         </Typography>
       </CardContent>
       <CardActions sx={{ p: 2, pt: 0, mt: 'auto' }}>
-        <MuiNextLink href={props.hrefDocs} label={'Docs'} />
+        <MuiNextLink href={props.hrefDocs} label={'Docs'} openInNewTab />
         {props.hrefExample && <MuiNextLink href={props.hrefExample} label={'Example'} />}
         {props.additionalLinks.map((aL, index) => {
           const color = aL.href.includes('youtube') ? theme.palette.secondary : theme.palette.primary
@@ -43,6 +43,7 @@ export default function IndexCard(props: IndexCardProps) {
                   textDecorationColor: color.dark,
                 },
               }}
+              openInNewTab={aL.href.includes('.')}
             />
           )
         })}
