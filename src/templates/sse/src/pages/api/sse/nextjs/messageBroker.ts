@@ -15,7 +15,6 @@ const addSseConnection = (id: string) => {
 }
 
 const closeSseConnection = (id: string) => {
-  console.log('close sse ', id)
   const index = sseConnections.indexOf(id)
   if (index !== -1) {
     sseConnections.splice(index, 1)
@@ -64,7 +63,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       // only send if connection is still active
       if (includesSseConnection(newConnectionId)) {
         if (i < data.length) {
-          console.log('t')
           res.write(`data: ${JSON.stringify(data[i])}\n\n`)
           i++
         }

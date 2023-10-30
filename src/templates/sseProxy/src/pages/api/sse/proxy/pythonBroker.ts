@@ -18,7 +18,6 @@ const addSseConnection = (id: string, src: EventSource) => {
 
 const closeSseConnection = (id: string) => {
   if (includesSseConnection(id)) {
-    console.log('close python sse ', id)
     sseConnections[id].close()
     delete sseConnections[id]
   }
