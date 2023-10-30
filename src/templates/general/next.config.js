@@ -5,6 +5,7 @@
 const withPWA = require('next-pwa')({dest: 'public', disable: process.env.NODE_ENV === 'development'})</%pwa%>
 
 const nextConfig = {
+  poweredByHeader: false,
   reactStrictMode: true,
   <%i18n%>i18n: i18n,</%i18n%>
 }
