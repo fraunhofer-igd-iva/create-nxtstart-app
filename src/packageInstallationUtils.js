@@ -24,7 +24,7 @@ export const fullPackageList = [
 
 const packageBundles = {
   general: {
-    dep: ['@emotion/cache', '@emotion/react', '@emotion/server', '@emotion/styled'],
+    dep: ['@emotion/cache', '@emotion/react', '@emotion/server', '@emotion/styled', 'sharp'],
     devDep: [],
   },
   linting: {
