@@ -23,6 +23,7 @@ import {
   updateEnvPrisma,
   updateEnvNextAuth,
   runFinalInstall,
+  addVsCodeSdks,
 } from './packageInstallationUtils.js'
 import { addExamplesJson, addExample, addEmptyCypressDirectories } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
@@ -78,6 +79,12 @@ function createProject() {
 function installChosenPackages() {
   // add packages selected by the user
   addPackages(packageManager, packages, targetPath)
+
+  addSdks()
+}
+
+function addSdks() {
+  addVsCodeSdks(targetPath, packageManager)
 
   updateProjectRunScripts()
 }

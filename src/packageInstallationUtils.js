@@ -123,6 +123,14 @@ export function addPackages(packageManager, packageNamesUser, projectPath) {
   console.log(chalk.green(`Installed using "${cmdDevDep}"`))
 }
 
+export function addVsCodeSdks(projectPath, packageManager) {
+  // add vscode sdks if yarn is used
+  if (packageManager === 'yarn') {
+    shell.cd(projectPath)
+    shell.exec('yarn dlx @yarnpkg/sdks vscode')
+  }
+}
+
 export function updateEnvPrisma(projectPath) {
   fs.appendFileSync(
     path.join(projectPath, '.env'),
