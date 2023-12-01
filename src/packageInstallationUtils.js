@@ -18,8 +18,8 @@ export const fullPackageList = [
   'pwa',
   'cypress',
   'sse',
-  'sseProxy',
   'webWorker',
+  'husky',
 ]
 
 const packageBundles = {
@@ -79,13 +79,13 @@ const packageBundles = {
     dep: ['uuid'],
     devDep: ['@types/uuid'],
   },
-  sseProxy: {
-    dep: ['eventsource', 'uuid'],
-    devDep: ['@types/eventsource', '@types/uuid'],
-  },
   webWorker: {
     dep: [],
     devDep: [],
+  },
+  husky: {
+    dep: [],
+    devDep: ['husky', 'lint-staged'],
   },
 }
 
@@ -183,15 +183,48 @@ export function addRunScripts(projectPath, packages, packageManager) {
     }
     let result = data
 
+    if (packageManager === 'yarn') {
+      result = result.replace(
+        /"scripts": { [*] }/g,
+        `"scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    <%cypress%>"test": "cypress run",
+    "cypressGui": "cypress open",</%cypress%>
+    "lint": "next lint",
+    <%linting%>"prettierCheck": "yarn prettier . --check",
+    "prettierFix": "yarn prettier . --write",</%linting%>
+    <%prisma%>"db:generate": "yarn pnpify prisma generate",</%prisma%>
+    <%husky%>"prepare": "husky install"</%husky%>
+  },<%husky%>
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+  },</%husky%>`
+      )
+    }
+    if (packageManager === 'npm') {
+      result = result.replace(
+        /"scripts": { [*] }/g,
+        `"scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    <%cypress%>"test": "cypress run",
+    "cypressGui": "cypress open",</%cypress%>
+    "lint": "next lint",
+    <%linting%>"prettierCheck": "npx prettier . --check",
+    "prettierFix": "npx prettier . --write",</%linting%>
+    <%husky%>"prepare": "husky install"</%husky%>
+  },<%husky%>
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+  },</%husky%>`
+      )
+    }
     if (packages.includes('prisma')) {
-      // only need special run script for yarn
-      if (packageManager === 'yarn') {
-        result = result.replace(
-          /"lint": "next lint"/g,
-          `"lint": "next lint",
-	"db:generate": "yarn pnpify prisma generate"`
-        )
-      }
       result = result.replace(
         /"dependencies": {/g,
         `"dependencies": {
@@ -199,36 +232,17 @@ export function addRunScripts(projectPath, packages, packageManager) {
       )
     }
 
-    if (packages.includes('cypress')) {
-      result = result.replace(
-        /"start": "next start",/g,
-        `"start": "next start",
-    "test": "cypress run",
-    "cypressGui": "cypress open",`
-      )
-    }
-
-    if (packages.includes('linting')) {
-      if (packageManager === 'yarn') {
-        result = result.replace(
-          /"lint": "next lint"/g,
-          `"lint": "next lint",
-    "prettierCheck": "yarn prettier . --check",
-    "prettierFix": "yarn prettier . --write"`
-        )
-      } else if (packageManager === 'npm') {
-        result = result.replace(
-          /"lint": "next lint"/g,
-          `"lint": "next lint",
-    "prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write"`
-        )
-      }
-    }
-
     fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
       if (err) return console.log(err)
       console.log(chalk.green('Added run scripts!'))
+      if (packages.includes('husky')) {
+        shell.cd(projectPath)
+        if (packageManager === 'yarn') {
+          shell.exec('yarn run prepare')
+        } else if (packageManager === 'npm') {
+          shell.exec('npm run prepare')
+        }
+      }
     })
   })
 }

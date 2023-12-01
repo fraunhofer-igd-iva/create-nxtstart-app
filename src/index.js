@@ -48,7 +48,7 @@ const packageManager = await getPackageManager()
 // per default add mui, redux and i18n
 const packages = ['mui', 'i18n', ...(await getPackages())]
 // per default add general files, the custom index page and the internationalization files
-const examples = ['general', 'index', 'i18n', ...(await getExamples(packages))]
+const examples = ['general', 'i18n', ...(await getExamples(packages))]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
@@ -120,10 +120,12 @@ function implementExamples() {
 }
 
 function postProcessFiles() {
-  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'pages'), '_app.tsx'), examples)
-  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'NavBar.tsx'), examples)
-  postProcessFile(path.join(path.join(path.join(targetPath, 'src'), 'components'), 'Layout.tsx'), examples)
+  postProcessFile(path.join(targetPath, 'package.json'), examples)
   postProcessFile(path.join(targetPath, 'next.config.js'), examples)
+  postProcessFile(path.join(path.join(path.join(targetPath, 'app'), '[locale]'), 'layout.tsx'), examples)
+  postProcessFile(path.join(path.join(targetPath, 'components'), 'NavBar.tsx'), examples)
+  postProcessFile(path.join(path.join(targetPath, 'components'), 'ClientProviders.tsx'), examples)
+  postProcessFile(path.join(path.join(targetPath, 'components'), 'PageLayout.tsx'), examples)
 
   finishCreation()
 }
