@@ -1,20 +1,20 @@
 'use client'
 
 import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from '@/store/store'
+<%redux%>import { Provider } from 'react-redux'
+import { store } from '@/store/store'</%redux%>
 import PageLayout from '@/components/PageLayout'
 import '@/app/globals.css'
-import { SessionProvider } from 'next-auth/react'
-import { AnimatePresence } from 'framer-motion'
+<%nextAuth%>import { SessionProvider } from 'next-auth/react'</%nextAuth%>
+<%animations%>import { AnimatePresence } from 'framer-motion'</%animations%>
 import { Session } from 'next-auth'
 import ThemeRegistry from '../app/ThemeRegistry'
 
 export default function ClientProviders({
-  session,
+  <%nextAuth%>session,</%nextAuth%>
   children,
 }: {
-  session: Session | null | undefined
+  <%nextAuth%>session: Session | null | undefined</%nextAuth%>
   children: React.ReactNode
 }) {
   const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light')
@@ -35,15 +35,15 @@ export default function ClientProviders({
   }, [])
 
   return (
-    <SessionProvider session={session}>
-      <Provider store={store}>
+    <%nextAuth%><SessionProvider session={session}></%nextAuth%>
+      <%redux%><Provider store={store}></%redux%>
         <ThemeRegistry activeTheme={activeTheme}>
-          {/* animated presence can be moved down around the Component to create per page transitions */}
-          <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+          <%animations%>{/* animated presence can be moved down around the Component to create per page transitions */}
+          <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}></%animations%>
             <PageLayout setActiveTheme={setActiveTheme}>{children}</PageLayout>
-          </AnimatePresence>
+          <%animations%></AnimatePresence></%animations%>
         </ThemeRegistry>
-      </Provider>
-    </SessionProvider>
+      <%redux%></Provider></%redux%>
+    <%nextAuth%></SessionProvider></%nextAuth%>
   )
 }

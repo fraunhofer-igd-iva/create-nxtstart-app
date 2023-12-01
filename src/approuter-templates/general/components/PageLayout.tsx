@@ -4,8 +4,8 @@ import React from 'react'
 import NavBar from './NavBar'
 import Footer, { footerHeight } from './Footer'
 import { Box, useTheme } from '@mui/material'
-import { motion } from 'framer-motion'
-import { usePathname } from 'next/navigation'
+<%animations%>import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'</%animations%>
 
 interface PageLayoutProps {
   setActiveTheme: (newMode: 'light' | 'dark') => void
@@ -14,14 +14,14 @@ interface PageLayoutProps {
 
 export default function PageLayout(props: PageLayoutProps) {
   const theme = useTheme()
-  const pathname = usePathname()
+  <%animations%>const pathname = usePathname()
 
   const variants = {
     hidden: { opacity: 0, x: -200, y: 0 },
     enter: { opacity: 1, x: 0, y: 0 },
     exit: { opacity: 0, x: 0, y: -100 },
   }
-
+  </%animations%>
   return (
     <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
       <NavBar setActiveTheme={props.setActiveTheme} />
@@ -35,7 +35,7 @@ export default function PageLayout(props: PageLayoutProps) {
           pb: theme.spacing(2 + footerHeight / 8), // add the footer height in spacing units to bottom padding, 1 spacing unit == 8px
         }}
       >
-        <motion.main
+        <%animations%><motion.main
           key={pathname}
           variants={variants} // Pass the variant object into Framer Motion
           initial={'hidden'} // Set the initial state to variants.hidden
@@ -43,9 +43,9 @@ export default function PageLayout(props: PageLayoutProps) {
           exit={'exit'} // Exit state (used later) to variants.exit
           transition={{ type: 'linear' }} // Set the transition to linear
           style={{ width: '100%' }}
-        >
+        ></%animations%>
           {props.children}
-        </motion.main>
+          <%animations%></motion.main></%animations%>
       </Box>
       <Footer />
     </Box>
