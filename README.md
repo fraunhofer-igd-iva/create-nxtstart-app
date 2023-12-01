@@ -37,19 +37,26 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 
 ## General
 
-- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed
-- Fill the `.env` file with necessary variables where nxtstart placed placeholder data
-- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root
+- Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed.
+- Fill the `.env` file with necessary variables where nxtstart placed placeholder data.
+- If you selected Prisma, refer to the corresponding section of this README before running your app.
+- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-  You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-  [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-  The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-  This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+See [Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing) to learn about the different ways the app router works. Api endpoints are located in `app/api/*` using `route.ts` files nested in folders that represent the path of the URL.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ## Code Style
 
 To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor. If Prettier is chosen, additional run configurations are added.
+
+## Husky Git Hooks
+
+Depends on Prettier. Husky is used to run Prettier before every commit.
+**Every time the repository is cloned, the hooks have to be enabled again using `yarn run prepare` (or `npm run prepare` for npm)**.
 
 ## I18n - Internationalization
 

@@ -27,6 +27,11 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 
 To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor. If Prettier is chosen, additional run configurations are added.
 
+## Husky Git Hooks
+
+Depends on Prettier. Husky is used to run Prettier before every commit.
+**Every time the repository is cloned, the hooks have to be enabled again using `yarn run prepare` (or `npm run prepare` for npm)**.
+
 ## I18n - Internationalization
 
 By default nxtstart projects come with internationalization options.
