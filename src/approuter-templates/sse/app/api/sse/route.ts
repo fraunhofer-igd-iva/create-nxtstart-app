@@ -1,5 +1,4 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { Data } from '@/util/types'
 import { v4 as uuidV4 } from 'uuid'
 import { NextRequest } from 'next/server'
