@@ -1,0 +1,2 @@
+# override default behavior and keep template .gitignore
+!.gitignore
