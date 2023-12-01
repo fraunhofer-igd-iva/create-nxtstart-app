@@ -1,26 +1,20 @@
 describe('Auth Process', () => {
-  it('admin login', () => {
-    const username = 'admin'
-    const password = 'admin'
-
-    cy.adminLogin(username, password)
+  it('login', () => {
+    cy.visit('/')
+    cy.testLogin()
   })
   it('logout', () => {
-    const username = 'admin'
-    const password = 'admin'
+    cy.visit('/restrictedPage')
 
-    cy.adminLogin(username, password)
+    cy.testLogin()
 
     cy.contains('Logout').click()
 
-    // we should be redirected to /admin
-    cy.url().should('include', '/admin')
-
-    // just logging out didn't update the admin page in the test environment (does in normal clients) so we force reload the page
+    cy.url().should('include', '/restrictedPage')
     cy.visit('/')
-    cy.visit('/admin')
+    cy.visit('/restrictedPage')
 
     // after logout admin content should be hidden
-    cy.contains('Need admin account to see content')
+    cy.contains('You need to login to see the restricted content.')
   })
 })

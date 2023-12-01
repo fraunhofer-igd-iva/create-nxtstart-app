@@ -10,36 +10,6 @@
 !.yarn/sdks
 !.yarn/versions
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-/.idea/
-.idea/
-.vscode
-next-env.d.ts
-
-# workbox
-/public/sw*
-/public/workbox*
-/public/fallback*
-/public/worker*
-
-# cypress
-/cypress/screenshots
-/cypress/videos
-cypress.env.json
-
-# prisma
-/prisma/.prisma
-
 # testing
 /coverage
 
@@ -54,6 +24,33 @@ cypress.env.json
 .DS_Store
 *.pem
 
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
 # local env files
 .env
-.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+/.idea/
+.idea/
+.vscode
+
+# workbox
+/public/sw*
+/public/workbox*
+/public/fallback*
+/public/worker*
+
+# cypress
+/cypress/screenshots
+/cypress/videos
+
+# prisma
+/prisma/.prisma
