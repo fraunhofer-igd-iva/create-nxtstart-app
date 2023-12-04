@@ -30,7 +30,7 @@ const libraries: IndexCardProps[] = [
     additionalLinks: [],
   },
   {
-    imageLink: 'https://prettier.io/icon.png',
+    imageLink: 'https://avatars.githubusercontent.com/u/25822731?s=200&v=4',
     title: 'Prettier',
     description:
       'Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account.',
