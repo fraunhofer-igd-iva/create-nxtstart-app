@@ -61,8 +61,8 @@ Depends on Prettier. Husky is used to run Prettier before every commit.
 ## I18n - Internationalization
 
 By default nxtstart projects come with internationalization options.
-Under `/public/locales` the different languages are placed. Each language directory contains multiple json files that can be as granular as necessary.
-Using these translations can be done as seen in `/src/pages/index.tsx` and `/src/components/NavBar.tsx` using serverSideTranslations.
+Under `/locales` the different languages are placed. Each language directory contains multiple json files that can be as granular as necessary.
+Using these translations can be done as seen in `/pages/[locale]/page.tsx` and `/components/NavBar.tsx` using the TranslationProvider.
 
 ## Material UI
 
@@ -72,7 +72,7 @@ To see the responsive behavior of Mui components take a look at the example page
 
 ## Redux
 
-We implemented Redux as an optional state manager for Nxtstart. The store can be found `/src/store/*`.
+We implemented Redux as an optional state manager for Nxtstart. The store can be found `/store/*`.
 
 ## Prisma
 
