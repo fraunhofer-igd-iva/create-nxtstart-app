@@ -185,7 +185,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
 
     if (packageManager === 'yarn') {
       result = result.replace(
-        /"scripts": { [*] }/g,
+        /"scripts": {([^}]+)}/g,
         `"scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
@@ -201,12 +201,12 @@ export function addRunScripts(projectPath, packages, packageManager) {
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  },</%husky%>`
+  }</%husky%>`
       )
     }
     if (packageManager === 'npm') {
       result = result.replace(
-        /"scripts": { [*] }/g,
+        /"scripts": {([^}]+)}/g,
         `"scripts": {
     "dev": "next dev -p 3001",
     "build": "next build",
@@ -221,7 +221,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  },</%husky%>`
+  }</%husky%>`
       )
     }
     if (packages.includes('prisma')) {
@@ -230,6 +230,18 @@ export function addRunScripts(projectPath, packages, packageManager) {
         `"dependencies": {
 	".prisma": "link:./prisma/.prisma/",`
       )
+    }
+
+    for (let i = 0; i < fullPackageList.length; i++) {
+      const curPackage = fullPackageList[i]
+      result = result.replace(new RegExp(`<%${curPackage}%>([^%]+)</%${curPackage}%>`, 'gm'), (match, $1) => {
+        // only remove the tags, keep enclosed code in capture group one if the current package is chosen by user
+        if (packages.includes(curPackage)) {
+          return $1
+        } else {
+          return ''
+        }
+      })
     }
 
     fs.writeFile(path.join(projectPath, 'package.json'), result, 'utf8', function (err) {
