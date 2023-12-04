@@ -147,5 +147,5 @@ function finishCreation() {
         performInitialCommit(targetPath)
       }
     }
-  }, 1500)
+  }, 4000)
 }

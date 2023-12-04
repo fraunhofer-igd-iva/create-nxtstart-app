@@ -251,8 +251,10 @@ export function addRunScripts(projectPath, packages, packageManager) {
         shell.cd(projectPath)
         if (packageManager === 'yarn') {
           shell.exec('yarn run prepare')
+          shell.exec('npx husky add .husky/pre-commit "yarn lint-staged"')
         } else if (packageManager === 'npm') {
           shell.exec('npm run prepare')
+          shell.exec('npx husky add .husky/pre-commit "npx lint-staged"')
         }
       }
     })
