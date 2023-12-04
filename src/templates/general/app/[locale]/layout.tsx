@@ -5,8 +5,8 @@ import { Metadata } from 'next'
 import ClientProviders from '../../components/ClientProviders'
 import i18nConfig from '@/i18nConfig'
 import { dir } from 'i18next'
-<%nextAuth%>import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'</%nextAuth%>
+<§nextAuth§>import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'</§nextAuth§>
 import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
 
@@ -31,14 +31,14 @@ export default async function RootLayout({
     locale: string
   }
 }) {
-  <%nextAuth%>const session = await getServerSession(authOptions)</%nextAuth%>
+  <§nextAuth§>const session = await getServerSession(authOptions)</§nextAuth§>
   const { options } = await initTranslations(locale, ['common'])
 
   return (
     <html lang={locale} dir={dir(locale)}>
       <body className={inter.className}>
         <TranslationProvider namespaces={options.ns} locale={locale}>
-          <ClientProviders <%nextAuth%>session={session}</%nextAuth%>>{children}</ClientProviders>
+          <ClientProviders <§nextAuth§>session={session}</§nextAuth§>>{children}</ClientProviders>
         </TranslationProvider>
       </body>
     </html>

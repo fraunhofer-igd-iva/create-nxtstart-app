@@ -11,13 +11,13 @@ import {
   Menu,
   MenuItem,
   Typography,
-  <%nextAuth%>Button,
+  <§nextAuth§>Button,
   Tooltip,
-  Avatar,</%nextAuth%>
+  Avatar,</§nextAuth§>
 } from '@mui/material'
 import { useRouter, usePathname } from 'next/navigation'
 import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
-<%nextAuth%>import { useSession, signIn, signOut } from 'next-auth/react'</%nextAuth%>
+<§nextAuth§>import { useSession, signIn, signOut } from 'next-auth/react'</§nextAuth§>
 import LanguageSelector from './LanguageSelector'
 
 interface NavBarProps {
@@ -48,18 +48,18 @@ const TABS = [
     label: 'Home',
     pathname: '/',
   },
-  <%mui%>{
+  <§mui§>{
     label: 'Responsive Design',
     pathname: '/responsive',
-  },</%mui%>
-  <%redux%>{
+  },</§mui§>
+  <§redux§>{
     label: 'Redux',
     pathname: '/redux',
-  },</%redux%>
-  <%sse%>{
+  },</§redux§>
+  <§sse§>{
     label: 'Server-Sent-Events',
     pathname: '/sse',
-  },</%sse%>
+  },</§sse§>
 ]
 
 const validatePath = (path: string | null) => {
@@ -69,31 +69,31 @@ const validatePath = (path: string | null) => {
 }
 
 export default function NavBar(props: NavBarProps) {
-  <%nextAuth%>const { data: session } = useSession()</%nextAuth%>
+  <§nextAuth§>const { data: session } = useSession()</§nextAuth§>
   const router = useRouter()
   const pathname = usePathname()
   const theme = useTheme()
   const [activeTab, setActiveTab] = React.useState<string | false>(false)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  <%nextAuth%>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</%nextAuth%>
+  <§nextAuth§>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</§nextAuth§>
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
 
-  <%nextAuth%>const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  <§nextAuth§>const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
 
-  </%nextAuth%>const handleCloseNavMenu = () => {
+  </§nextAuth§>const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
 
-  <%nextAuth%>const handleCloseUserMenu = () => {
+  <§nextAuth§>const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
 
-  </%nextAuth%>const handleNavigateFromMenu = (path: string) => {
+  </§nextAuth§>const handleNavigateFromMenu = (path: string) => {
     router.push(path)
     handleCloseNavMenu()
   }
@@ -194,7 +194,7 @@ export default function NavBar(props: NavBarProps) {
             </IconButton>
           </Box>
 
-          <%nextAuth%>{/* next auth login and user menu */}
+          <§nextAuth§>{/* next auth login and user menu */}
           <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', mr: 2 }}>
             {session && session.user && (
               <>
@@ -245,7 +245,7 @@ export default function NavBar(props: NavBarProps) {
                 Login
               </Button>
             )}
-          </Box></%nextAuth%>
+          </Box></§nextAuth§>
         </AppBar>
       )}
     </>

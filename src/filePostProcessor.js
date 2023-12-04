@@ -13,7 +13,7 @@ export function postProcessFile(filePath, chosenExamples) {
 
     for (let i = 0; i < fullPackageList.length; i++) {
       const curPackage = fullPackageList[i]
-      result = result.replace(new RegExp(`<%${curPackage}%>([^%]+)</%${curPackage}%>`, 'gm'), (match, $1) => {
+      result = result.replace(new RegExp(`<§${curPackage}§>([^§]+)</§${curPackage}§>`, 'gm'), (match, $1) => {
         // only remove the tags, keep enclosed code in capture group one if the current package is chosen by user
         if (chosenExamples.includes(curPackage)) {
           return $1

@@ -1,20 +1,20 @@
 'use client'
 
 import React from 'react'
-<%redux%>import { Provider } from 'react-redux'
-import { store } from '@/store/store'</%redux%>
+<§redux§>import { Provider } from 'react-redux'
+import { store } from '@/store/store'</§redux§>
 import PageLayout from '@/components/PageLayout'
 import '@/app/globals.css'
-<%nextAuth%>import { SessionProvider } from 'next-auth/react'</%nextAuth%>
-<%animations%>import { AnimatePresence } from 'framer-motion'</%animations%>
+<§nextAuth§>import { SessionProvider } from 'next-auth/react'</§nextAuth§>
+<§animations§>import { AnimatePresence } from 'framer-motion'</§animations§>
 import { Session } from 'next-auth'
 import ThemeRegistry from '../app/ThemeRegistry'
 
 export default function ClientProviders({
-  <%nextAuth%>session,</%nextAuth%>
+  <§nextAuth§>session,</§nextAuth§>
   children,
 }: {
-  <%nextAuth%>session: Session | null | undefined</%nextAuth%>
+  <§nextAuth§>session: Session | null | undefined</§nextAuth§>
   children: React.ReactNode
 }) {
   const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light')
@@ -35,15 +35,15 @@ export default function ClientProviders({
   }, [])
 
   return (
-    <%nextAuth%><SessionProvider session={session}></%nextAuth%>
-      <%redux%><Provider store={store}></%redux%>
+    <§nextAuth§><SessionProvider session={session}></§nextAuth§>
+      <§redux§><Provider store={store}></§redux§>
         <ThemeRegistry activeTheme={activeTheme}>
-          <%animations%>{/* animated presence can be moved down around the Component to create per page transitions */}
-          <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}></%animations%>
+          <§animations§>{/* animated presence can be moved down around the Component to create per page transitions */}
+          <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}></§animations§>
             <PageLayout setActiveTheme={setActiveTheme}>{children}</PageLayout>
-          <%animations%></AnimatePresence></%animations%>
+          <§animations§></AnimatePresence></§animations§>
         </ThemeRegistry>
-      <%redux%></Provider></%redux%>
-    <%nextAuth%></SessionProvider></%nextAuth%>
+      <§redux§></Provider></§redux§>
+    <§nextAuth§></SessionProvider></§nextAuth§>
   )
 }

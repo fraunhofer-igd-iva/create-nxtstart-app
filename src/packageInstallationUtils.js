@@ -190,18 +190,18 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    <%cypress%>"test": "cypress run",
-    "cypressGui": "cypress open",</%cypress%>
+    <§cypress§>"test": "cypress run",
+    "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint",
-    <%linting%>"prettierCheck": "yarn prettier . --check",
-    "prettierFix": "yarn prettier . --write",</%linting%>
-    <%prisma%>"db:generate": "yarn pnpify prisma generate",</%prisma%>
-    <%husky%>"prepare": "husky install"</%husky%>
-  },<%husky%>
+    <§linting§>"prettierCheck": "yarn prettier . --check",
+    "prettierFix": "yarn prettier . --write",</§linting§>
+    <§prisma§>"db:generate": "yarn pnpify prisma generate",</§prisma§>
+    <§husky§>"prepare": "husky install"</§husky§>
+  },<§husky§>
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  }</%husky%>`
+  }</§husky§>`
       )
     }
     if (packageManager === 'npm') {
@@ -211,17 +211,17 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    <%cypress%>"test": "cypress run",
-    "cypressGui": "cypress open",</%cypress%>
+    <§cypress§>"test": "cypress run",
+    "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint",
-    <%linting%>"prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write",</%linting%>
-    <%husky%>"prepare": "husky install"</%husky%>
-  },<%husky%>
+    <§linting§>"prettierCheck": "npx prettier . --check",
+    "prettierFix": "npx prettier . --write",</§linting§>
+    <§husky§>"prepare": "husky install"</§husky§>
+  },<§husky§>
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  }</%husky%>`
+  }</§husky§>`
       )
     }
     if (packages.includes('prisma')) {
@@ -234,7 +234,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
 
     for (let i = 0; i < fullPackageList.length; i++) {
       const curPackage = fullPackageList[i]
-      result = result.replace(new RegExp(`<%${curPackage}%>([^%]+)</%${curPackage}%>`, 'gm'), (match, $1) => {
+      result = result.replace(new RegExp(`<§${curPackage}§>([^§]+)</§${curPackage}§>`, 'gm'), (match, $1) => {
         // only remove the tags, keep enclosed code in capture group one if the current package is chosen by user
         if (packages.includes(curPackage)) {
           return $1
