@@ -64,7 +64,7 @@ const packageBundles = {
     devDep: ['prisma'],
   },
   i18n: {
-    dep: ['i18next', 'next-i18next', 'react-i18next'],
+    dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
     devDep: [],
   },
   pwa: {
