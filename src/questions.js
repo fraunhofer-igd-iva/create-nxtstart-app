@@ -70,6 +70,7 @@ export const getExamples = async (packages) =>
       { name: 'Progressive Web App', value: 'pwa', disabled: !packages.includes('pwa') },
       { name: 'Cypress Testing', value: 'cypress', disabled: !packages.includes('cypress') },
       { name: 'Prettier Code Formatting', value: 'linting', disabled: !packages.includes('linting') },
+      { name: 'Husky Git Hooks (requires Prettier!)', value: 'husky'},
       new Separator(),
       { name: 'Server-Sent-Events', value: 'sse', disabled: !packages.includes('sse') },
       { name: 'Web Worker', value: 'webWorker', disabled: !packages.includes('webWorker') },
