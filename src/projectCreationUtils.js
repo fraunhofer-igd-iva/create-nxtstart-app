@@ -13,7 +13,7 @@ export function checkProjectFolder(projectPath) {
 export function initNodeNpm(pathToParentDirectory, pathToProject) {
   shell.cd(pathToParentDirectory)
   const result = shell.exec(
-    `npx create-next-app@latest ${pathToProject} --ts --eslint --import-alias @/* --use-npm --no-tailwind`
+    `npx create-next-app@latest ${pathToProject} --ts --eslint --no-src-dir --app --import-alias @/* --use-npm --no-tailwind`
   )
 
   if (result.code !== 0) {
@@ -31,7 +31,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
   shell.rm('package.json')
 
   const result = shell.exec(
-    `npx create-next-app@latest ${pathToProject} --ts --eslint --import-alias @/* --use-yarn --no-tailwind`
+    `npx create-next-app@latest ${pathToProject} --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind`
   )
 
   shell.cd(pathToProject)
