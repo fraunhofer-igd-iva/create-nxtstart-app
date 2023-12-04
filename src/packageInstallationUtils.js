@@ -187,9 +187,9 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start",
     <§cypress§>"test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint",
@@ -208,9 +208,9 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev -p 3001",
+    "dev": "next dev",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start",
     <§cypress§>"test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint",
