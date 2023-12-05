@@ -45,6 +45,7 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
+- Additionally the default landing page provides useful links for all included libraries and links to all implemented examples that you can explore.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
