@@ -14,10 +14,18 @@ Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.f
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-See [Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing) to learn about the different ways the app router works. Api endpoints are located in `app/api/*` using `route.ts` files nested in folders that represent the path of the URL.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+### App Router Basics
+
+- See [Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing) to learn about the different ways the app router works.
+- All pages are nested under `app/[locale]/*` and written in `page.tsx` files, nested in folders that represent the path of the URL. These files are always server components and can therefore not hold state.
+- Server components are executed and rendered on the server before sending to the client, client components are hydrated during the rendering on the client and allow for interaction.
+- Client components can be nested in pages or other server components, however server components nested in client components will also be rendered on the client (**except if you insert them via a children prop into the client component**).
+- All API routes are nested under `app/api/*` and written in `route.ts` files, nested in folders that represent the path of the URL. The files export functions for every REST method that is supported by a route.
+- Server actions are asynchronous server functions that can be called from components directly instead of going through an API endpoint, see [Server Action Docs](https://nextjs.org/docs/app/api-reference/functions/server-actions) for details.
 
 # Package specific information
 
