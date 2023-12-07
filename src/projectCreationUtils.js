@@ -75,6 +75,13 @@ export function removeGit(projectPath) {
   console.log(chalk.green('Removed .git folder!'))
 }
 
+export function removeDefaultPage(projectPath) {
+  fs.rmSync(path.join(path.join(projectPath, 'app'), 'page.tsx'))
+  fs.rmSync(path.join(path.join(projectPath, 'app'), 'layout.tsx'))
+  fs.rmSync(path.join(path.join(projectPath, 'app'), 'page.module.css'))
+  console.log(chalk.green('Removed default page!'))
+}
+
 export function performInitialCommit(projectPath) {
   shell.cd(projectPath)
   // add all files except those in .gitignore
