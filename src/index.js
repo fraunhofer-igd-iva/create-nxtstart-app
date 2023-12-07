@@ -128,7 +128,9 @@ function postProcessFiles() {
   postProcessFile(path.join(path.join(targetPath, 'components'), 'ClientProviders.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'PageLayout.tsx'), examples)
 
-  finishCreation()
+  setTimeout(async () => {
+    finishCreation()
+  }, 2000)
 }
 
 function finishCreation() {
@@ -149,5 +151,5 @@ function finishCreation() {
         performInitialCommit(targetPath)
       }
     }
-  }, 4000)
+  }, 3000)
 }
