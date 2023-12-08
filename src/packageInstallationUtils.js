@@ -199,8 +199,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
     <§husky§>"prepare": "husky install"</§husky§>
   },<§husky§>
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
   }</§husky§>`
       )
     }
@@ -219,8 +218,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
     <§husky§>"prepare": "husky install"</§husky§>
   },<§husky§>
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
+    "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
   }</§husky§>`
       )
     }
