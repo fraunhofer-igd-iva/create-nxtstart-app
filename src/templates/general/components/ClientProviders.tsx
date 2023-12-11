@@ -5,9 +5,9 @@ import React from 'react'
 import { store } from '@/store/store'</§redux§>
 import PageLayout from '@/components/PageLayout'
 import '@/app/globals.css'
-<§nextAuth§>import { SessionProvider } from 'next-auth/react'</§nextAuth§>
+<§nextAuth§>import { SessionProvider } from 'next-auth/react'
+import { Session } from 'next-auth'</§nextAuth§>
 <§animations§>import { AnimatePresence } from 'framer-motion'</§animations§>
-import { Session } from 'next-auth'
 import ThemeRegistry from '../app/ThemeRegistry'
 
 export default function ClientProviders({

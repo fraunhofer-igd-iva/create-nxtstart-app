@@ -190,15 +190,15 @@ export function addRunScripts(projectPath, packages, packageManager) {
         `"scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    <§cypress§>"test": "cypress run",
+    "start": "next start",<§cypress§>
+    "test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
-    "lint": "next lint",
-    <§linting§>"prettierCheck": "yarn prettier . --check",
-    "prettierFix": "yarn prettier . --write",</§linting§>
-    <§prisma§>"db:generate": "yarn pnpify prisma generate",</§prisma§>
-    <§husky§>"prepare": "husky install"</§husky§>
-  },<§husky§>
+    "lint": "next lint"<§linting§>,
+    "prettierCheck": "yarn prettier . --check",
+    "prettierFix": "yarn prettier . --write"</§linting§><§prisma§>,
+    "db:generate": "yarn pnpify prisma generate"</§prisma§><§husky§>,
+    "prepare": "husky install"</§husky§>
+  }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
   }</§husky§>`
@@ -210,14 +210,14 @@ export function addRunScripts(projectPath, packages, packageManager) {
         `"scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    <§cypress§>"test": "cypress run",
+    "start": "next start",<§cypress§>
+    "test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
-    "lint": "next lint",
-    <§linting§>"prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write",</§linting§>
-    <§husky§>"prepare": "husky install"</§husky§>
-  },<§husky§>
+    "lint": "next lint"<§linting§>,
+    "prettierCheck": "npx prettier . --check",
+    "prettierFix": "npx prettier . --write"</§linting§><§husky§>,
+    "prepare": "husky install"</§husky§>
+  }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
   }</§husky§>`
