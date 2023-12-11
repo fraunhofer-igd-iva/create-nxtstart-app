@@ -223,7 +223,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
   }</§husky§>`
       )
     }
-    if (packageManager === 'yarn' && packages.includes('prisma')) {
+    if (packages.includes('prisma')) {
       result = result.replace(
         /"dependencies": {/g,
         `"dependencies": {
