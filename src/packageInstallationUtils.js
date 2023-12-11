@@ -112,6 +112,7 @@ export function addPackages(packageManager, packageNamesUser, projectPath) {
   }
 
   if (cmdDep) {
+    cmdDep += ` ${packageManager === 'yarn' ? '' : '--legacy-peer-deps'}`
     shell.exec(cmdDep)
   }
 
@@ -222,7 +223,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
   }</§husky§>`
       )
     }
-    if (packages.includes('prisma')) {
+    if (packageManager === 'yarn' && packages.includes('prisma')) {
       result = result.replace(
         /"dependencies": {/g,
         `"dependencies": {
