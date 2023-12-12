@@ -30,7 +30,8 @@ export default function LanguageSelector() {
       router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`))
     }
 
-    router.refresh()
+    // "fix" for footer not refreshing locale correctly
+    setTimeout(() => router.refresh(), 50)
   }
 
   return (
