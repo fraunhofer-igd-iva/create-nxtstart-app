@@ -112,12 +112,11 @@ export function addPackages(packageManager, packageNamesUser, projectPath) {
   }
 
   if (cmdDep) {
-    cmdDep += ` ${packageManager === 'yarn' ? '' : '--legacy-peer-deps'}`
     shell.exec(cmdDep)
   }
 
   if (cmdDevDep) {
-    cmdDevDep += ` ${packageManager === 'yarn' ? '--dev' : '--save-dev --legacy-peer-deps'}`
+    cmdDevDep += ` ${packageManager === 'yarn' ? '--dev' : '--save-dev'}`
     shell.exec(cmdDevDep)
   }
   console.log(chalk.green(`Installed using "${cmdDep}"`))
@@ -223,7 +222,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
   }</§husky§>`
       )
     }
-    if (packages.includes('prisma')) {
+    if (packageManager === 'yarn' && packages.includes('prisma')) {
       result = result.replace(
         /"dependencies": {/g,
         `"dependencies": {
