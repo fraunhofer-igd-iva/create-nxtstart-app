@@ -6,6 +6,9 @@ const withPWA = require('next-pwa')({dest: 'public', disable: process.env.NODE_E
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  // comment in if local build fails due to "glob error [Error: EPERM: operation not permitted, scandir <path>"
+  // deprecated and will be removed in Next.js 15
+  //outputFileTracing: false,
 }
 
 module.exports = <§pwa§>withPWA(</§pwa§>nextConfig<§pwa§>)</§pwa§>
