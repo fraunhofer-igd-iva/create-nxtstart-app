@@ -1,7 +1,6 @@
 'use client'
 
 import React, { PropsWithChildren } from 'react'
-import NextAppDirEmotionCacheProvider from './EmotionCache'
 import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { lightTheme, darkTheme } from './theme'
@@ -13,11 +12,9 @@ export default function ThemeRegistry({
   activeTheme,
 }: PropsWithChildren & { activeTheme: 'light' | 'dark' }) {
   return (
-    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-      <ThemeProvider theme={activeTheme === 'light' ? lightTheme : darkTheme}>
-        <CssBaseline />
-        {children}
-      </ThemeProvider>
-    </NextAppDirEmotionCacheProvider>
+    <ThemeProvider theme={activeTheme === 'light' ? lightTheme : darkTheme}>
+      <CssBaseline />
+      {children}
+    </ThemeProvider>
   )
 }

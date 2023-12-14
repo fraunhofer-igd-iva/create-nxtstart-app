@@ -24,7 +24,7 @@ export const fullPackageList = [
 
 const packageBundles = {
   general: {
-    dep: ['@emotion/cache', '@emotion/react', '@emotion/server', '@emotion/styled', 'sharp'],
+    dep: ['sharp'],
     devDep: [],
   },
   linting: {
@@ -36,7 +36,7 @@ const packageBundles = {
     devDep: [],
   },
   mui: {
-    dep: ['@mui/icons-material', '@mui/material'],
+    dep: ['@mui/icons-material', '@mui/material', '@babel/runtime', '@emotion/cache', '@emotion/react', '@emotion/styled', '@mui/material-nextjs'],
     devDep: [],
   },
   animations: {

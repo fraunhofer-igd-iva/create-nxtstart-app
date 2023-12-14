@@ -8,6 +8,7 @@ import i18nConfig from '@/i18nConfig'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'</§nextAuth§>
 import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,9 +37,11 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <TranslationProvider namespaces={options.ns} locale={locale}>
-          <ClientProviders <§nextAuth§>session={session}</§nextAuth§>>{children}</ClientProviders>
-        </TranslationProvider>
+        <AppRouterCacheProvider>
+          <TranslationProvider namespaces={options.ns} locale={locale}>
+            <ClientProviders <§nextAuth§>session={session}</§nextAuth§>>{children}</ClientProviders>
+          </TranslationProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   )
