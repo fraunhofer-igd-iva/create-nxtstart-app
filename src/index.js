@@ -3,6 +3,7 @@
 import {
   getProjectName,
   getPackageManager,
+  getUseLatestVerions,
   getPackages,
   getExamples,
   getRunPrettier,
@@ -46,6 +47,7 @@ console.log(gradient(['#009374', '#66BFAC', '#79B4D9', '#1F82C0']).multiline(TIT
 const projectName = await getProjectName()
 const keepGit = await getKeepGit()
 const packageManager = await getPackageManager()
+const useLatestVersions = await getUseLatestVerions()
 // per default add mui, redux and i18n
 const packages = ['mui', 'i18n', ...(await getPackages())]
 // per default add general files, the custom index page and the internationalization files
@@ -80,7 +82,7 @@ function createProject() {
 
 function installChosenPackages() {
   // add packages selected by the user
-  addPackages(packageManager, packages, targetPath)
+  addPackages(packageManager, packages, targetPath, useLatestVersions)
 
   addSdks()
 }

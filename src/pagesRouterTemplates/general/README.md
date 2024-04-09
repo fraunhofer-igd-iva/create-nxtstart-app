@@ -1,9 +1,15 @@
 Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project.
 The template is aimed at students to get an easy access to web development with example implementations.
-It is also useful for experts to speed up prototyping. 
+It is also useful for experts to speed up prototyping.
 Based on NextJS and Material UI.
 
 Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt.
+
+# Build errors due to dependency updates?
+
+Nxtstart tries to install the latest versions of all dependecies in the default configuration. Should you encounter errors with examples that are not compatible with the latest versions of some dependecies please create an issue with the full build or error log.
+
+Until we implement the changes to accomodate the new requirements by dependencies you can rerun nxtstart and use disable the option to use the latest dependency versions and rather use an older tested state of all dependecies.
 
 # Run your project
 
@@ -12,10 +18,10 @@ Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.f
 - If you selected Prisma, refer to the corresponding section of this README before running your app.
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+  [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+  The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 
 # Package specific information
@@ -49,13 +55,16 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the world sample database for MySQL that can be obtained [here](https://dev.mysql.com/doc/index-other.html). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
+
 To update the db using prisma.scheme:
+
 - Update File
 - Run `yarn prisma db push` (or `npx prisma db push` for npm) (may reset tables or entire database)
 - OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 To receive update from database:
+
 - Update DB
 - Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)

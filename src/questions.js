@@ -22,6 +22,9 @@ export const getPackageManager = async () =>
     ],
   })
 
+export const getUseLatestVerions = async () =>
+  await confirm({ message: 'Use latest versions of all dependencies? (recommended)', default: true })
+
 export const getPackages = async () =>
   await checkbox({
     message: 'Select your packages',
@@ -30,7 +33,6 @@ export const getPackages = async () =>
       //{ name: 'Material UI', value: 'mui', disabled: true },
       new Separator('Material UI'),
       { name: 'Page Transitions, Animations', value: 'animations' },
-      //{ name: 'Tailwind CSS', value: 'tailwind' },
       new Separator(),
       { name: 'React Redux + Toolkit', value: 'redux' },
       { name: 'SWR Data Fetching', value: 'swr' },
@@ -43,7 +45,7 @@ export const getPackages = async () =>
       { name: 'Progressive Web App', value: 'pwa' },
       { name: 'Cypress Testing', value: 'cypress' },
       { name: 'Prettier Code Formatting', value: 'linting' },
-      { name: 'Husky Git Hooks (requires Prettier!)', value: 'husky'},
+      { name: 'Husky Git Hooks (requires Prettier!)', value: 'husky' },
       new Separator(),
       { name: 'Server-Sent-Events', value: 'sse' },
       { name: 'Web Worker', value: 'webWorker' },

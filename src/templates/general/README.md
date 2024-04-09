@@ -5,6 +5,12 @@ Based on NextJS and Material UI.
 
 Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt.
 
+# Build errors due to dependency updates?
+
+Nxtstart tries to install the latest versions of all dependecies in the default configuration. Should you encounter errors with examples that are not compatible with the latest versions of some dependecies please create an issue with the full build or error log.
+
+Until we implement the changes to accomodate the new requirements by dependencies you can rerun nxtstart and use disable the option to use the latest dependency versions and rather use an older tested state of all dependecies.
+
 # Run your project
 
 - Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed.

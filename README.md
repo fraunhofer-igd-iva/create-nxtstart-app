@@ -33,6 +33,12 @@ in any command prompt with node installed.
 Follow the instructions presented by the interface.
 Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
+# Build errors due to dependency updates?
+
+Nxtstart tries to install the latest versions of all dependecies in the default configuration. Should you encounter errors with examples that are not compatible with the latest versions of some dependecies please create an issue with the full build or error log.
+
+Until we implement the changes to accomodate the new requirements by dependencies you can rerun nxtstart and use disable the option to use the latest dependency versions and rather use an older tested state of all dependecies.
+
 # Necessary steps after creating your project
 
 ## General
@@ -42,8 +48,8 @@ Currently Material UI, internationalization framework and ESLint are non optiona
 - If you selected Prisma, refer to the corresponding section of this README before running your app.
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
+  This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 - Additionally the default landing page provides useful links for all included libraries and links to all implemented examples that you can explore.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.

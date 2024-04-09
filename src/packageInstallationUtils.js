@@ -9,7 +9,6 @@ export const fullPackageList = [
   'swr',
   'mui',
   'animations',
-  'tailwind',
   'redux',
   'd3',
   'nextAuth',
@@ -21,6 +20,82 @@ export const fullPackageList = [
   'webWorker',
   'husky',
 ]
+
+const frozenVersionsPackageBundles = {
+  general: {
+    dep: ['sharp@0.33.3'],
+    devDep: [],
+  },
+  linting: {
+    dep: [],
+    devDep: [
+      '@typescript-eslint/eslint-plugin@7.6.0',
+      '@typescript-eslint/parser@7.6.0',
+      'eslint-config-prettier@9.1.0',
+      'prettier@3.2.5',
+    ],
+  },
+  swr: {
+    dep: ['swr@2.2.5'],
+    devDep: [],
+  },
+  mui: {
+    dep: [
+      '@mui/icons-material@5.15.15',
+      '@mui/material@5.15.15',
+      '@babel/runtime@7.24.4',
+      '@emotion/cache@11.11.0',
+      '@emotion/react@11.11.4',
+      '@emotion/styled@11.11.5',
+      '@mui/material-nextjs@5.15.11',
+    ],
+    devDep: [],
+  },
+  animations: {
+    dep: ['framer-motion@11.0.25'],
+    devDep: [],
+  },
+  redux: {
+    dep: ['@reduxjs/toolkit@2.2.3', 'react-redux@9.1.0'],
+    devDep: [],
+  },
+  d3: {
+    dep: ['d3@7.9.0'],
+    devDep: ['@types/d3@7.4.3'],
+  },
+  nextAuth: {
+    dep: ['next-auth@4.24.7'],
+    devDep: [],
+  },
+  prisma: {
+    dep: ['@prisma/client@5.12.1'],
+    devDep: ['prisma@5.12.1', '@yarnpkg/pnpify@4.0.1'],
+  },
+  i18n: {
+    dep: ['i18next@23.11.0', 'react-i18next@14.1.0', 'i18next-resources-to-backend@1.2.0', 'next-i18n-router@5.4.0'],
+    devDep: [],
+  },
+  pwa: {
+    dep: ['next-pwa@5.6.0', '@babel/core@7.24.4', 'babel-loader@9.1.3', 'webpack@5.91.0'],
+    devDep: [],
+  },
+  cypress: {
+    dep: [],
+    devDep: ['cypress@13.7.2'],
+  },
+  sse: {
+    dep: ['uuid@9.0.1'],
+    devDep: ['@types/uuid@9.0.8'],
+  },
+  webWorker: {
+    dep: [],
+    devDep: [],
+  },
+  husky: {
+    dep: [],
+    devDep: ['husky@9.0.11', 'lint-staged@15.2.2'],
+  },
+}
 
 const packageBundles = {
   general: {
@@ -36,15 +111,19 @@ const packageBundles = {
     devDep: [],
   },
   mui: {
-    dep: ['@mui/icons-material', '@mui/material', '@babel/runtime', '@emotion/cache', '@emotion/react', '@emotion/styled', '@mui/material-nextjs'],
+    dep: [
+      '@mui/icons-material',
+      '@mui/material',
+      '@babel/runtime',
+      '@emotion/cache',
+      '@emotion/react',
+      '@emotion/styled',
+      '@mui/material-nextjs',
+    ],
     devDep: [],
   },
   animations: {
     dep: ['framer-motion'],
-    devDep: [],
-  },
-  tailwind: {
-    dep: ['tailwindcss', 'postcss'],
     devDep: [],
   },
   redux: {
@@ -89,7 +168,7 @@ const packageBundles = {
   },
 }
 
-export function addPackages(packageManager, packageNamesUser, projectPath) {
+export function addPackages(packageManager, packageNamesUser, projectPath, useLatestVersions) {
   shell.cd(projectPath)
 
   // add general packages
@@ -100,14 +179,15 @@ export function addPackages(packageManager, packageNamesUser, projectPath) {
 
   for (let i = 0; i < packageNames.length; i++) {
     const packageName = packageNames[i]
-    packageBundles[packageName].dep.forEach((name) => {
+    const packageBundle = useLatestVersions ? packageBundles[packageName] : frozenVersionsPackageBundles[packageName]
+    packageBundle.dep.forEach((name) => {
+      cmdDep += ` ${name}`
+    })
+    packageBundle.devDep.forEach((name) => {
       // @yarnpkg/pnpify not needed for npm
       if (packageManager !== 'npm' || name !== '@yarnpkg/pnpify') {
-        cmdDep += ` ${name}`
+        cmdDevDep += ` ${name}`
       }
-    })
-    packageBundles[packageName].devDep.forEach((name) => {
-      cmdDevDep += ` ${name}`
     })
   }
 
