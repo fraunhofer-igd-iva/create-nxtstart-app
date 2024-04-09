@@ -174,8 +174,8 @@ export function addPackages(packageManager, packageNamesUser, projectPath, useLa
   // add general packages
   const packageNames = ['general', ...packageNamesUser]
 
-  let cmdDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
-  let cmdDevDep = packageManager === 'yarn' ? 'yarn add' : 'npm install'
+  let cmdDep = packageManager === 'yarn' ? 'yarn add' : 'npm install --force'
+  let cmdDevDep = packageManager === 'yarn' ? 'yarn add' : 'npm install --force'
 
   for (let i = 0; i < packageNames.length; i++) {
     const packageName = packageNames[i]
