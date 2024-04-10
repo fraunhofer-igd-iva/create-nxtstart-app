@@ -2,7 +2,7 @@
 
 import React from 'react'
 <§redux§>import { Provider } from 'react-redux'
-import { store } from '@/store/store'</§redux§>
+import { makeStore, AppStore } from '@/store/store'</§redux§>
 import PageLayout from '@/components/PageLayout'
 import '@/app/globals.css'
 <§nextAuth§>import { SessionProvider } from 'next-auth/react'
@@ -19,6 +19,12 @@ export default function ClientProviders({
 }) {
   const [activeTheme, setActiveTheme] = React.useState<'light' | 'dark'>('light')
 
+  <§redux§>const storeRef = React.useRef<AppStore>()
+  if (!storeRef.current) {
+    // Create the store instance the first time this renders
+    storeRef.current = makeStore()
+  }
+  </§redux§>
   React.useEffect(() => {
     // initialize theme on first page visit
     if (window !== undefined) {
@@ -36,7 +42,7 @@ export default function ClientProviders({
 
   return (
     <§nextAuth§><SessionProvider session={session}></§nextAuth§>
-      <§redux§><Provider store={store}></§redux§>
+      <§redux§><Provider store={storeRef.current}></§redux§>
         <ThemeRegistry activeTheme={activeTheme}>
           <§animations§>{/* animated presence can be moved down around the Component to create per page transitions */}
           <AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}></§animations§>

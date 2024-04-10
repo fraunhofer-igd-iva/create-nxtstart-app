@@ -1,16 +1,16 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit'
 import counterReducer from './slices/counterSlice'
 
+// further info: https://redux-toolkit.js.org/usage/nextjs
+
 const combinedReducer = combineReducers({
   counter: counterReducer,
 })
 
-const makeStore = () =>
+export const makeStore = () =>
   configureStore({
     reducer: combinedReducer,
   })
-
-export const store = makeStore()
 
 export type AppStore = ReturnType<typeof makeStore>
 export type AppState = ReturnType<AppStore['getState']>
