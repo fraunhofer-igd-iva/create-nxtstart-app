@@ -275,8 +275,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "lint": "next lint"<§linting§>,
     "prettierCheck": "yarn prettier . --check",
     "prettierFix": "yarn prettier . --write"</§linting§><§prisma§>,
-    "db:generate": "yarn pnpify prisma generate"</§prisma§><§husky§>,
-    "prepare": "husky install"</§husky§>
+    "db:generate": "yarn pnpify prisma generate"</§prisma§>
   }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
@@ -294,8 +293,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint"<§linting§>,
     "prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write"</§linting§><§husky§>,
-    "prepare": "husky install"</§husky§>
+    "prettierFix": "npx prettier . --write"</§linting§>
   }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
@@ -328,11 +326,11 @@ export function addRunScripts(projectPath, packages, packageManager) {
       if (packages.includes('husky')) {
         shell.cd(projectPath)
         if (packageManager === 'yarn') {
-          shell.exec('yarn run prepare')
-          shell.exec('npx husky add .husky/pre-commit "yarn lint-staged"')
+          shell.exec('npx husky init')
+          shell.exec('echo yarn lint-staged > .husky/pre-commit')
         } else if (packageManager === 'npm') {
-          shell.exec('npm run prepare')
-          shell.exec('npx husky add .husky/pre-commit "npx lint-staged"')
+          shell.exec('npxhusky init')
+          shell.exec('echo npx lint-staged > .husky/pre-commit')
         }
       }
     })
