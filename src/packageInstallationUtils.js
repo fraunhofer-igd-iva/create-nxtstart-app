@@ -329,7 +329,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
           shell.exec('npx husky init')
           shell.exec('echo yarn lint-staged > .husky/pre-commit')
         } else if (packageManager === 'npm') {
-          shell.exec('npxhusky init')
+          shell.exec('npx husky init')
           shell.exec('echo npx lint-staged > .husky/pre-commit')
         }
       }
