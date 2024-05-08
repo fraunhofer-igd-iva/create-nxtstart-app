@@ -29,8 +29,8 @@ const frozenVersionsPackageBundles = {
   linting: {
     dep: [],
     devDep: [
-      '@typescript-eslint/eslint-plugin@7.6.0',
-      '@typescript-eslint/parser@7.6.0',
+      '@typescript-eslint/eslint-plugin@7.8.0',
+      '@typescript-eslint/parser@7.8.0',
       'eslint-config-prettier@9.1.0',
       'prettier@3.2.5',
     ],
@@ -41,9 +41,9 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@5.15.15',
-      '@mui/material@5.15.15',
-      '@babel/runtime@7.24.4',
+      '@mui/icons-material@5.15.16',
+      '@mui/material@5.15.16',
+      '@babel/runtime@7.24.5',
       '@emotion/cache@11.11.0',
       '@emotion/react@11.11.4',
       '@emotion/styled@11.11.5',
@@ -52,11 +52,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.0.25'],
+    dep: ['framer-motion@11.1.9'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.2.3', 'react-redux@9.1.0'],
+    dep: ['@reduxjs/toolkit@2.2.3', 'react-redux@9.1.2'],
     devDep: [],
   },
   d3: {
@@ -68,20 +68,20 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@5.12.1'],
-    devDep: ['prisma@5.12.1', '@yarnpkg/pnpify@4.0.1'],
+    dep: ['@prisma/client@5.13.0'],
+    devDep: ['prisma@5.13.0', '@yarnpkg/pnpify@4.0.1'],
   },
   i18n: {
-    dep: ['i18next@23.11.0', 'react-i18next@14.1.0', 'i18next-resources-to-backend@1.2.0', 'next-i18n-router@5.4.0'],
+    dep: ['i18next@23.11.3', 'react-i18next@14.1.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.4.2'],
     devDep: [],
   },
   pwa: {
-    dep: ['next-pwa@5.6.0', '@babel/core@7.24.4', 'babel-loader@9.1.3', 'webpack@5.91.0'],
+    dep: ['next-pwa@5.6.0', '@babel/core@7.24.5', 'babel-loader@9.1.3', 'webpack@5.91.0'],
     devDep: [],
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@13.7.2'],
+    devDep: ['cypress@13.8.1'],
   },
   sse: {
     dep: ['uuid@9.0.1'],
@@ -139,8 +139,8 @@ const packageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client', '@yarnpkg/pnpify'],
-    devDep: ['prisma'],
+    dep: ['@prisma/client'],
+    devDep: ['prisma', '@yarnpkg/pnpify'],
   },
   i18n: {
     dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
