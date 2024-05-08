@@ -48,9 +48,9 @@ const projectName = await getProjectName()
 const keepGit = await getKeepGit()
 const packageManager = await getPackageManager()
 const useLatestVersions = await getUseLatestVerions()
-// per default add mui, redux and i18n
+// per default add mui and i18n
 const packages = ['mui', 'i18n', ...(await getPackages())]
-// per default add general files, the custom index page and the internationalization files
+// per default add general files, mui and i18n
 const examples = ['general', 'i18n', ...(await getExamples(packages))]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
