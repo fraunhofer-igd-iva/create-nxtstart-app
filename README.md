@@ -55,6 +55,10 @@ Until we implement the changes to accomodate the new requirements by dependencie
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+### Yarn Plug'n'Play
+
+When using Yarn, Plug'n'Play is automatically enabled. This means all dependencies are committed to the git repository as cache files, so all users run on the same files instead of installing on each local machine. Adding new dependencies then involves adding new unversioned files from the yarn cache to the git repository. In general, as we have setup the .gitignore to handle Plug'n'Play too, all files that are not gitignored should also be added and committed. If we missed something please reach out.
+
 ### App Router Basics
 
 - See [Routing Fundamentals](https://nextjs.org/docs/app/building-your-application/routing) to learn about the different ways the app router works.
