@@ -64,11 +64,18 @@ function createProject() {
     throw new Error(chalk.red(`Folder ${targetPath} exists. Delete or use another name.`))
   }
 
+  let success = false
+
   if (packageManager === 'npm') {
-    initNodeNpm(CURR_DIR, targetPath)
+    success = initNodeNpm(CURR_DIR, targetPath)
   } else if (packageManager === 'yarn') {
-    initNodeYarn(CURR_DIR, targetPath)
+    success = initNodeYarn(CURR_DIR, targetPath)
   }
+
+  if (!success) {
+    throw new Error(chalk.redBright('Failed creating NextJS project. create-next-app did not run successfully.'))
+  }
+
   addExamplesJson(targetPath, examples)
   addEnvFile(targetPath)
   if (!keepGit) {
