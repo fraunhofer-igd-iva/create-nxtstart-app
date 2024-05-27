@@ -213,7 +213,7 @@ export function addVsCodeSdks(projectPath, packageManager) {
 
 export function updateEnvPrisma(projectPath) {
   fs.appendFileSync(
-    path.join(projectPath, '.env'),
+    path.join(projectPath, '.env.local'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
@@ -221,7 +221,7 @@ export function updateEnvPrisma(projectPath) {
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
 # Example connection string for mysql, update to match your used database and database user
-DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
+DATABASE_URL=mysql://webstart:webstart@localhost:3306/webstart
 
 `,
     function (err) {
@@ -233,7 +233,7 @@ DATABASE_URL="mysql://webstart:webstart@localhost:3306/webstart"
 
 export function updateEnvNextAuth(projectPath) {
   fs.appendFileSync(
-    path.join(projectPath, '.env'),
+    path.join(projectPath, '.env.local'),
     `
 # Next Auth Variables
 GITHUB_ID=<enter github id>

@@ -58,12 +58,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
 
 export function addEnvFile(projectPath) {
   fs.writeFileSync(
-    path.join(projectPath, '.env'),
-    `# General Variables
-
-NEXT_BACKEND_URL=http://127.0.0.1:3000
-
-  `,
+    path.join(projectPath, '.env.local'), '',
     function (err) {
       if (err) {
         return console.log(err)
