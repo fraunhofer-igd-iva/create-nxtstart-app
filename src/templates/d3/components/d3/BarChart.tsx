@@ -59,6 +59,9 @@ export default function BarChart(props: BarChartProps) {
       if (d3Container.current) {
         const svg = d3.select(d3Container.current)
 
+        // needed to remove visual artifacts due to double rendering in dev mode
+        svg.selectAll('*').remove()
+
         const { chartWidth, chartHeight } = getChartSize()
         const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
 
