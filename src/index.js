@@ -131,7 +131,7 @@ function implementExamples() {
 }
 
 function postProcessFiles() {
-  postProcessFile(path.join(targetPath, 'next.config.js'), examples)
+  postProcessFile(path.join(targetPath, 'next.config.mjs'), examples)
   postProcessFile(path.join(path.join(path.join(targetPath, 'app'), '[locale]'), 'layout.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'NavBar.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'ClientProviders.tsx'), examples)
