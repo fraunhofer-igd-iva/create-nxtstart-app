@@ -3,8 +3,10 @@ import chalk from 'chalk'
 import * as fs from 'fs'
 import path from 'path'
 
-// update when adding new packages
+// update when adding new packages, added package managers to post process dockerfile
 export const fullPackageList = [
+  'npm',
+  'yarn',
   'linting',
   'swr',
   'mui',

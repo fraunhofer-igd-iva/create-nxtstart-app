@@ -136,6 +136,7 @@ function postProcessFiles() {
   postProcessFile(path.join(path.join(targetPath, 'components'), 'NavBar.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'ClientProviders.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'PageLayout.tsx'), examples)
+  postProcessFile(path.join(targetPath, 'Dockerfile'), [...examples, packageManager])
 
   setTimeout(async () => {
     finishCreation()
