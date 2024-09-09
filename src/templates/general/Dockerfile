@@ -10,8 +10,8 @@ WORKDIR /app
 
 <§yarn§># Yarn --------------------------------------------------------------------------
 # NEW enable yarn 4.0.2 version and copy yarnrc.yml
-# RUN corepack enable
-# COPY .yarn ./.yarn
+RUN corepack enable
+COPY .yarn ./.yarn
 </§yarn§>
 # Install dependencies based on the preferred package manager (NEW copy yarnrc.yml to the image)
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .yarnrc.yml ./
@@ -100,7 +100,7 @@ EXPOSE 3000
 
 ENV PORT 3000
 # set hostname to localhost
-# ENV HOSTNAME "0.0.0.0"
+ENV HOSTNAME "0.0.0.0"
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
