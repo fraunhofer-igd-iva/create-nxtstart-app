@@ -11,6 +11,7 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useColorScheme,
   <§nextAuth§>Button,
   Tooltip,
   Avatar,</§nextAuth§>
@@ -19,10 +20,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
 <§nextAuth§>import { useSession, signIn, signOut } from 'next-auth/react'</§nextAuth§>
 import LanguageSelector from './LanguageSelector'
-
-interface NavBarProps {
-  setActiveTheme: (newMode: 'light' | 'dark') => void
-}
 
 interface LinkTabProps {
   value: string
@@ -68,8 +65,9 @@ const validatePath = (path: string | null) => {
   return pathWithoutLocale && tabPaths.includes(pathWithoutLocale) ? pathWithoutLocale : false
 }
 
-export default function NavBar(props: NavBarProps) {
+export default function NavBar() {
   <§nextAuth§>const { data: session } = useSession()</§nextAuth§>
+  const { mode, setMode } = useColorScheme()
   const router = useRouter()
   const pathname = usePathname()
   const theme = useTheme()
@@ -109,8 +107,7 @@ export default function NavBar(props: NavBarProps) {
   }
 
   const handleChangeTheme = () => {
-    props.setActiveTheme(theme.palette.mode === 'dark' ? 'light' : 'dark')
-    window.localStorage.setItem('themeMode', theme.palette.mode === 'dark' ? 'light' : 'dark')
+    setMode(mode === 'dark' ? 'light' : 'dark')
   }
 
   const a11yProps = (pathname: string) => {
@@ -190,7 +187,7 @@ export default function NavBar(props: NavBarProps) {
               <LanguageSelector />
             </Box>
             <IconButton sx={{ mr: 1 }} onClick={handleChangeTheme} aria-controls={'switch-theme-mode'}>
-              {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+              {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
           </Box>
 

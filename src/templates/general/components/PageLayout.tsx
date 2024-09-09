@@ -8,7 +8,6 @@ import { Box, useTheme } from '@mui/material'
 import { usePathname } from 'next/navigation'</§animations§>
 
 interface PageLayoutProps {
-  setActiveTheme: (newMode: 'light' | 'dark') => void
   children?: React.ReactNode
 }
 
@@ -24,7 +23,7 @@ export default function PageLayout(props: PageLayoutProps) {
   </§animations§>
   return (
     <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
-      <NavBar setActiveTheme={props.setActiveTheme} />
+      <NavBar />
       <Box
         sx={{
           display: 'flex',
