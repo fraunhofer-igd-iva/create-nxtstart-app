@@ -1,18 +1,15 @@
 {
-  "name": "Nxtstart",
-  "short_name": "App",
+  "name": "Nxtstart App",
+  "short_name": "Nxtstart App",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "256x256"
-    },
-    {
-      "src": "/vercel.svg",
-      "sizes": "283x64"
-    },
-    {
-      "src": "/pwa.png",
+      "src": "/img/android-chrome-192x192.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ],
