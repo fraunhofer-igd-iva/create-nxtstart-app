@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Paper, Grid, Typography, styled, useTheme } from '@mui/material'
+import { Paper, Grid, Typography, styled, useColorScheme } from '@mui/material'
 import Image from 'next/image'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -13,6 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function MuiGridExample() {
   const theme = useTheme()
+  const { mode } = useColorScheme()
 
   // checkout https://mui.com/material-ui/react-grid/ for detailed grid examples and documentation
   return (
@@ -33,7 +34,7 @@ export default function MuiGridExample() {
             <Item>
               <Image
                 alt={'image'}
-                src={theme.palette.mode === 'light' ? '/vercel.svg' : '/vercelLight.svg'}
+                src={mode === 'light' ? '/vercel.svg' : '/vercelLight.svg'}
                 width={288}
                 height={64}
                 style={{ width: '288', height: '64' }}
