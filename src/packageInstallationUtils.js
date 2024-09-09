@@ -25,14 +25,14 @@ export const fullPackageList = [
 
 const frozenVersionsPackageBundles = {
   general: {
-    dep: ['sharp@0.33.4'],
+    dep: ['sharp@0.33.5'],
     devDep: [],
   },
   linting: {
     dep: [],
     devDep: [
-      '@typescript-eslint/eslint-plugin@7.17.0',
-      '@typescript-eslint/parser@7.17.0',
+      '@typescript-eslint/eslint-plugin@8.4.0',
+      '@typescript-eslint/parser@8.4.0',
       'eslint-config-prettier@9.1.0',
       'prettier@3.3.3',
     ],
@@ -43,18 +43,18 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@5.16.5',
-      '@mui/material@5.16.5',
-      '@babel/runtime@7.25.0',
+      '@mui/icons-material@6.0.2',
+      '@mui/material@6.0.2',
+      '@babel/runtime@7.25.6',
       '@emotion/cache@11.13.1',
-      '@emotion/react@11.13.0',
+      '@emotion/react@11.13.3',
       '@emotion/styled@11.13.0',
-      '@mui/material-nextjs@5.16.4',
+      '@mui/material-nextjs@6.0.2',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.3.19'],
+    dep: ['framer-motion@11.5.4'],
     devDep: [],
   },
   redux: {
@@ -70,20 +70,20 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@5.17.0'],
-    devDep: ['prisma@5.17.0', '@yarnpkg/pnpify@4.1.0'],
+    dep: ['@prisma/client@5.19.1'],
+    devDep: ['prisma@5.19.1', '@yarnpkg/pnpify@4.1.1'],
   },
   i18n: {
-    dep: ['i18next@23.12.2', 'react-i18next@15.0.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
+    dep: ['i18next@23.14.0', 'react-i18next@15.0.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
     devDep: [],
   },
   pwa: {
-    dep: ['next-pwa@5.6.0', '@babel/core@7.24.9', 'babel-loader@9.1.3', 'webpack@5.93.0'],
+    dep: ['next-pwa@5.6.0', '@babel/core@7.25.2', 'babel-loader@9.1.3', 'webpack@5.94.0'],
     devDep: [],
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@13.13.1'],
+    devDep: ['cypress@13.14.2'],
   },
   sse: {
     dep: ['uuid@10.0.0'],
@@ -95,7 +95,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.3', 'lint-staged@15.2.7'],
+    devDep: ['husky@9.1.5', 'lint-staged@15.2.10'],
   },
 }
 
