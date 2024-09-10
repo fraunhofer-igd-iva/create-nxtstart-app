@@ -1,4 +1,6 @@
-# Nxtstart
+<p align="center">
+  <img src="src/templates/pwa/public/img/favicon.ico" />
+</p>
 
 Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project.
 The template is aimed at students to get an easy access to web development with example implementations.

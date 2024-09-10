@@ -1,9 +1,39 @@
+<p align="center">
+  <img src="public/img/favicon.ico" />
+</p>
+
 Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project.
 The template is aimed at students to get an easy access to web development with example implementations.
-It is also useful for experts to speed up prototyping. 
-Based on NextJS and Material UI.
+It is also useful for experts to speed up prototyping.
+The framework is based on NextJS and Material UI.
 
-Nxtstart is published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt.
+Published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt, Germany.
+
+# Getting Started
+
+Run the app in any command prompt with node installed using yarn
+
+```
+yarn create nxtstart-app
+```
+
+or npm
+
+```
+ npm init nxtstart-app
+```
+
+or install the package using
+
+```
+npm i -g create-nxtstart-app
+create-nxtstart-app
+```
+
+in any command prompt with node installed.
+
+Follow the instructions presented by the interface.
+Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
 # Build errors due to dependency updates?
 
@@ -11,15 +41,17 @@ Nxtstart tries to install the latest versions of all dependecies in the default 
 
 Until we implement the changes to accomodate the new requirements by dependencies you can rerun nxtstart and disable the option to use the latest dependency versions and rather use an older tested state of all dependecies.
 
-# Run your project
+# Necessary steps after creating your project
+
+## General
 
 - Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed.
 - Fill the `.env` file with necessary variables where nxtstart placed placeholder data.
 - If you selected Prisma, refer to the corresponding section of this README before running your app.
 - Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+  You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
+  This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 - Nxtstart creates a `/nxtstart.config.json` file in the project root. This file contains the preinstalled examples and can be removed once you don't want to use the default landing page and default NavBar tabs.
 - Additionally the default landing page provides useful links for all included libraries and links to all implemented examples that you can explore.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
@@ -37,10 +69,6 @@ When using Yarn, Plug'n'Play is automatically enabled. This means all dependenci
 - Client components can be nested in pages or other server components, however server components nested in client components will also be rendered on the client (**except if you insert them via a children prop into the client component**).
 - All API routes are nested under `app/api/*` and written in `route.ts` files, nested in folders that represent the path of the URL. The files export functions for every REST method that is supported by a route.
 - Server actions are asynchronous server functions that can be called from components directly instead of going through an API endpoint, see [Server Action Docs](https://nextjs.org/docs/app/api-reference/functions/server-actions) for details.
-
-# Package specific information
-
-Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
 ## Code Style
 
@@ -74,13 +102,16 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the world sample database for MySQL that can be obtained [here](https://dev.mysql.com/doc/index-other.html). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
+
 To update the db using prisma.scheme:
+
 - Update File
 - Run `yarn prisma db push` (or `npx prisma db push` for npm) (may reset tables or entire database)
 - OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 To receive update from database:
+
 - Update DB
 - Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
@@ -120,3 +151,11 @@ The example depends on D3 graphs and therefore cannot be used without installing
 To create an optimized production build run the command `yarn run build` (or `npm run build` for npm).
 
 To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
+
+# Contributing to Nxtstart
+
+We appreciate every contribution to this project but **please read the [Contributing Guidelines](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/CONTRIBUTING.md) before opening an issue or PR**.
+
+# License
+
+Nxtstart is [ISC](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/LICENSE) licensed.
