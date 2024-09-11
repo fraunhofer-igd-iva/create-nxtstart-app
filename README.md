@@ -70,6 +70,10 @@ When using Yarn, Plug'n'Play is automatically enabled. This means all dependenci
 - All API routes are nested under `app/api/*` and written in `route.ts` files, nested in folders that represent the path of the URL. The files export functions for every REST method that is supported by a route.
 - Server actions are asynchronous server functions that can be called from components directly instead of going through an API endpoint, see [Server Action Docs](https://nextjs.org/docs/app/api-reference/functions/server-actions) for details.
 
+# Package specific information
+
+Currently Material UI, the internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
+
 ## Code Style
 
 To enforce code style, ESLint is installed by default and Prettier can be installed additionally. Run the lint run configuration in the `package.json` to check for errors or setup automatic linting, the steps to do that depend on your code editor. If Prettier is chosen, additional run configurations are added.
@@ -99,7 +103,11 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the world sample database for MySQL that can be obtained [here](https://dev.mysql.com/doc/index-other.html). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database. 
+
+**These steps are done by Nxtstart initially, but the database and client are not commited to the repository, so after cloning the project, all three commands have to be executed to build the database and client**
+
+The examples implemented in this template are built using a cities sample database for SQLite that is also generated when using nxtstart. They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
 
@@ -110,11 +118,15 @@ To update the db using prisma.scheme:
 - OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
-To receive update from database:
+To receive update from database after adjusting the scheme there directly:
 
 - Update DB
 - Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
+
+### Migrating from SQLite
+
+SQLite is chosen to give a easy entry into a database system with no further outside setup required. However, the featureset is fairly limited. Should your requirements need a more advanced database, the switch should be as easy as exchanging the `DATABASE_URL` in your `.env` and the `provider` attribute in `schema.prisma`. Then you need to run the commands in [Initialization](#initialization) (skip the seeding if not necessary).
 
 ## Next Auth
 

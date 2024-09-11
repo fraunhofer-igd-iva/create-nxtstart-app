@@ -9,39 +9,13 @@ The framework is based on NextJS and Material UI.
 
 Published and maintained by [IVA @ Fraunhofer IGD](https://www.igd.fraunhofer.de/en.html) in Darmstadt, Germany.
 
-# Getting Started
-
-Run the app in any command prompt with node installed using yarn
-
-```
-yarn create nxtstart-app
-```
-
-or npm
-
-```
- npm init nxtstart-app
-```
-
-or install the package using
-
-```
-npm i -g create-nxtstart-app
-create-nxtstart-app
-```
-
-in any command prompt with node installed.
-
-Follow the instructions presented by the interface.
-Currently Material UI, internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
-
 # Build errors due to dependency updates?
 
 Nxtstart tries to install the latest versions of all dependecies in the default configuration. Should you encounter errors with examples that are not compatible with the latest versions of some dependecies please create an issue with the full build or error log.
 
 Until we implement the changes to accomodate the new requirements by dependencies you can rerun nxtstart and disable the option to use the latest dependency versions and rather use an older tested state of all dependecies.
 
-# Necessary steps after creating your project
+# Run your project
 
 ## General
 
@@ -69,6 +43,10 @@ When using Yarn, Plug'n'Play is automatically enabled. This means all dependenci
 - Client components can be nested in pages or other server components, however server components nested in client components will also be rendered on the client (**except if you insert them via a children prop into the client component**).
 - All API routes are nested under `app/api/*` and written in `route.ts` files, nested in folders that represent the path of the URL. The files export functions for every REST method that is supported by a route.
 - Server actions are asynchronous server functions that can be called from components directly instead of going through an API endpoint, see [Server Action Docs](https://nextjs.org/docs/app/api-reference/functions/server-actions) for details.
+
+# Package specific information
+
+Currently Material UI, the internationalization framework and ESLint are non optional and will be installed by default as they are relevant for all example pages. The remaining packages are only preinstalled if chosen during creation.
 
 ## Code Style
 
@@ -99,7 +77,11 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db pull` (or `npx prisma db pull` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). The examples implemented in this template are built using the world sample database for MySQL that can be obtained [here](https://dev.mysql.com/doc/index-other.html). They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database. 
+
+**These steps are done by Nxtstart initially, but the database and client are not commited to the repository, so after cloning the project, all three commands have to be executed to build the database and client**
+
+The examples implemented in this template are built using a cities sample database for SQLite that is also generated when using nxtstart. They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
 ### For later changes to the database:
 
@@ -110,11 +92,15 @@ To update the db using prisma.scheme:
 - OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
 
-To receive update from database:
+To receive update from database after adjusting the scheme there directly:
 
 - Update DB
 - Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
 - Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
+
+### Migrating from SQLite
+
+SQLite is chosen to give a easy entry into a database system with no further outside setup required. However, the featureset is fairly limited. Should your requirements need a more advanced database, the switch should be as easy as exchanging the `DATABASE_URL` in your `.env` and the `provider` attribute in `schema.prisma`. Then you need to run the commands in [Initialization](#initialization) (skip the seeding if not necessary).
 
 ## Next Auth
 
@@ -151,11 +137,3 @@ The example depends on D3 graphs and therefore cannot be used without installing
 To create an optimized production build run the command `yarn run build` (or `npm run build` for npm).
 
 To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
-
-# Contributing to Nxtstart
-
-We appreciate every contribution to this project but **please read the [Contributing Guidelines](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/CONTRIBUTING.md) before opening an issue or PR**.
-
-# License
-
-Nxtstart is [ISC](https://github.com/fraunhofer-igd-iva/create-nxtstart-app/blob/main/LICENSE) licensed.
