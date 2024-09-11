@@ -12,7 +12,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }))
 
 export default function MuiGridExample() {
-  const theme = useTheme()
   const { mode } = useColorScheme()
 
   // checkout https://mui.com/material-ui/react-grid/ for detailed grid examples and documentation
