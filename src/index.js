@@ -9,6 +9,7 @@ import {
   getRunPrettier,
   getKeepGit,
   getDoInitialCommit,
+  getSeedDb,
 } from './questions.js'
 import {
   initNodeNpm,
@@ -27,7 +28,7 @@ import {
   runFinalInstall,
   addVsCodeSdks,
 } from './packageInstallationUtils.js'
-import { addExamplesJson, addExample, addEmptyCypressDirectories } from './exampleCreationUtils.js'
+import { addExamplesJson, addExample, addEmptyCypressDirectories, seedSqliteDb } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
 import * as path from 'path'
 import chalk from 'chalk'
@@ -137,6 +138,8 @@ function postProcessFiles() {
   postProcessFile(path.join(path.join(targetPath, 'components'), 'ClientProviders.tsx'), examples)
   postProcessFile(path.join(path.join(targetPath, 'components'), 'PageLayout.tsx'), examples)
   postProcessFile(path.join(targetPath, 'Dockerfile'), [...examples, packageManager])
+  postProcessFile(path.join(targetPath, '.env'), examples)
+  postProcessFile(path.join(targetPath, '.env.sample'), examples)
 
   setTimeout(async () => {
     finishCreation()
@@ -161,5 +164,15 @@ function finishCreation() {
         performInitialCommit(targetPath)
       }
     }
+    seedDb()
   }, 3000)
+}
+
+async function seedDb() {
+  if (examples.includes('prisma')) {
+    const seedDb = await getSeedDb()
+    if (seedDb) {
+      seedSqliteDb(targetPath, packages, packageManager)
+    }
+  }
 }

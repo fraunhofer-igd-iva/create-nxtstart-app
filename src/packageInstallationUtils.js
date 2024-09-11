@@ -70,8 +70,8 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@5.19.1'],
-    devDep: ['prisma@5.19.1', '@yarnpkg/pnpify@4.1.1'],
+    dep: ['@prisma/client@5.19.1', 'sqlite3@5.1.7'],
+    devDep: ['prisma@5.19.1', '@yarnpkg/pnpify@4.1.1', 'tsx@4.19.0'],
   },
   i18n: {
     dep: ['i18next@23.14.0', 'react-i18next@15.0.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
@@ -141,8 +141,8 @@ const packageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client'],
-    devDep: ['prisma', '@yarnpkg/pnpify'],
+    dep: ['@prisma/client', 'sqlite3'],
+    devDep: ['prisma', '@yarnpkg/pnpify', 'tsx'],
   },
   i18n: {
     dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
@@ -215,7 +215,7 @@ export function addVsCodeSdks(projectPath, packageManager) {
 
 export function updateEnvPrisma(projectPath) {
   fs.appendFileSync(
-    path.join(projectPath, '.env.local'),
+    path.join(projectPath, '.env'),
     `
 # Environment variables declared in this file are automatically made available to Prisma.
 # See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
@@ -223,21 +223,23 @@ export function updateEnvPrisma(projectPath) {
 # See the documentation for all the connection string options: https://pris.ly/d/connection-strings
 
 # Example connection string for mysql, update to match your used database and database user
-DATABASE_URL=mysql://webstart:webstart@localhost:3306/webstart
+# DATABASE_URL=mysql://nxtstartUser:nxtstartPassword@localhost:3306/nxtstartDatabase
+DATABASE_URL="file:nxtstart.db"
 
 `,
     function (err) {
       if (err) throw err
-      console.log(chalk.green('Added Prisma Env'))
+      console.log(chalk.green('Added Prisma .env'))
     }
   )
 }
 
 export function updateEnvNextAuth(projectPath) {
   fs.appendFileSync(
-    path.join(projectPath, '.env.local'),
+    path.join(projectPath, '.env'),
     `
 # Next Auth Variables
+# For github apps: https://github.com/settings/developers
 GITHUB_ID=<enter github id>
 GITHUB_SECRET=<enter github secret>
 
@@ -277,7 +279,8 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "lint": "next lint"<§linting§>,
     "prettierCheck": "yarn prettier . --check",
     "prettierFix": "yarn prettier . --write"</§linting§><§prisma§>,
-    "db:generate": "yarn pnpify prisma generate"</§prisma§>
+    "db:generate": "yarn pnpify prisma generate",
+    "db:seed": "tsx prisma/seedDb.ts"</§prisma§>
   }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
@@ -295,7 +298,8 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "cypressGui": "cypress open",</§cypress§>
     "lint": "next lint"<§linting§>,
     "prettierCheck": "npx prettier . --check",
-    "prettierFix": "npx prettier . --write"</§linting§>
+    "prettierFix": "npx prettier . --write"</§linting§><§prisma§>,
+    "db:seed": "tsx prisma/seedDb.ts"</§prisma§>
   }<§husky§>,
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"

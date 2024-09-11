@@ -81,3 +81,5 @@ export const getExamples = async (packages) =>
   })
 
 export const getRunPrettier = async () => await confirm({ message: 'Run prettier once? (recommended)', default: true })
+
+export const getSeedDb = async () => await confirm({ message: 'Seed Database with example data? (recommended)', default: true })

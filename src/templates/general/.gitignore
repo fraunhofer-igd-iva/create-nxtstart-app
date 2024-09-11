@@ -57,3 +57,6 @@ cypress.env.json
 # local env files
 .env
 .env*.local
+
+# sqlite dbs
+*.db

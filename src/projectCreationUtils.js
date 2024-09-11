@@ -58,7 +58,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
 
 export function addEnvFile(projectPath) {
   fs.writeFileSync(
-    path.join(projectPath, '.env.local'), '',
+    path.join(projectPath, '.env'), '',
     function (err) {
       if (err) {
         return console.log(err)
