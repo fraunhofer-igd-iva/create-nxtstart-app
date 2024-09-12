@@ -103,9 +103,9 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database. 
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database if you want sample data. 
 
-**These steps are done by Nxtstart initially, but the database and client are not commited to the repository, so after cloning the project, all three commands have to be executed to build the database and client**
+**These steps can be done by Nxtstart initially if you choose to seed the database at the end, but the database and client are not commited to the repository, so after cloning the project, all three commands have to be executed to build the database and client**
 
 The examples implemented in this template are built using a cities sample database for SQLite that is also generated when using nxtstart. They will not work with a custom database out of the box but can be rewritten easily using our code as an example.
 
