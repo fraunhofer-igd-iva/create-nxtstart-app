@@ -1,7 +1,7 @@
 import React from 'react'
 import initTranslations from '../../i18n'
 import TranslationProvider from '@/components/TranslationProvider'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import { Box, Typography } from '@mui/material'
 import { Data } from '@/util/types'
 import { DataPoint } from '@/components/d3/ScatterPlot'
@@ -90,7 +90,8 @@ async function getPageData() {
 /*
  * For more examples see https://iva-git.igd.fraunhofer.de/iva/d3-examples/-/tree/master
  */
-export default async function D3Page({ params: { locale } }: PageProps) {
+export default async function D3Page(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
   const pageData: D3PageData = await getPageData()
 

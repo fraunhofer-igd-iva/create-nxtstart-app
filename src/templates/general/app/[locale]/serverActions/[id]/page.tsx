@@ -1,17 +1,18 @@
 import initTranslations from '@/app/i18n'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import TranslationProvider from '@/components/TranslationProvider'
 import { Box } from '@mui/material'
 
-type DynamicPathPageProps = PageProps & {
-  params: { id: number }
-}
+type DynamicPathPageProps = PageProps & Promise<{
+  id: number
+}>
 
 export const metadata = {
   title: 'Dynamic Path',
 }
 
-export default async function DynamicPathPage({ params: { locale, id } }: DynamicPathPageProps) {
+export default async function DynamicPathPage(props: { params: DynamicPathPageProps }) {
+  const { locale, id } = await props.params
   const { options } = await initTranslations(locale, ['common'])
 
   return (

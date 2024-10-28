@@ -3,3 +3,7 @@ export type Data = {
   value: number
   totalDataPoints: number
 }
+
+export type PageProps = Promise<{
+  locale: string
+}>

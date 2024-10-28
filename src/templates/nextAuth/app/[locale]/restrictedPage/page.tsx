@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography, Box } from '@mui/material'
 import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import { Metadata } from 'next'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
@@ -25,7 +25,8 @@ async function getPageData() {
   }
 }
 
-export default async function RestrictedPage({ params: { locale } }: PageProps) {
+export default async function RestrictedPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
   const pageData: RestrictedPageData = await getPageData()
 

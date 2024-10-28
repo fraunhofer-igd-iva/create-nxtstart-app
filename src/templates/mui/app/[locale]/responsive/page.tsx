@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Grid, Typography } from '@mui/material'
 import MuiGridExample from '@/app/[locale]/responsive/MuiGridExample'
 import initTranslations from '@/app/i18n'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import { Metadata } from 'next'
 import TranslationProvider from '@/components/TranslationProvider'
 
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: 'Responsive Design',
 }
 
-export default async function ResponsiveDesignPage({ params: { locale } }: PageProps) {
+export default async function ResponsiveDesignPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
 
   return (

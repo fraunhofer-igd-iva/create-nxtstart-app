@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import initTranslations from '@/app/i18n'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import TranslationProvider from '@/components/TranslationProvider'
 import SwrComponent from './SwrComponent'
 
@@ -8,7 +8,8 @@ export const metadata = {
   title: 'SWR Data Fetching',
 }
 
-export default async function SWRPage({ params: { locale } }: PageProps) {
+export default async function SWRPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
 
   const styles = {

@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material'
 import { prisma } from '@/util/prismaClient'
 import { city } from '@/prisma/.prisma/client'
 import initTranslations from '@/app/i18n'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import { Metadata } from 'next'
 import TranslationProvider from '@/components/TranslationProvider'
 
@@ -27,7 +27,8 @@ async function getPageData() {
   }
 }
 
-export default async function PrismaPage({ params: { locale } }: PageProps) {
+export default async function PrismaPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { t, options } = await initTranslations(locale, ['common', 'prismaPage'])
   const pageData: PrismaPageData = await getPageData()
 

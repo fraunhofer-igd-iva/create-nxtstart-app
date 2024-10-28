@@ -3,6 +3,7 @@ import TranslationProvider from '@/components/TranslationProvider'
 import { Container, Typography, Box } from '@mui/material'
 import IndexCard, { IndexCardProps } from '@/app/[locale]/IndexCard'
 import examples from '@/nxtstart.config.json'
+import { PageProps } from '@/util/types'
 
 const libraries: IndexCardProps[] = [
   {
@@ -161,13 +162,8 @@ const libraries: IndexCardProps[] = [
   },
 ]
 
-export type PageProps = {
-  params: {
-    locale: string
-  }
-}
-
-export default async function LandingPage({ params: { locale } }: PageProps) {
+export default async function LandingPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { t, options } = await initTranslations(locale, ['common', 'indexPage'])
 
   return (

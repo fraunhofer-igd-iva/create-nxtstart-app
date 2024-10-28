@@ -9,6 +9,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'</§nextAu
 import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
+import { PageProps } from '@/util/types'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,13 +25,12 @@ export function generateStaticParams() {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode
-  params: {
-    locale: string
-  }
+  params: PageProps
 }) {
+  const { locale } = await params
   <§nextAuth§>const session = await getServerSession(authOptions)</§nextAuth§>
   const { options } = await initTranslations(locale, ['common'])
 

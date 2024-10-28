@@ -1,5 +1,5 @@
 import initTranslations from '@/app/i18n'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import TranslationProvider from '@/components/TranslationProvider'
 import SseComponent from './SseComponent'
 import { Box, Typography } from '@mui/material'
@@ -8,7 +8,8 @@ export const metadata = {
   title: 'Server Sent Events',
 }
 
-export default async function SSEPage({ params: { locale } }: PageProps) {
+export default async function SSEPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
 
   return (

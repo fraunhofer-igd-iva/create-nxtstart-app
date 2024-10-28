@@ -1,10 +1,11 @@
 import initTranslations from '../../i18n'
 import TranslationProvider from '@/components/TranslationProvider'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import { Box, Typography } from '@mui/material'
 
 // needed for dynamic metadata
-export async function generateMetadata({ params: { locale } }: PageProps) {
+export async function generateMetadata(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { t } = await initTranslations(locale, ['common'])
 
   return {
@@ -12,7 +13,8 @@ export async function generateMetadata({ params: { locale } }: PageProps) {
   }
 }
 
-export default async function PrivacyPage({ params: { locale } }: PageProps) {
+export default async function PrivacyPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { t, options } = await initTranslations(locale, ['common'])
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Redux.module.css'
 import { Container, Typography, Box } from '@mui/material'
 import Link from 'next/link'
-import { PageProps } from '@/app/[locale]/page'
+import { PageProps } from '@/util/types'
 import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
 import StateComponent from './StateComponent'
@@ -11,7 +11,8 @@ export const metadata = {
   title: 'Redux State Management',
 }
 
-export default async function ReduxPage({ params: { locale } }: PageProps) {
+export default async function ReduxPage(props: { params: PageProps }) {
+  const { locale } = await props.params
   const { options } = await initTranslations(locale, ['common'])
 
   return (
