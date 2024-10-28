@@ -46,11 +46,11 @@ export function seedSqliteDb(projectPath, packages, packageManager) {
     if (packageManager === 'yarn') {
       shell.exec('yarn prisma db push')
       shell.exec('yarn db:generate')
-      console.log(chalk.blue(`Start data insertion...`))
+      console.log(chalk.cyan(`Start data insertion...`))
       shell.exec('yarn db:seed')
     } else if (packageManager === 'npm') {
       shell.exec('npx prisma db push')
-      console.log(chalk.blue(`Start data insertion...`))
+      console.log(chalk.cyan(`Start data insertion...`))
       shell.exec('npm run db:seed')
     }
     console.log(chalk.green(`Created SQLite database and seeded with example data!`))
