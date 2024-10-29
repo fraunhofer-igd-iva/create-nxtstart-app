@@ -15,7 +15,7 @@ export default function ClientSideAuth() {
         method: 'GET',
       })
       const sessionData = await res.json()
-      sessionData.content ? setSecretData(sessionData.content) : setSecretData(sessionData.error)
+      setSecretData(sessionData.content ? sessionData.content : sessionData.error)
     }
 
     fetchData()
