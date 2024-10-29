@@ -30,7 +30,7 @@ export const dynamic = 'force-dynamic'
  * @returns POST - close server sent events stream using id sent in body of request
  */
 export async function GET(res: NextRequest) {
-  let responseStream = new TransformStream()
+  const responseStream = new TransformStream()
   const writer = responseStream.writable.getWriter()
   const encoder = new TextEncoder()
 

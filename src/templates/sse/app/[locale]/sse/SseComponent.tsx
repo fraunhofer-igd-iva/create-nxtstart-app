@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Typography, Box, Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { Data } from '@/util/types'
 import BarChart from '@/components/d3/BarChart'
 

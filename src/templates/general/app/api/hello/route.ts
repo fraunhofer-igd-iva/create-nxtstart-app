@@ -1,9 +1,5 @@
 import { NextRequest } from 'next/server'
 
-type Data = {
-  name: string
-}
-
 /**
  * This endpoint is the default next js api endpoint example
  * @allowedMethods GET
