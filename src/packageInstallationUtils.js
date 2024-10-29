@@ -78,7 +78,7 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   pwa: {
-    dep: ['next-pwa@5.6.0', '@babel/core@7.25.2', 'babel-loader@9.1.3', 'webpack@5.94.0'],
+    dep: [],
     devDep: [],
   },
   cypress: {
@@ -149,7 +149,7 @@ const packageBundles = {
     devDep: [],
   },
   pwa: {
-    dep: ['next-pwa', '@babel/core', 'babel-loader', 'webpack'],
+    dep: [],
     devDep: [],
   },
   cypress: {

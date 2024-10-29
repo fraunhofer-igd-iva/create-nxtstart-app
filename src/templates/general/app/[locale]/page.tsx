@@ -141,14 +141,13 @@ const libraries: IndexCardProps[] = [
   },
   {
     imageLink: 'https://ui-avatars.com/api/?name=Progressive+Web+App&length=3',
-    title: 'Next PWA + Service Worker',
+    title: 'PWA',
     description:
-      'Progressive web apps improve loading for repeating visitors and allow users to install the webapp to make it run like a native app.',
-    hrefDocs: 'https://github.com/shadowwalker/next-pwa',
+      'Progressive web apps improve loading for repeating visitors and allow users to install the webapp to make it run like a native app. Can be used together with service workers to further improve app like feel.',
+    hrefDocs: 'https://web.dev/learn/pwa',
     hrefExample: undefined,
     additionalLinks: [
       { label: 'SW API', href: 'https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API' },
-      { label: 'PWA Tutorial', href: 'https://web.dev/learn/pwa/' },
     ],
   },
   {

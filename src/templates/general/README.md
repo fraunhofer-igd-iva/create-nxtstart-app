@@ -120,8 +120,7 @@ The example specifications for the authentication (including the test for the re
 
 ## Progressive Web App
 
-The example provides a basic service worker, manifest.json and necessary assets to get started. See `/worker/index.js` to edit the service worker.
-To disable PWA edit `/next.config.js`.
+The example provides the necessary icons, assets and manifest.json to get started. The PWA user experience can be further optimized by using service workers for features like offline modes or adapting to users that may lose connection to mobile data while moving around.
 
 ## WebWorker
 
