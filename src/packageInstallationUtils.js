@@ -38,7 +38,7 @@ const frozenVersionsPackageBundles = {
     ],
   },
   swr: {
-    dep: ['swr@2.2.5'],
+    dep: [],
     devDep: [],
   },
   mui: {
@@ -101,7 +101,7 @@ const frozenVersionsPackageBundles = {
 
 const packageBundles = {
   general: {
-    dep: ['sharp'],
+    dep: [],
     devDep: [],
   },
   linting: {
