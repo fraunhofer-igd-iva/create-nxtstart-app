@@ -32,7 +32,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
   shell.rm('package.json')
 
   const result = shell.exec(
-    `npx create-next-app@latest "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --turbopack`
+    `npx create-next-app@latest "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --no-turbopack`
   )
 
   if(result.code === 0) {
