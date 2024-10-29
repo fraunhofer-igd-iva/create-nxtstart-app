@@ -1,6 +1,5 @@
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
-import { NextRequest } from 'next/server'
 
 /**
  * This endpoint is used to hide content behind user authentication
@@ -8,7 +7,7 @@ import { NextRequest } from 'next/server'
  * @allowedMethods GET
  * @returns body contains secured content or an error if user is not authenticated
  */
-export async function GET(req: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions)
   if (session) {
     return Response.json(
