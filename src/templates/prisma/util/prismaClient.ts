@@ -7,9 +7,15 @@ const prismaClientSingleton = () => {
   })
   // prisma returns unexpected and unintuitive results for undefined filters, this prevents those results and throws an error if undefined filters are applied
   // https://github.com/prisma/prisma/issues/5149
-  client.$use(async (params, next) => {
-    if (hasUndefinedValue(params.args?.where)) throw new Error(`Invalid where: ${JSON.stringify(params.args.where)}`)
-    return next(params.args)
+  client.$extends({
+    query: {
+      $allOperations(params) {
+        const {args, query} = params
+        /* your custom logic for modifying all Prisma Client operations here */
+        if (hasUndefinedValue(args?.where)) throw new Error(`Invalid where: ${JSON.stringify(params.args.where)}`)
+        return query(args)
+      },
+    },
   })
   return client
 }
