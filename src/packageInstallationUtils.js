@@ -40,7 +40,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['eslint-config-prettier@9.1.0', 'prettier@3.3.3'],
   },
   swr: {
-    dep: [],
+    dep: ['swr@2.2.5'],
     devDep: [],
   },
   mui: {
