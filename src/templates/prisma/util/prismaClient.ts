@@ -2,33 +2,31 @@
 import { PrismaClient } from '@/prisma/.prisma/client'
 
 const prismaClientSingleton = () => {
-  const client = new PrismaClient({
+  return new PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
-  })
-  // prisma returns unexpected and unintuitive results for undefined filters, this prevents those results and throws an error if undefined filters are applied
-  // https://github.com/prisma/prisma/issues/5149
-  client.$extends({
+  }).$extends({
     query: {
       $allOperations(params) {
         const {args, query} = params
-        /* your custom logic for modifying all Prisma Client operations here */
-        if (hasUndefinedValue(args?.where)) throw new Error(`Invalid where: ${JSON.stringify(params.args.where)}`)
-        return query(args)
+        // prisma returns unexpected and unintuitive results for undefined filters, this prevents those results and throws an error if undefined filters are applied
+        // https://github.com/prisma/prisma/issues/5149
+        if (hasUndefinedValue(args.where)) {
+          throw new Error(`Invalid where: ${JSON.stringify(params.args.where)}`)
+        } else {
+          return query(args)
+        }
       },
     },
   })
-  return client
 }
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>
+} & typeof global
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined
-}
+export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
-export const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma
 
 function hasUndefinedValue<T>(obj: T): boolean {
   if (typeof obj !== 'object' || obj === null) return false
