@@ -26,16 +26,18 @@ export const fullPackageList = [
 const frozenVersionsPackageBundles = {
   general: {
     dep: ['sharp@0.33.5'],
-    devDep: [],
+    devDep: [
+      '@eslint/eslintrc@3.1.0',
+      '@eslint/js@9.13.0',
+      '@next/eslint-plugin-next@15.0.2',
+      '@typescript-eslint/eslint-plugin@8.4.0',
+      '@typescript-eslint/parser@8.4.0',
+      'eslint-plugin-react-hooks@5.0.0',
+    ],
   },
   linting: {
     dep: [],
-    devDep: [
-      '@typescript-eslint/eslint-plugin@8.4.0',
-      '@typescript-eslint/parser@8.4.0',
-      'eslint-config-prettier@9.1.0',
-      'prettier@3.3.3',
-    ],
+    devDep: ['eslint-config-prettier@9.1.0', 'prettier@3.3.3'],
   },
   swr: {
     dep: [],
@@ -102,11 +104,18 @@ const frozenVersionsPackageBundles = {
 const packageBundles = {
   general: {
     dep: [],
-    devDep: [],
+    devDep: [
+      '@eslint/eslintrc',
+      '@eslint/js',
+      '@next/eslint-plugin-next',
+      '@typescript-eslint/eslint-plugin',
+      '@typescript-eslint/parser',
+      'eslint-plugin-react-hooks',
+    ],
   },
   linting: {
     dep: [],
-    devDep: ['@typescript-eslint/eslint-plugin', '@typescript-eslint/parser', 'eslint-config-prettier', 'prettier'],
+    devDep: ['eslint-config-prettier', 'prettier'],
   },
   swr: {
     dep: ['swr'],

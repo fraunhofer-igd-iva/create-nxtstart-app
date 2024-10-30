@@ -19,6 +19,7 @@ import {
   removeGit,
   performInitialCommit,
   removeDefaultPage,
+  upgradeToEslint9,
 } from './projectCreationUtils.js'
 import {
   addPackages,
@@ -83,6 +84,7 @@ function createProject() {
     removeGit(targetPath)
   }
   removeDefaultPage(targetPath)
+  upgradeToEslint9(targetPath, packageManager, useLatestVersions)
   console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
 
   installChosenPackages()
@@ -139,6 +141,7 @@ function postProcessFiles() {
   postProcessFile(path.join(targetPath, 'Dockerfile'), [...examples, packageManager])
   postProcessFile(path.join(targetPath, '.env'), examples)
   postProcessFile(path.join(targetPath, '.env.sample'), examples)
+  postProcessFile(path.join(targetPath, 'eslint.config.mjs'), examples)
 
   setTimeout(async () => {
     finishCreation()

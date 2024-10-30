@@ -80,6 +80,18 @@ export function removeDefaultPage(projectPath) {
   console.log(chalk.green('Removed default page!'))
 }
 
+export function upgradeToEslint9(projectPath, packageManager, useLatestVersions) {
+  fs.rmSync(path.join(projectPath, '.eslintrc.json'))
+  const eslintPackage = useLatestVersions ? 'eslint' : 'eslint@9.13.0'
+  shell.cd(projectPath)
+  if (packageManager === 'yarn') {
+    shell.exec(`yarn add ${eslintPackage} --dev`)
+  } else if (packageManager === 'npm') {
+    shell.exec(`npm install ${eslintPackage} --save-dev`)
+  }
+  console.log(chalk.green('Upgraded to eslint 9'))
+}
+
 export function performInitialCommit(projectPath) {
   shell.cd(projectPath)
   // add all files except those in .gitignore
