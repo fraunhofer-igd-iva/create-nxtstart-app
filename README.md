@@ -20,7 +20,7 @@ yarn create nxtstart-app
 or npm
 
 ```
- npm init nxtstart-app@latest
+npm init nxtstart-app@latest
 ```
 
 or install the package using
