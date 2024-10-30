@@ -25,7 +25,7 @@ export const fullPackageList = [
 
 const frozenVersionsPackageBundles = {
   general: {
-    dep: ['sharp@0.33.5'],
+    dep: [],
     devDep: [
       '@eslint/eslintrc@3.1.0',
       '@eslint/js@9.13.0',
