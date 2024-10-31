@@ -1,6 +1,6 @@
 {
   "name": "create-nxtstart-app",
-  "version": "2.6.1",
+  "version": "2.6.2",
   "description": "Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project. The template is aimed at students to get an easy access to web development with example implementations. It is also useful for experts to speed up prototyping.",
   "main": "src/index.js",
   "type": "module",

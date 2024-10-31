@@ -5,7 +5,7 @@ export const theme = createTheme({
   colorSchemes: {
     light: {
       palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
           main: green.A700,
         },
