@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material'
 import { prisma } from '@/util/prismaClient'
-import { city } from '@/prisma/.prisma/client'
+import { city } from '@/prisma/client'
 import initTranslations from '@/app/i18n'
 import { PageProps } from '@/util/types'
 import { Metadata } from 'next'
