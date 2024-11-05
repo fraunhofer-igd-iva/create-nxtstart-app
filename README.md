@@ -48,7 +48,7 @@ Until we implement the changes to accomodate the new requirements by dependencie
 - Run `yarn install` (or `npm install` for npm) once to make sure all dependencies are installed.
 - Fill the `.env` file with necessary variables where nxtstart placed placeholder data.
 - If you selected Prisma, refer to the corresponding section of this README before running your app.
-- Run the project using `yarn run dev` (or `npm run dev` for npm) from the project root.
+- Run the project using `yarn dev` (or `npm run dev` for npm) from the project root.
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
   You can start editing the page by modifying `app/[locale]/page.tsx`. The page auto-updates as you edit the file.
   This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
@@ -56,10 +56,6 @@ Until we implement the changes to accomodate the new requirements by dependencie
 - Additionally the default landing page provides useful links for all included libraries and links to all implemented examples that you can explore.
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-### Yarn Plug'n'Play
-
-When using Yarn, Plug'n'Play is automatically enabled. This means all dependencies are committed to the git repository as cache files, so all users run on the same files instead of installing on each local machine. Adding new dependencies then involves adding new unversioned files from the yarn cache to the git repository. In general, as we have setup the .gitignore to handle Plug'n'Play too, all files that are not gitignored should also be added and committed. If we missed something please reach out.
 
 ### App Router Basics
 
@@ -103,7 +99,7 @@ We implemented Redux as an optional state manager for Nxtstart. The store can be
 
 ### Initialization
 
-After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn run db:generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database if you want sample data. 
+After setting the DATABASE_URL in the `.env` according to your used DB, generate the schema using `yarn prisma db push` (or `npx prisma db push` for npm) and generate the client using `yarn prisma generate` (or `npx prisma generate` for npm). Finally, run `yarn db:seed` (or `npm run db:seed` for npm) to insert data into the database if you want sample data. 
 
 **These steps can be done by Nxtstart initially if you choose to seed the database at the end, but the database and client are not commited to the repository, so after cloning the project, all three commands have to be executed to build the database and client**
 
@@ -116,13 +112,13 @@ To update the db using prisma.scheme:
 - Update File
 - Run `yarn prisma db push` (or `npx prisma db push` for npm) (may reset tables or entire database)
 - OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
-- Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
+- Run `yarn prisma generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 To receive update from database after adjusting the scheme there directly:
 
 - Update DB
 - Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
-- Run `yarn run db:generate` (or `npx prisma generate` for npm) (generates prisma client)
+- Run `yarn prisma generate` (or `npx prisma generate` for npm) (generates prisma client)
 
 ### Migrating from SQLite
 
