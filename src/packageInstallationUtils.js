@@ -269,7 +269,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev --turboapck",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",<§cypress§>
     "test": "cypress run",
