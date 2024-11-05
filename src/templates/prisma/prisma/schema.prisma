@@ -1,6 +1,5 @@
 generator client {
   provider      = "prisma-client-js"
-  output        = "./client"
   binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-musl", "linux-musl-openssl-3.0.x"]
 }
 
@@ -14,11 +13,11 @@ datasource db {
 }
 
 model city {
-  ID          Int     @id @default(autoincrement())
-  Name        String  @default("")
-  CountryCode String  @default("")
-  District    String  @default("")
-  Population  Int     @default(0)
+  ID          Int    @id @default(autoincrement())
+  Name        String @default("")
+  CountryCode String @default("")
+  District    String @default("")
+  Population  Int    @default(0)
 
   @@index([Population], map: "Population")
 }
