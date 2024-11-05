@@ -14,7 +14,7 @@ RUN corepack enable
 COPY .yarn ./.yarn
 </§yarn§>
 # Install dependencies based on the preferred package manager (NEW copy yarnrc.yml to the image)
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .yarnrc.yml ./
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .yarnrc.yml* ./
 
 # use this line if you have dependencies that for some reason need global typescript
 # RUN npm install typescript -g
@@ -59,9 +59,8 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # adjust files to your package manager and packages
-COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/next-i18next.config.js ./
-COPY --from=builder /app/assets ./assets
+COPY --from=builder /app/next.config.ts ./
+COPY --from=builder /app/i18nConfig.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json ./package.json
@@ -82,12 +81,12 @@ COPY --from=builder /app/prisma ./prisma
 # Note rebuild again - this is to let the package manager rebuild binaries in the "runner" stage of the Dockerfile
 <§yarn§># We also have to remove unplugged, so that rebuilding happens and replaces the old binaries
 RUN rm -rf /app/.yarn/unplugged && yarn rebuild
-</§yarn§><§npm§>RUN npm run rebuild
-</§npm§>
+</§yarn§>
 
 # Set the correct permission for prerender cache
 RUN chown -R nextjs:nodejs /app/.next
-RUN chown -R nextjs:nodejs /app/.yarn
+<§yarn§>RUN chown -R nextjs:nodejs /app/.yarn
+</§yarn§>
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
@@ -104,4 +103,6 @@ ENV PORT 3000
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD ["yarn", "start"]
+<§yarn§>CMD ["yarn", "start"]
+</§yarn§><§npm§>CMD ["npm", "run", "start"]
+</§npm§>
