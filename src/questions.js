@@ -23,7 +23,7 @@ export const getPackageManager = async () =>
   })
 
 export const getUseLatestVerions = async () =>
-  await confirm({ message: 'Use latest versions of all dependencies? (recommended)', default: true })
+  await confirm({ message: 'Use latest versions of all dependencies AND Next.JS? (recommended)', default: true })
 
 export const getPackages = async () =>
   await checkbox({

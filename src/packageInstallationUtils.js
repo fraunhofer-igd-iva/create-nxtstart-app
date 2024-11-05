@@ -28,10 +28,10 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.1.0',
-      '@eslint/js@9.13.0',
+      '@eslint/js@9.14.0',
       '@next/eslint-plugin-next@15.0.2',
-      '@typescript-eslint/eslint-plugin@8.12.2',
-      '@typescript-eslint/parser@8.12.2',
+      '@typescript-eslint/eslint-plugin@8.13.0',
+      '@typescript-eslint/parser@8.13.0',
       'eslint-plugin-react-hooks@5.0.0',
     ],
   },
@@ -45,18 +45,18 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@6.1.5',
-      '@mui/material@6.1.5',
+      '@mui/icons-material@6.1.6',
+      '@mui/material@6.1.6',
       '@babel/runtime@7.26.0',
       '@emotion/cache@11.13.1',
       '@emotion/react@11.13.3',
       '@emotion/styled@11.13.0',
-      '@mui/material-nextjs@6.1.5',
+      '@mui/material-nextjs@6.1.6',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.11.10'],
+    dep: ['framer-motion@11.11.11'],
     devDep: [],
   },
   redux: {
@@ -73,7 +73,7 @@ const frozenVersionsPackageBundles = {
   },
   prisma: {
     dep: ['@prisma/client@5.21.1', 'sqlite3@5.1.7'],
-    devDep: ['prisma@5.21.1', '@yarnpkg/pnpify@4.1.3', 'tsx@4.19.2'],
+    devDep: ['prisma@5.21.1', 'tsx@4.19.2'],
   },
   i18n: {
     dep: ['i18next@23.16.4', 'react-i18next@15.1.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
@@ -151,7 +151,7 @@ const packageBundles = {
   },
   prisma: {
     dep: ['@prisma/client', 'sqlite3'],
-    devDep: ['prisma', '@yarnpkg/pnpify', 'tsx'],
+    devDep: ['prisma', 'tsx'],
   },
   i18n: {
     dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
@@ -195,10 +195,7 @@ export function addPackages(packageManager, packageNamesUser, projectPath, useLa
       cmdDep += ` ${name}`
     })
     packageBundle.devDep.forEach((name) => {
-      // @yarnpkg/pnpify not needed for npm
-      if (packageManager !== 'npm' || name !== '@yarnpkg/pnpify') {
-        cmdDevDep += ` ${name}`
-      }
+      cmdDevDep += ` ${name}`
     })
   }
 
@@ -212,14 +209,6 @@ export function addPackages(packageManager, packageNamesUser, projectPath, useLa
   }
   console.log(chalk.green(`Installed using "${cmdDep}"`))
   console.log(chalk.green(`Installed using "${cmdDevDep}"`))
-}
-
-export function addVsCodeSdks(projectPath, packageManager) {
-  // add vscode sdks if yarn is used
-  if (packageManager === 'yarn') {
-    shell.cd(projectPath)
-    shell.exec('yarn dlx @yarnpkg/sdks vscode')
-  }
 }
 
 export function updateEnvPrisma(projectPath) {
@@ -280,7 +269,7 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turboapck",
     "build": "next build",
     "start": "next start",<§cypress§>
     "test": "cypress run",
@@ -288,7 +277,6 @@ export function addRunScripts(projectPath, packages, packageManager) {
     "lint": "next lint"<§linting§>,
     "prettierCheck": "yarn prettier . --check",
     "prettierFix": "yarn prettier . --write"</§linting§><§prisma§>,
-    "db:generate": "yarn pnpify prisma generate",
     "db:seed": "tsx prisma/seedDb.ts"</§prisma§>
   }<§husky§>,
   "lint-staged": {
@@ -313,13 +301,6 @@ export function addRunScripts(projectPath, packages, packageManager) {
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md,json}": "prettier --write"
   }</§husky§>`
-      )
-    }
-    if (packageManager === 'yarn' && packages.includes('prisma')) {
-      result = result.replace(
-        /"dependencies": {/g,
-        `"dependencies": {
-	".prisma": "link:./prisma/.prisma/",`
       )
     }
 

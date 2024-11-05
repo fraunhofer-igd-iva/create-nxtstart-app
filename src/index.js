@@ -27,7 +27,6 @@ import {
   updateEnvPrisma,
   updateEnvNextAuth,
   runFinalInstall,
-  addVsCodeSdks,
 } from './packageInstallationUtils.js'
 import { addExamplesJson, addExample, addEmptyCypressDirectories, seedSqliteDb } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
@@ -69,9 +68,9 @@ function createProject() {
   let success = false
 
   if (packageManager === 'npm') {
-    success = initNodeNpm(CURR_DIR, targetPath)
+    success = initNodeNpm(CURR_DIR, targetPath, useLatestVersions)
   } else if (packageManager === 'yarn') {
-    success = initNodeYarn(CURR_DIR, targetPath)
+    success = initNodeYarn(CURR_DIR, targetPath, useLatestVersions)
   }
 
   if (!success) {
@@ -96,12 +95,6 @@ function createProject() {
 function installChosenPackages() {
   // add packages selected by the user
   addPackages(packageManager, packages, targetPath, useLatestVersions)
-
-  addSdks()
-}
-
-function addSdks() {
-  addVsCodeSdks(targetPath, packageManager)
 
   updateProjectRunScripts()
 }

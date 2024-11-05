@@ -10,11 +10,13 @@ export function checkProjectFolder(projectPath) {
   return true
 }
 
-export function initNodeNpm(pathToParentDirectory, pathToProject) {
+const frozenNextJsVersion = '15.0.2'
+
+export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersions) {
   shell.cd(pathToParentDirectory)
 
   const result = shell.exec(
-    `npx create-next-app@latest "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-npm --no-tailwind --turbopack`
+    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-npm --no-tailwind --turbopack`
   )
 
   if (result.code !== 0) {
@@ -24,7 +26,7 @@ export function initNodeNpm(pathToParentDirectory, pathToProject) {
   return true
 }
 
-export function initNodeYarn(pathToParentDirectory, pathToProject) {
+export function initNodeYarn(pathToParentDirectory, pathToProject, useLatestVersions) {
   shell.cd(pathToParentDirectory)
   // set yarn version in parent dict so installation does not fail
   shell.exec('yarn set version stable')
@@ -32,7 +34,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
   shell.rm('package.json')
 
   const result = shell.exec(
-    `npx create-next-app@latest "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --no-turbopack`
+    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --turbopack`
   )
 
   if(result.code === 0) {
@@ -42,6 +44,9 @@ export function initNodeYarn(pathToParentDirectory, pathToProject) {
 
     // disable default telemetry
     shell.exec('yarn next telemetry disable')
+
+    // disable yarn PnP
+    shell.exec('yarn config set nodeLinker node-modules')
   }
 
   // clean up parent dict
