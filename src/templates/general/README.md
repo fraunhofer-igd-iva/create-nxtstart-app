@@ -129,6 +129,21 @@ The example depends on D3 graphs and therefore cannot be used without installing
 
 # Deployment of your project
 
+## Local build
+
 To create an optimized production build run the command `yarn run build` (or `npm run build` for npm).
 
 To run the build created in the `.next` folder you can run `yarn run start` (or `npm run start` for npm).
+
+## Docker
+
+Nxtstart provides a template Dockerfile together with a basic docker-compose.yml.
+Both are located in the root of the project. The Dockerfile will build the project and pack it into an Docker Image.
+Using the docker-compose the building, environment, networking and launching can be simplified.
+Necessary for launching is to create a `prod.env` file if necessary or remove the line from the docker-compose.
+
+You need Docker and the Docker compose plugin installed on your machine in order to build and start the app using:
+```
+docker compose up
+```
+Check the docs [Docs](https://docs.docker.com/reference/cli/docker/compose/) for further information.
