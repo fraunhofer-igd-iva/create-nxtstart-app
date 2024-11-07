@@ -11,7 +11,6 @@ WORKDIR /app
 RUN corepack enable
 COPY .yarn ./.yarn
 </§yarn§>
-
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* .npmrc* .yarnrc.yml* ./
 RUN \
