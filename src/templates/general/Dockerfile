@@ -59,6 +59,8 @@ COPY --from=builder /app/prisma ./prisma
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# copy the public folder from the project as this is not included in the build process
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 USER nextjs
 
