@@ -13,12 +13,11 @@ COPY .yarn ./.yarn
 </§yarn§>
 
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* .yarnrc.yml* ./
+COPY package.json yarn.lock* package-lock.json* .npmrc* .yarnrc.yml* ./
 RUN \
   if [ -f yarn.lock ]; then yarn --immutable; \
-  elif [ -f package-lock.json ]; then npm ci --force; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
+    elif [ -f package-lock.json ]; then npm ci --force; \
+    else echo "Lockfile not found." && exit 1; \
   fi
 
 # Rebuild the source code only when needed
@@ -34,10 +33,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV BUILD_STANDALONE=1
 
 RUN \
-if [ -f yarn.lock ]; then <§prisma§>yarn prisma generate && </§prisma§>yarn run build; \
-elif [ -f package-lock.json ]; then <§prisma§>npx prisma generate && </§prisma§>npm run build; \
-else echo "Lockfile not found." && exit 1; \
-fi
+  if [ -f yarn.lock ]; then <§prisma§>yarn prisma generate && </§prisma§>yarn run build; \
+    elif [ -f package-lock.json ]; then <§prisma§>npx prisma generate && </§prisma§>npm run build; \
+    else echo "Lockfile not found." && exit 1; \
+  fi
 
 # Production image, copy all the files and run next
 FROM base AS runner
