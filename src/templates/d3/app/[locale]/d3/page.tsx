@@ -18,6 +18,8 @@ type D3PageData = {
   dataScatter: DataPoint[]
 }
 
+// runs on the server only
+// fetches data for the page from the database directly
 async function getPageData() {
   const dataCities: Data[] = [
     { label: 'Mumbai (Bombay)', value: 10500000, totalDataPoints: 50 },

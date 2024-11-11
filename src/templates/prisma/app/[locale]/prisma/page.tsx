@@ -15,6 +15,8 @@ interface PrismaPageData {
   cities: city[]
 }
 
+// runs on the server only
+// fetches data for the page from the database directly
 async function getPageData() {
   const cities = await prisma.city.findMany({
     // find cities with a population >= 1000000

@@ -5,8 +5,7 @@ import useSWR from 'swr'
 
 export default function SwrComponent() {
   // change the fetcher according to the data that is provided by the api, in this case json
-  // revalidate every hour, all fetches are cached by default in nextjs
-  const fetcher = (input: RequestInfo | URL) => fetch(input, { next: { revalidate: 3600 } }).then((res) => res.json())
+  const fetcher = (input: RequestInfo | URL) => fetch(input).then((res) => res.json())
   // use the provided variables to render the page according to the fetching status
   const { data, error, isLoading } = useSWR('/api/hello?name=John Doe', fetcher)
 

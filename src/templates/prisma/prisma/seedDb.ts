@@ -4097,7 +4097,7 @@ const seed = async () => {
       data: {
         ID: city[0],
         Name: city[1],
-      CountryCode: city[2],
+        CountryCode: city[2],
         District: city[3],
         Population: city[4],
       }

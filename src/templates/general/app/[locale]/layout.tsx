@@ -19,10 +19,12 @@ export const metadata: Metadata = {
     'Nxtstart is an easy to use, interactive CLI tool to bootstrap your next web-based project. The template is aimed at students to get an easy access to web development with example implementations. It is also useful for experts to speed up prototyping.',
 }
 
+// used to access locale in the layout
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
 }
 
+// root layout applied to all pages, more specific layouts can be defined deeper in the folder structure for subpaths of the app
 export default async function RootLayout({
   children,
   params,
