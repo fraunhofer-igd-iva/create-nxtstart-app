@@ -27,12 +27,14 @@ import {
   updateEnvPrisma,
   updateEnvNextAuth,
   runFinalInstall,
+  fullPackageList,
 } from './packageInstallationUtils.js'
 import { addExamplesJson, addExample, addEmptyCypressDirectories, seedSqliteDb } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
 import * as path from 'path'
 import chalk from 'chalk'
 import gradient from 'gradient-string'
+import minimist from 'minimist'
 
 const TITLE_TEXT = `
  _   _  __   __  _______    _____   _______              _____    _______ 
@@ -44,15 +46,21 @@ const TITLE_TEXT = `
 `
 
 console.log(gradient(['#009374', '#66BFAC', '#79B4D9', '#1F82C0']).multiline(TITLE_TEXT))
+
+// args used for integrated testing
+// create-nxtstart-app --projectName=test --keepGit --packageManager=yarn --useLatestVersions --allPackages --allExamples --runPrettier --initCommit --seedDb
+const argv = minimist(process.argv.slice(2))
+console.log('Given arguments:', argv)
+
 // Query setup data from user
-const projectName = await getProjectName()
-const keepGit = await getKeepGit()
-const packageManager = await getPackageManager()
-const useLatestVersions = await getUseLatestVerions()
+const projectName = argv.projectName ?? await getProjectName()
+const keepGit = argv.keepGit ?? await getKeepGit()
+const packageManager = (argv.packageManager === 'npm' || argv.packageManager === 'yarn') ? argv.packageManager : await getPackageManager()
+const useLatestVersions = argv.useLatestVersions ?? await getUseLatestVerions()
 // per default add mui and i18n
-const packages = ['mui', 'i18n', ...(await getPackages())]
+const packages = argv.allPackages ? fullPackageList.slice(3) : ['mui', 'i18n', ...(await getPackages())]
 // per default add general files, mui and i18n
-const examples = ['general', 'i18n', ...(await getExamples(packages))]
+const examples = argv.allExamples ? fullPackageList.slice(2) : ['general', 'i18n', ...(await getExamples(packages))]
 
 // setup nextjs project using selected package manager in the appropriate subfolder of the current directory
 const CURR_DIR = process.cwd()
@@ -150,14 +158,14 @@ function finishCreation() {
 
   setTimeout(async () => {
     if (examples.includes('linting')) {
-      const runP = await getRunPrettier()
+      const runP = argv.runPrettier ?? await getRunPrettier()
       if (runP) {
         runPrettier(targetPath, packageManager)
       }
     }
 
     if (keepGit) {
-      const doInitialCommit = await getDoInitialCommit()
+      const doInitialCommit = argv.initCommit ?? await getDoInitialCommit()
       if (doInitialCommit) {
         performInitialCommit(targetPath)
       }
@@ -168,7 +176,7 @@ function finishCreation() {
 
 async function seedDb() {
   if (examples.includes('prisma')) {
-    const seedDb = await getSeedDb()
+    const seedDb = argv.seedDb ?? await getSeedDb()
     if (seedDb) {
       seedSqliteDb(targetPath, packages, packageManager)
     }

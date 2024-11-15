@@ -7,6 +7,7 @@ import path from 'path'
 export const fullPackageList = [
   'npm',
   'yarn',
+  'general',
   'linting',
   'swr',
   'mui',
