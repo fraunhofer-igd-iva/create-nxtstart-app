@@ -16,7 +16,8 @@
   },
   "scripts": {
     "prettier:check": "npx prettier . --check",
-    "prettier:fix": "npx prettier . --write"
+    "prettier:fix": "npx prettier . --write",
+    "test": "node ./test/testrun.js"
   },
   "author": "Felix Wagner",
   "license": "ISC",
@@ -25,6 +26,7 @@
     "@inquirer/prompts": "^2.1.1",
     "chalk": "^5.2.0",
     "gradient-string": "^2.0.2",
+    "minimist": "^1.2.8",
     "shelljs": "^0.8.5"
   },
   "devDependencies": {
