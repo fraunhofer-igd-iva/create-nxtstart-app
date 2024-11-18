@@ -17,7 +17,8 @@
   "scripts": {
     "prettier:check": "npx prettier . --check",
     "prettier:fix": "npx prettier . --write",
-    "test": "node ./test/testrun.js"
+    "testYarn": "node ./test/testrun.js yarn",
+    "testNpm": "node ./test/testrun.js npm"
   },
   "author": "Felix Wagner",
   "license": "ISC",
