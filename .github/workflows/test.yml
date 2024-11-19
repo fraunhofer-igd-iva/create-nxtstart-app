@@ -10,6 +10,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      # needed to avoid npm authentication problems in github action runner when trying to npm install
       - run: rm package-lock.json
       - run: npm install
       - run: npm install -g

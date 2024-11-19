@@ -79,7 +79,5 @@ runNxtstart(targetPath, function (err) {
   // make sure test server is completely shutdown, this will kill ALL running node processes
   if (isWindows) {
     shell.exec('taskkill /f /im node.exe')
-  } else {
-    shell.exec('killall node')
   }
 })
