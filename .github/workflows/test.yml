@@ -10,7 +10,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm i
+      - run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: npm install -g
       - run: npm run testNpm
       - run: npm run testYarn
