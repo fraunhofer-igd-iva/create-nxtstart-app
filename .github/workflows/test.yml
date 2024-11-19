@@ -36,4 +36,4 @@ jobs:
       - run: npm install
       - run: npm install -g
       - run: npm run testYarn
-        working-directory: ../nxtstart-test
+        working-directory: ./nxtstart-test
