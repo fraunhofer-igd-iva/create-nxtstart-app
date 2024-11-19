@@ -18,7 +18,7 @@ jobs:
       - run: rm package-lock.json
       - run: mkdir nxtstart-cli
       - run: shopt -s extglob dotglob
-      - run: mv !(nxtstart-cli) nxtstart-cli
+      - run: mv !nxtstart-cli nxtstart-cli
       - run: shopt -u dotglob
       - run: npm install
       - run: npm install -g
@@ -38,7 +38,7 @@ jobs:
       - run: rm package-lock.json
       - run: mkdir nxtstart-cli
       - run: shopt -s extglob dotglob
-      - run: mv !(nxtstart-cli) nxtstart-cli
+      - run: mv !nxtstart-cli nxtstart-cli
       - run: shopt -u dotglob
       - run: npm install
       - run: npm install -g
