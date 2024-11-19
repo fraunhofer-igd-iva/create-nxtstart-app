@@ -19,7 +19,7 @@ jobs:
       - run: npm install
       - run: npm install -g
       # clear folder to properly setup new nxtstart project including local git repo, keep test script
-      - run: find . ! -name 'testrun.js' -prune -type d -exec rm -R {} +
+      - run: find . ! name . ! -name 'testrun.js' -prune -type d -exec rm -R {} +
       - run: npm run testNpm
   yarn:
     runs-on: ubuntu-latest
@@ -36,5 +36,5 @@ jobs:
       - run: npm install
       - run: npm install -g
       # clear folder to properly setup new nxtstart project including local git repo, keep test script
-      - run: find . ! -name 'testrun.js' -prune -type d -exec rm -R {} +
+      - run: find . ! name . ! -name 'testrun.js' -prune -type d -exec rm -R {} +
       - run: npm run testYarn
