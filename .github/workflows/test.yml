@@ -1,7 +1,7 @@
 name: Test Nxtstart Creation 👷
 on: push
 jobs: 
-  build:
+  npm:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
@@ -16,4 +16,18 @@ jobs:
       - run: npm install
       - run: npm install -g
       - run: npm run testNpm
+  yarn:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+      - name: Setup Node.js 🔧
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      # needed to avoid npm authentication problems in github action runner when trying to npm install
+      - run: rm package-lock.json
+      - run: npm install
+      - run: npm install -g
       - run: npm run testYarn
