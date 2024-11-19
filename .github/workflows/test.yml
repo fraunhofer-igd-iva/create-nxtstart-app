@@ -1,6 +1,8 @@
 name: Test Nxtstart Creation 👷
 on:
   push:
+  #schedule:
+  #  - cron: 0 9 * * 1
 jobs: 
   npm:
     runs-on: ubuntu-latest
@@ -17,7 +19,7 @@ jobs:
       - run: npm install
       - run: npm install -g
       # clear folder to properly setup new nxtstart project including local git repo
-      - run: rm -r * .*
+      - run: find . ! -name . -prune -type d -exec rm -R {} +
       - run: npm run testNpm
   yarn:
     runs-on: ubuntu-latest
@@ -34,5 +36,5 @@ jobs:
       - run: npm install
       - run: npm install -g
       # clear folder to properly setup new nxtstart project including local git repo
-      - run: rm -r * .*
+      - run: find . ! -name . -prune -type d -exec rm -R {} +
       - run: npm run testYarn
