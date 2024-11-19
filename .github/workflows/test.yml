@@ -35,6 +35,5 @@ jobs:
       - run: rm package-lock.json
       - run: npm install
       - run: npm install -g
-      # clear folder to properly setup new nxtstart project including local git repo, keep test script
-      - run: find . ! -name . ! -name 'test' -prune -type d -exec rm -R {} +
       - run: npm run testYarn
+        working-directory: ../nxtstart-test
