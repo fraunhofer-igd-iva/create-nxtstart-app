@@ -16,19 +16,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       # needed to avoid npm authentication problems in github action runner when trying to npm install
       - run: rm package-lock.json
-      - run: mkdir nxtstart
-      - run: shopt -s extglob dotglob
-        working-directory: ./nxtstart
-      - run: mv !(nxtstart) nxtstart
-        working-directory: ./nxtstart
-      - run: shopt -u dotglob
-        working-directory: ./nxtstart
       - run: npm install
-        working-directory: ./nxtstart
+      # install create-nxtstart-app
       - run: npm install -g
-        working-directory: ./nxtstart
+      # run test
       - run: npm run testNpm
-        working-directory: ./nxtstart-test
   yarn:
     runs-on: ubuntu-latest
     steps:
@@ -41,16 +33,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       # needed to avoid npm authentication problems in github action runner when trying to npm install
       - run: rm package-lock.json
-      - run: mkdir nxtstart
-      - run: shopt -s extglob dotglob
-        working-directory: ./nxtstart
-      - run: mv !(nxtstart) nxtstart
-        working-directory: ./nxtstart
-      - run: shopt -u dotglob
-        working-directory: ./nxtstart
       - run: npm install
-        working-directory: ./nxtstart
+      # install create-nxtstart-app
       - run: npm install -g
-        working-directory: ./nxtstart
+      # run test
       - run: npm run testYarn
-        working-directory: ./nxtstart-test
