@@ -19,6 +19,9 @@ jobs:
       - run: npm install
       # install create-nxtstart-app
       - run: npm install -g
+      # clean folder to instantiate new git repo
+      - run: shopt -s dotglob
+      - run: rm -rf *
       # run test
       - run: npm run testNpm
   yarn:
@@ -36,5 +39,8 @@ jobs:
       - run: npm install
       # install create-nxtstart-app
       - run: npm install -g
+      # clean folder to instantiate new git repo
+      - run: shopt -s dotglob
+      - run: rm -rf *
       # run test
       - run: npm run testYarn
