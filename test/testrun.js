@@ -30,7 +30,7 @@ function runNxtstart(scriptPath, callback) {
     scriptPath,
     [
       `--projectName=${projectName}`,
-      '--keepGit',
+      '--no-keepGit',
       `--packageManager=${packageManager}`,
       '--useLatestVersions',
       '--allPackages',
