@@ -4,8 +4,8 @@ import React from 'react'
 import { Box, Button } from '@mui/material'
 
 export default function FileWebWorker() {
-  const jsonWorkerRef = React.useRef<Worker>()
-  const txtWorkerRef = React.useRef<Worker>()
+  const jsonWorkerRef = React.useRef<Worker>(null)
+  const txtWorkerRef = React.useRef<Worker>(null)
 
   React.useEffect(() => {
     jsonWorkerRef.current = new Worker(new URL('../../../webWorker/jsonWorker.ts', import.meta.url))

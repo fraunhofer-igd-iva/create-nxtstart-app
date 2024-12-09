@@ -18,7 +18,7 @@ export default function ClientProviders({
   <§nextAuth§>session: Session | null | undefined</§nextAuth§>
   children: React.ReactNode
 }) {
-  <§redux§>const storeRef = React.useRef<AppStore>()
+  <§redux§>const storeRef = React.useRef<AppStore>(null)
   if (!storeRef.current) {
     // Create the store instance the first time this renders
     storeRef.current = makeStore()

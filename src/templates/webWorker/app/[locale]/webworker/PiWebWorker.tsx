@@ -9,7 +9,7 @@ interface PiWebWorkerProps {
 }
 
 export default function PiWebWorker(props: PiWebWorkerProps) {
-  const workerRef = React.useRef<Worker>()
+  const workerRef = React.useRef<Worker>(null)
 
   React.useEffect(() => {
     workerRef.current = new Worker(new URL('../../../webWorker/worker.ts', import.meta.url))
