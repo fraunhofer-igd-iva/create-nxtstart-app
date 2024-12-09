@@ -30,7 +30,7 @@ function runNxtstart(scriptPath, callback) {
     scriptPath,
     [
       `--projectName=${projectName}`,
-      '--keepGit',
+      '--no-keepGit',
       `--packageManager=${packageManager}`,
       '--useLatestVersions',
       '--allPackages',
@@ -79,7 +79,5 @@ runNxtstart(targetPath, function (err) {
   // make sure test server is completely shutdown, this will kill ALL running node processes
   if (isWindows) {
     shell.exec('taskkill /f /im node.exe')
-  } else {
-    shell.exec('killall node')
   }
 })
