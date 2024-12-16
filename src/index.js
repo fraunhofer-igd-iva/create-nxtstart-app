@@ -19,7 +19,6 @@ import {
   removeGit,
   performInitialCommit,
   removeDefaultPage,
-  upgradeToEslint9,
 } from './projectCreationUtils.js'
 import {
   addPackages,
@@ -91,9 +90,6 @@ function createProject() {
     removeGit(targetPath)
   }
   removeDefaultPage(targetPath)
-
-  // remove once nextjs implements default eslint 9 usage into create next app
-  upgradeToEslint9(targetPath, packageManager, useLatestVersions)
   
   console.log(chalk.green('Done creating nextjs project structure. Proceeding to install additional packages...'))
 
