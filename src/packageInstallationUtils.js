@@ -29,10 +29,10 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.2.0',
-      '@eslint/js@9.16.0',
-      '@next/eslint-plugin-next@15.0.4',
-      '@typescript-eslint/eslint-plugin@8.17.0',
-      '@typescript-eslint/parser@8.17.0',
+      '@eslint/js@9.17.0',
+      '@next/eslint-plugin-next@15.1.0',
+      '@typescript-eslint/eslint-plugin@8.18.0',
+      '@typescript-eslint/parser@8.18.0',
       'eslint-plugin-react-hooks@5.1.0',
     ],
   },
@@ -46,22 +46,22 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@6.1.10',
-      '@mui/material@6.1.10',
+      '@mui/icons-material@6.2.0',
+      '@mui/material@6.2.0',
       '@babel/runtime@7.26.0',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.0',
-      '@mui/material-nextjs@6.1.9',
+      '@mui/material-nextjs@6.2.0',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.13.1'],
+    dep: ['framer-motion@11.14.4'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.4.0', 'react-redux@9.1.2'],
+    dep: ['@reduxjs/toolkit@2.5.0', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -77,7 +77,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['prisma@6.0.1', 'tsx@4.19.2'],
   },
   i18n: {
-    dep: ['i18next@24.0.5', 'react-i18next@15.1.3', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
+    dep: ['i18next@24.1.0', 'react-i18next@15.2.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
     devDep: [],
   },
   pwa: {
@@ -98,7 +98,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@15.2.10'],
+    devDep: ['husky@9.1.7', 'lint-staged@15.2.11'],
   },
 }
 
