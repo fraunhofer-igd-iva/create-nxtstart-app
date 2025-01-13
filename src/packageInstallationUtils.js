@@ -29,10 +29,10 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.2.0',
-      '@eslint/js@9.17.0',
-      '@next/eslint-plugin-next@15.1.0',
-      '@typescript-eslint/eslint-plugin@8.18.0',
-      '@typescript-eslint/parser@8.18.0',
+      '@eslint/js@9.18.0',
+      '@next/eslint-plugin-next@15.1.4',
+      '@typescript-eslint/eslint-plugin@8.19.1',
+      '@typescript-eslint/parser@8.19.1',
       'eslint-plugin-react-hooks@5.1.0',
     ],
   },
@@ -41,23 +41,23 @@ const frozenVersionsPackageBundles = {
     devDep: ['eslint-config-prettier@9.1.0', 'prettier@3.4.2'],
   },
   swr: {
-    dep: ['swr@2.2.5'],
+    dep: ['swr@2.3.0'],
     devDep: [],
   },
   mui: {
     dep: [
-      '@mui/icons-material@6.2.0',
-      '@mui/material@6.2.0',
+      '@mui/icons-material@6.3.1',
+      '@mui/material@6.3.1',
       '@babel/runtime@7.26.0',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.0',
-      '@mui/material-nextjs@6.2.0',
+      '@mui/material-nextjs@6.3.1',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.14.4'],
+    dep: ['framer-motion@11.17.0'],
     devDep: [],
   },
   redux: {
@@ -73,11 +73,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@6.0.1', 'sqlite3@5.1.7'],
-    devDep: ['prisma@6.0.1', 'tsx@4.19.2'],
+    dep: ['@prisma/client@6.2.1', 'sqlite3@5.1.7'],
+    devDep: ['prisma@6.2.1', 'tsx@4.19.2'],
   },
   i18n: {
-    dep: ['i18next@24.1.0', 'react-i18next@15.2.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
+    dep: ['i18next@24.2.1', 'react-i18next@15.4.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
     devDep: [],
   },
   pwa: {
@@ -86,10 +86,10 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@13.16.1'],
+    devDep: ['cypress@13.17.0'],
   },
   sse: {
-    dep: ['uuid@11.0.3'],
+    dep: ['uuid@11.0.5'],
     devDep: ['@types/uuid@10.0.0'],
   },
   webWorker: {
@@ -98,7 +98,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@15.2.11'],
+    devDep: ['husky@9.1.7', 'lint-staged@15.3.0'],
   },
 }
 
