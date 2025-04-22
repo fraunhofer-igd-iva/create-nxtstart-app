@@ -28,40 +28,40 @@ const frozenVersionsPackageBundles = {
   general: {
     dep: [],
     devDep: [
-      '@eslint/eslintrc@3.2.0',
-      '@eslint/js@9.18.0',
-      '@next/eslint-plugin-next@15.1.4',
-      '@typescript-eslint/eslint-plugin@8.19.1',
-      '@typescript-eslint/parser@8.19.1',
-      'eslint-plugin-react-hooks@5.1.0',
+      '@eslint/eslintrc@3.3.1',
+      '@eslint/js@9.25.1',
+      '@next/eslint-plugin-next@15.3.1',
+      '@typescript-eslint/eslint-plugin@8.31.0',
+      '@typescript-eslint/parser@8.31.0',
+      'eslint-plugin-react-hooks@5.2.0',
     ],
   },
   linting: {
     dep: [],
-    devDep: ['eslint-config-prettier@9.1.0', 'prettier@3.4.2'],
+    devDep: ['eslint-config-prettier@10.1.2', 'prettier@3.5.3'],
   },
   swr: {
-    dep: ['swr@2.3.0'],
+    dep: ['swr@2.3.3'],
     devDep: [],
   },
   mui: {
     dep: [
-      '@mui/icons-material@6.3.1',
-      '@mui/material@6.3.1',
-      '@babel/runtime@7.26.0',
+      '@mui/icons-material@7.0.2',
+      '@mui/material@7.0.2',
+      '@babel/runtime@7.27.0',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.0',
-      '@mui/material-nextjs@6.3.1',
+      '@mui/material-nextjs@7.0.2',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@11.17.0'],
+    dep: ['framer-motion@12.7.4'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.5.0', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.7.0', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -73,11 +73,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@6.2.1', 'sqlite3@5.1.7'],
-    devDep: ['prisma@6.2.1', 'tsx@4.19.2'],
+    dep: ['@prisma/client@6.6.0', 'sqlite3@5.1.7'],
+    devDep: ['prisma@6.6.0', 'tsx@4.19.3'],
   },
   i18n: {
-    dep: ['i18next@24.2.1', 'react-i18next@15.4.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
+    dep: ['i18next@25.0.1', 'react-i18next@15.4.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
     devDep: [],
   },
   pwa: {
@@ -86,10 +86,10 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@13.17.0'],
+    devDep: ['cypress@14.3.1'],
   },
   sse: {
-    dep: ['uuid@11.0.5'],
+    dep: ['uuid@11.1.0'],
     devDep: ['@types/uuid@10.0.0'],
   },
   webWorker: {
@@ -98,7 +98,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@15.3.0'],
+    devDep: ['husky@9.1.7', 'lint-staged@15.5.1'],
   },
 }
 
