@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Paper, Grid2, Typography, styled, useColorScheme } from '@mui/material'
+import { Paper, Grid, Typography, styled, useColorScheme } from '@mui/material'
 import Image from 'next/image'
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -17,19 +17,19 @@ export default function MuiGridItem() {
   // checkout https://mui.com/material-ui/react-grid/ for detailed grid examples and documentation
   return (
     <Paper sx={{ padding: 2, maxWidth: '100dvw', backgroundColor: 'grey.300' }}>
-      <Grid2 container spacing={2} justifyContent={'center'} alignItems={'center'} maxWidth={'100dvw'}>
-        <Grid2 size={{ xs: 12 }}>
+      <Grid container spacing={2} justifyContent={'center'} alignItems={'center'} maxWidth={'100dvw'}>
+        <Grid size={{ xs: 12 }}>
           <Item>
             <Typography variant={'h5'}>Title &quot;Lorem ipsum dolor sit amet&quot;</Typography>
           </Item>
-        </Grid2>
-        <Grid2 size={{ lg: 12, xl: 5 }} container spacing={2} direction={'column'}>
-          <Grid2>
+        </Grid>
+        <Grid size={{ lg: 12, xl: 5 }} container spacing={2} direction={'column'}>
+          <Grid>
             <Item>
               <Typography variant={'h5'}>Image Title</Typography>
             </Item>
-          </Grid2>
-          <Grid2>
+          </Grid>
+          <Grid>
             <Item>
               <Image
                 alt={'image'}
@@ -39,9 +39,9 @@ export default function MuiGridItem() {
                 style={{ width: '288', height: '64' }}
               />
             </Item>
-          </Grid2>
-        </Grid2>
-        <Grid2 size={{ lg: 12, xl: 7 }}>
+          </Grid>
+        </Grid>
+        <Grid size={{ lg: 12, xl: 7 }}>
           <Item>
             <Typography>
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
@@ -52,8 +52,8 @@ export default function MuiGridItem() {
               gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
             </Typography>
           </Item>
-        </Grid2>
-      </Grid2>
+        </Grid>
+      </Grid>
     </Paper>
   )
 }
