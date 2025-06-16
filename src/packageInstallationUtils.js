@@ -29,16 +29,16 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.3.1',
-      '@eslint/js@9.25.1',
-      '@next/eslint-plugin-next@15.3.1',
-      '@typescript-eslint/eslint-plugin@8.31.0',
-      '@typescript-eslint/parser@8.31.0',
+      '@eslint/js@9.29.0',
+      '@next/eslint-plugin-next@15.3.3',
+      '@typescript-eslint/eslint-plugin@8.34.0',
+      '@typescript-eslint/parser@8.34.0',
       'eslint-plugin-react-hooks@5.2.0',
     ],
   },
   linting: {
     dep: [],
-    devDep: ['eslint-config-prettier@10.1.2', 'prettier@3.5.3'],
+    devDep: ['eslint-config-prettier@10.1.5', 'prettier@3.5.3'],
   },
   swr: {
     dep: ['swr@2.3.3'],
@@ -46,22 +46,22 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@7.0.2',
-      '@mui/material@7.0.2',
-      '@babel/runtime@7.27.0',
+      '@mui/icons-material@7.1.1',
+      '@mui/material@7.1.1',
+      '@babel/runtime@7.27.6',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.0',
-      '@mui/material-nextjs@7.0.2',
+      '@mui/material-nextjs@7.1.1',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@12.7.4'],
+    dep: ['framer-motion@12.18.1'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.7.0', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.8.2', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -73,11 +73,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@6.6.0', 'sqlite3@5.1.7'],
-    devDep: ['prisma@6.6.0', 'tsx@4.19.3'],
+    dep: ['@prisma/client@6.9.0', 'sqlite3@5.1.7'],
+    devDep: ['prisma@6.9.0', 'tsx@4.20.3'],
   },
   i18n: {
-    dep: ['i18next@25.0.1', 'react-i18next@15.4.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.1'],
+    dep: ['i18next@25.2.1', 'react-i18next@15.5.3', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.2'],
     devDep: [],
   },
   pwa: {
@@ -86,7 +86,7 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@14.3.1'],
+    devDep: ['cypress@14.4.1'],
   },
   sse: {
     dep: ['uuid@11.1.0'],
@@ -98,7 +98,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@15.5.1'],
+    devDep: ['husky@9.1.7', 'lint-staged@16.1.2'],
   },
 }
 
