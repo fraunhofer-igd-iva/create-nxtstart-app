@@ -15,10 +15,11 @@ export default function PageLayout(props: PageLayoutProps) {
   const theme = useTheme()
   <§animations§>const pathname = usePathname()
 
+  // content slides in from bottom on page change
   const variants = {
-    hidden: { opacity: 0, x: -200, y: 0 },
-    enter: { opacity: 1, x: 0, y: 0 },
-    exit: { opacity: 0, x: 0, y: -100 },
+    hidden: { opacity: 0, y: 100 },
+    enter: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -100 },
   }
   </§animations§>
   return (
@@ -40,7 +41,7 @@ export default function PageLayout(props: PageLayoutProps) {
           initial={'hidden'} // Set the initial state to variants.hidden
           animate={'enter'} // Animated state to variants.enter
           exit={'exit'} // Exit state (used later) to variants.exit
-          transition={{ type: 'linear' }} // Set the transition to linear
+          transition={{ type: 'tween' }} // Set the transition to tween
           style={{ width: '100%' }}
         ></§animations§>
           {props.children}

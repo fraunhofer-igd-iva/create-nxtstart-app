@@ -29,7 +29,7 @@ export default function ClientProviders({
       <§redux§><Provider store={storeRef.current}></§redux§>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <§animations§><AnimatePresence mode={'wait'} initial={false} onExitComplete={() => window.scrollTo(0, 0)}></§animations§>
+          <§animations§><AnimatePresence mode={'wait'}></§animations§>
             <PageLayout>{children}</PageLayout>
           <§animations§></AnimatePresence></§animations§>
         </ThemeProvider>
