@@ -131,94 +131,8 @@ export default function ScatterPlot(props: ScatterPlotProps) {
   }
 
   /**********************************************************
-   *  Mouse lasso selection
-   **********************************************************/
-
-  /**
-   * Called only after this component initially mounts.
-   * Here the mouse event callbacks are registered to the canvas.
-   */
-  React.useEffect(() => {
-    if (canvasRef.current) {
-      canvasRef.current.onmousedown = (event: MouseEvent) => {
-        const pos = getCoordinatesFromMouseEvent(canvasRef.current!, event)
-        mouseDown.current = true
-        mouseSelectionPoints.current = [pos]
-        requestAnimationFrame(mouseSelectionUpdate)
-      }
-      canvasRef.current.onmousemove = (event: MouseEvent) => {
-        if (mouseDown.current) {
-          const pos = getCoordinatesFromMouseEvent(canvasRef.current!, event)
-          const lastPos = mouseSelectionPoints.current[mouseSelectionPoints.current.length - 1]
-          const diff = Math.pow(pos.x - lastPos.x, 2) + Math.pow(pos.y - lastPos.y, 2)
-
-          // Test minimal distance between last point, to avoid too many
-          // points on the selection polygon
-          if (diff >= 10) {
-            mouseSelectionPoints.current.push(pos)
-          }
-        }
-      }
-      canvasRef.current.onmouseup = () => {
-        if (props.onSelection && mouseSelectionPoints.current.length > 2) {
-          // Convert to data domain coordinates
-          const polygonPoints = mouseSelectionPoints.current.map((point) => ({
-            x: d3ScaleX.current!.invert(point.x - margin.left),
-            y: d3ScaleY.current!.invert(point.y - margin.top),
-          }))
-
-          const selectedDataPoints = getPointsWithinPolygon(polygonPoints, props.data)
-          props.onSelection(selectedDataPoints)
-        }
-
-        mouseDown.current = false
-        mouseSelectionPoints.current = []
-      }
-    }
-  }, [])
-
-  /**
-   * If mouse selection is active (mouseDown), run draw updates with
-   * the browser's animation loop timing. This decouples the drawing from the mousemove
-   * events, which might occur much faster, and thus impact performance.
-   */
-  function mouseSelectionUpdate() {
-    if (mouseDown.current) {
-      requestAnimationFrame(mouseSelectionUpdate)
-    }
-    draw()
-  }
-
-  function getCoordinatesFromMouseEvent(canvas: HTMLCanvasElement, event: MouseEvent): { x: number; y: number } {
-    const rect = canvas.getBoundingClientRect()
-    return {
-      x: ((event.clientX - rect.left) / (rect.right - rect.left)) * canvasWidth,
-      y: ((event.clientY - rect.top) / (rect.bottom - rect.top)) * canvasHeight,
-    }
-  }
-
-  /**********************************************************
    *  Drawing
    **********************************************************/
-
-  /**
-   * This useEffect block is run every time the data or component sizes change. We will do every chart updates here.
-   */
-  React.useEffect(
-    () => {
-      if (canvasRef.current) {
-        const { chartWidth, chartHeight } = getChartSize()
-        const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
-
-        d3ScaleX.current = xScale
-        d3ScaleY.current = yScale
-
-        draw()
-      }
-    },
-    /* The dependency array of useEffect. This block will run every time the input data or size change */
-    [props.data, props.width, props.height, theme]
-  )
 
   function adaptToDevicePixelRatio(ctx: CanvasRenderingContext2D) {
     const dpi = window.devicePixelRatio || 1
@@ -233,15 +147,6 @@ export default function ScatterPlot(props: ScatterPlotProps) {
 
     // Normalize coordinate system to use css pixels.
     ctx.scale(dpi, dpi)
-  }
-
-  function draw() {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.getContext('2d')
-      if (ctx) {
-        renderScene(ctx)
-      }
-    }
   }
 
   function renderScene(ctx: CanvasRenderingContext2D) {
@@ -375,6 +280,101 @@ export default function ScatterPlot(props: ScatterPlotProps) {
     ctx.fill()
     ctx.stroke()
   }
+
+  function draw() {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')
+      if (ctx) {
+        renderScene(ctx)
+      }
+    }
+  }
+
+  /**
+   * This useEffect block is run every time the data or component sizes change. We will do every chart updates here.
+   */
+  React.useEffect(
+    () => {
+      if (canvasRef.current) {
+        const { chartWidth, chartHeight } = getChartSize()
+        const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
+
+        d3ScaleX.current = xScale
+        d3ScaleY.current = yScale
+
+        draw()
+      }
+    },
+    /* The dependency array of useEffect. This block will run every time the input data or size change */
+    [props.data, props.width, props.height, theme]
+  )
+
+  /**********************************************************
+   *  Mouse lasso selection
+   **********************************************************/
+
+  /**
+   * If mouse selection is active (mouseDown), run draw updates with
+   * the browser's animation loop timing. This decouples the drawing from the mousemove
+   * events, which might occur much faster, and thus impact performance.
+   */
+  function mouseSelectionUpdate() {
+    if (mouseDown.current) {
+      requestAnimationFrame(mouseSelectionUpdate)
+    }
+    draw()
+  }
+
+  function getCoordinatesFromMouseEvent(canvas: HTMLCanvasElement, event: MouseEvent): { x: number; y: number } {
+    const rect = canvas.getBoundingClientRect()
+    return {
+      x: ((event.clientX - rect.left) / (rect.right - rect.left)) * canvasWidth,
+      y: ((event.clientY - rect.top) / (rect.bottom - rect.top)) * canvasHeight,
+    }
+  }
+
+  /**
+   * Called only after this component initially mounts.
+   * Here the mouse event callbacks are registered to the canvas.
+   */
+  React.useEffect(() => {
+    if (canvasRef.current) {
+      canvasRef.current.onmousedown = (event: MouseEvent) => {
+        const pos = getCoordinatesFromMouseEvent(canvasRef.current!, event)
+        mouseDown.current = true
+        mouseSelectionPoints.current = [pos]
+        requestAnimationFrame(mouseSelectionUpdate)
+      }
+      canvasRef.current.onmousemove = (event: MouseEvent) => {
+        if (mouseDown.current) {
+          const pos = getCoordinatesFromMouseEvent(canvasRef.current!, event)
+          const lastPos = mouseSelectionPoints.current[mouseSelectionPoints.current.length - 1]
+          const diff = Math.pow(pos.x - lastPos.x, 2) + Math.pow(pos.y - lastPos.y, 2)
+
+          // Test minimal distance between last point, to avoid too many
+          // points on the selection polygon
+          if (diff >= 10) {
+            mouseSelectionPoints.current.push(pos)
+          }
+        }
+      }
+      canvasRef.current.onmouseup = () => {
+        if (props.onSelection && mouseSelectionPoints.current.length > 2) {
+          // Convert to data domain coordinates
+          const polygonPoints = mouseSelectionPoints.current.map((point) => ({
+            x: d3ScaleX.current!.invert(point.x - margin.left),
+            y: d3ScaleY.current!.invert(point.y - margin.top),
+          }))
+
+          const selectedDataPoints = getPointsWithinPolygon(polygonPoints, props.data)
+          props.onSelection(selectedDataPoints)
+        }
+
+        mouseDown.current = false
+        mouseSelectionPoints.current = []
+      }
+    }
+  }, [])
 
   return <canvas width={canvasWidth} height={canvasHeight} ref={canvasRef} />
 }

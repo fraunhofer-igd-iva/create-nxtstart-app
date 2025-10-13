@@ -39,7 +39,7 @@ export default function ScatterPlotContainer(props: ScatterPlotProps) {
           py: 4,
         }}
       >
-        <ScatterPlot width={500} height={500} data={dataScatter} />
+        <ScatterPlot width={500} height={500} data={dataScatter} onSelection={(selection) => console.log(selection)} />
       </Box>
     </Box>
   )

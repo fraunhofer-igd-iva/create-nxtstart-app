@@ -18,15 +18,11 @@ export default function ClientProviders({
   <§nextAuth§>session: Session | null | undefined</§nextAuth§>
   children: React.ReactNode
 }) {
-  <§redux§>const storeRef = React.useRef<AppStore>(null)
-  if (!storeRef.current) {
-    // Create the store instance the first time this renders
-    storeRef.current = makeStore()
-  }</§redux§>
+  <§redux§>const [store] = React.useState<AppStore>(() => makeStore())</§redux§>
 
   return (
     <§nextAuth§><SessionProvider session={session}></§nextAuth§>
-      <§redux§><Provider store={storeRef.current}></§redux§>
+      <§redux§><Provider store={store}></§redux§>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <§animations§><AnimatePresence mode={'wait'}></§animations§>
