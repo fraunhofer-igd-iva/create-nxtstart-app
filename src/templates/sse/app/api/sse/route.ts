@@ -21,8 +21,6 @@ const closeSseConnection = (id: string) => {
   }
 }
 
-export const dynamic = 'force-dynamic'
-
 /**
  * This endpoint manages server sent events containing city data
  * @allowedMethods GET, POST
