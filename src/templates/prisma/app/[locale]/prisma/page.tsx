@@ -1,4 +1,3 @@
-import React from 'react'
 import { Typography, Box } from '@mui/material'
 import { prisma } from '@/util/prismaClient'
 import { city } from '@prisma/client'
