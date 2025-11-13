@@ -1,3 +1,5 @@
+import nextTypescript from 'eslint-config-next/typescript'
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
 import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -13,20 +15,20 @@ const compat = new FlatCompat({
 })
 
 const config = [
-  <§cypress§>{
-    ignores: ["cypress/support/commands.ts"],
-  }, </§cypress§>...compat.extends(
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",<§linting§>
-    "prettier",</§linting§>
-  ), {
-    plugins: {
-        "@typescript-eslint": typescriptEslint,
+    ...nextTypescript,
+    <§cypress§>{
+      ignores: ["cypress/support/commands.ts"],
+    },</§cypress§>
+    ...nextCoreWebVitals, 
+    ...compat.extends("plugin:@typescript-eslint/recommended"),<§linting§>
+    ...compat.extends("prettier"),</§linting§>
+    {
+      plugins: {
+      '@typescript-eslint': typescriptEslint,
     },
-
     rules: {
-        "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/no-explicit-any": "error",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
     },
   }
 ]

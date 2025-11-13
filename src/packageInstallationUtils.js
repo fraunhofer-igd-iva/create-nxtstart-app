@@ -270,12 +270,12 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",<§cypress§>
     "test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
-    "lint": "next lint"<§linting§>,
+    "lint": "eslint ."<§linting§>,
     "prettierCheck": "yarn prettier . --check",
     "prettierFix": "yarn prettier . --write"</§linting§><§prisma§>,
     "db:seed": "tsx prisma/seedDb.ts"</§prisma§>
@@ -289,12 +289,12 @@ export function addRunScripts(projectPath, packages, packageManager) {
       result = result.replace(
         /"scripts": {([^}]+)}/g,
         `"scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",<§cypress§>
     "test": "cypress run",
     "cypressGui": "cypress open",</§cypress§>
-    "lint": "next lint"<§linting§>,
+    "lint": "eslint ."<§linting§>,
     "prettierCheck": "npx prettier . --check",
     "prettierFix": "npx prettier . --write"</§linting§><§prisma§>,
     "db:seed": "tsx prisma/seedDb.ts"</§prisma§>

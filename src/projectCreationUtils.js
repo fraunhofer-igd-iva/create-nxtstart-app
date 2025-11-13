@@ -16,7 +16,7 @@ export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersi
   shell.cd(pathToParentDirectory)
 
   const result = shell.exec(
-    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-npm --no-tailwind --turbopack`
+    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-npm --no-tailwind --turbopack --react-compiler`
   )
 
   if (result.code !== 0) {
@@ -34,7 +34,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject, useLatestVers
   shell.rm('package.json')
 
   const result = shell.exec(
-    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --turbopack`
+    `npx create-next-app@${useLatestVersions ? 'latest' : frozenNextJsVersion} "${pathToProject}" --ts --eslint --no-src-dir --app --import-alias @/* --use-yarn --no-tailwind --turbopack --react-compiler`
   )
 
   if(result.code === 0) {

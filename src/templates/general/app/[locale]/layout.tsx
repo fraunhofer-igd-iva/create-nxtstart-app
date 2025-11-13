@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 }
 
 // used to access locale in the layout
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }))
 }
 
