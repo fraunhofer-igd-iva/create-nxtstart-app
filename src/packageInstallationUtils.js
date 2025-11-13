@@ -29,11 +29,11 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.3.1',
-      '@eslint/js@9.37.0',
-      '@next/eslint-plugin-next@15.5.4',
-      '@typescript-eslint/eslint-plugin@8.46.0',
-      '@typescript-eslint/parser@8.46.0',
-      'eslint-plugin-react-hooks@7.0.0',
+      '@eslint/js@9.39.1',
+      '@next/eslint-plugin-next@16.0.2',
+      '@typescript-eslint/eslint-plugin@8.46.4',
+      '@typescript-eslint/parser@8.46.4',
+      'eslint-plugin-react-hooks@7.0.1',
     ],
   },
   linting: {
@@ -46,13 +46,13 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@7.3.4',
-      '@mui/material@7.3.4',
+      '@mui/icons-material@7.3.5',
+      '@mui/material@7.3.5',
       '@babel/runtime@7.28.4',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.1',
-      '@mui/material-nextjs@7.3.3',
+      '@mui/material-nextjs@7.3.5',
     ],
     devDep: [],
   },
@@ -61,7 +61,7 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.9.0', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.10.1', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -69,15 +69,15 @@ const frozenVersionsPackageBundles = {
     devDep: ['@types/d3@7.4.3'],
   },
   nextAuth: {
-    dep: ['next-auth@4.24.11'],
+    dep: ['next-auth@4.24.13'],
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@6.17.1', 'sqlite3@5.1.7'],
-    devDep: ['prisma@6.17.1', 'tsx@4.20.6'],
+    dep: ['@prisma/client@6.19.0', 'sqlite3@5.1.7'],
+    devDep: ['prisma@6.19.0', 'tsx@4.20.6'],
   },
   i18n: {
-    dep: ['i18next@25.6.0', 'react-i18next@16.0.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.4'],
+    dep: ['i18next@25.6.2', 'react-i18next@16.3.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
     devDep: [],
   },
   pwa: {
@@ -86,7 +86,7 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@15.4.0'],
+    devDep: ['cypress@15.6.0'],
   },
   sse: {
     dep: ['uuid@13.0.0'],
@@ -98,7 +98,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@16.2.4'],
+    devDep: ['husky@9.1.7', 'lint-staged@16.2.6'],
   },
 }
 
