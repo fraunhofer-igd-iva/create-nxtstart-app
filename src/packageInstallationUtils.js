@@ -24,15 +24,16 @@ export const fullPackageList = [
   'husky',
 ]
 
+// reminder to also update the frozen Next JS version in projectCreationUtils.js
 const frozenVersionsPackageBundles = {
   general: {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.3.1',
       '@eslint/js@9.39.1',
-      '@next/eslint-plugin-next@16.0.2',
-      '@typescript-eslint/eslint-plugin@8.46.4',
-      '@typescript-eslint/parser@8.46.4',
+      '@next/eslint-plugin-next@16.0.4',
+      '@typescript-eslint/eslint-plugin@8.48.0',
+      '@typescript-eslint/parser@8.48.0',
       'eslint-plugin-react-hooks@7.0.1',
     ],
   },
@@ -61,7 +62,7 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.10.1', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.11.0', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -73,11 +74,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client@6.19.0', 'sqlite3@5.1.7'],
-    devDep: ['prisma@6.19.0', 'tsx@4.20.6'],
+    dep: ['@prisma/client@7.0.0', 'sqlite3@5.1.7', '@prisma/adapter-better-sqlite3@7.0.0', 'dotenv@17.2.3'],
+    devDep: ['prisma@7.0.0', 'tsx@4.20.6'],
   },
   i18n: {
-    dep: ['i18next@25.6.2', 'react-i18next@16.3.1', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
+    dep: ['i18next@25.6.3', 'react-i18next@16.3.5', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
     devDep: [],
   },
   pwa: {
@@ -86,7 +87,7 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@15.6.0'],
+    devDep: ['cypress@15.7.0'],
   },
   sse: {
     dep: ['uuid@13.0.0'],
@@ -98,7 +99,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@16.2.6'],
+    devDep: ['husky@9.1.7', 'lint-staged@16.2.7'],
   },
 }
 
@@ -151,7 +152,7 @@ const packageBundles = {
     devDep: [],
   },
   prisma: {
-    dep: ['@prisma/client', 'sqlite3'],
+    dep: ['@prisma/client', 'sqlite3', '@prisma/adapter-better-sqlite3', 'dotenv'],
     devDep: ['prisma', 'tsx'],
   },
   i18n: {

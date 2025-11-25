@@ -1,6 +1,6 @@
 import { Typography, Box } from '@mui/material'
 import { prisma } from '@/util/prismaClient'
-import { city } from '@prisma/client'
+import { cityModel as city } from '@/prisma/generated/models'
 import initTranslations from '@/app/i18n'
 import { PageProps } from '@/util/types'
 import { Metadata } from 'next'

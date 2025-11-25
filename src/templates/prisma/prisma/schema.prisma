@@ -1,6 +1,7 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-musl", "linux-musl-openssl-3.0.x"]
+  provider            = "prisma-client"
+  output              = "./generated"
+  importFileExtension = ""
 }
 
 datasource db {
@@ -9,7 +10,6 @@ datasource db {
   // provider = "mysql"
   // https://www.prisma.io/docs/orm/overview/databases/sqlite
   provider = "sqlite"
-  url      = env("DATABASE_URL")
 }
 
 model city {

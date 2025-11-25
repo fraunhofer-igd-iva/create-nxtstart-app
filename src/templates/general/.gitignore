@@ -38,7 +38,7 @@ next-env.d.ts
 cypress.env.json
 
 # prisma
-/prisma/client
+/prisma/generated/
 
 # testing
 /coverage
