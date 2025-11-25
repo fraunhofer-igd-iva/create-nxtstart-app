@@ -14,7 +14,7 @@ interface PrismaPageData {
   cities: city[]
 }
 
-// rerender on server after 30 seconds since last request
+// rerender on server after 30 seconds since last request while displaying (old) cached data immediately, updates in the background
 // with the default nxtstart index page, the links in the cards will prefetch => the prisma call to revalidate will also be made if that link is rendered on the home page
 // this behavior can be disabled by using the prefetch prop of the links component
 export const revalidate = 30
