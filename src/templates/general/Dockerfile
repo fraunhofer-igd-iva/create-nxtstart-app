@@ -1,6 +1,6 @@
 # Based on https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 FROM node:24.11.1-alpine AS base
-# When using sqlite and it errors, try this image instead (also comment out the "apk add"-command, the entire line 9)
+# When using sqlite and it errors, try this image instead (also comment out the "apk add"-command, the entire line 10)
 # Will result in bigger image
 #FROM node:24.11.1-bookworm AS base
 
