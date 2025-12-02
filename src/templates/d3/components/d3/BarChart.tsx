@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffectEvent } from 'react'
 import * as d3 from 'd3'
 import { Data } from '@/util/types'
 import { useTheme } from '@mui/material'
@@ -31,6 +31,7 @@ const margin = { top: 10, right: 20, bottom: 90, left: 60 }
 
 export default function BarChart(props: BarChartProps) {
   const theme = useTheme()
+  const primaryColor = theme.palette.primary.main
 
   /* The useRef Hook creates a variable that "holds on" to a value across rendering
      passes. In this case it will hold our component's SVG DOM element. It's
@@ -44,12 +45,16 @@ export default function BarChart(props: BarChartProps) {
   /**
    * Returns the width, height of the actual chart drawing area (total SVG size minus margins)
    */
-  const getChartSize = () => {
+  const getChartSize = useEffectEvent(() => {
     return {
       chartWidth: props.width - margin.left - margin.right,
       chartHeight: props.height - margin.top - margin.bottom,
     }
-  }
+  })
+
+  const getScalesEvent = useEffectEvent((chartWidth: number, chartHeight: number) => {
+    return getScales(props.data, chartWidth, chartHeight)
+  })
 
   /**
    * This useEffect block is run only once after the component mounts. We will do the initial D3 setup here.
@@ -63,7 +68,7 @@ export default function BarChart(props: BarChartProps) {
         svg.selectAll('*').remove()
 
         const { chartWidth, chartHeight } = getChartSize()
-        const { xScale, yScale } = getScales(props.data, chartWidth, chartHeight)
+        const { xScale, yScale } = getScalesEvent(chartWidth, chartHeight)
 
         // Add the chart drawing area (group with margin translations)
         const svgChart = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`)
@@ -187,7 +192,7 @@ export default function BarChart(props: BarChartProps) {
           .attr('y', (d) => yScale(d.value))
           .attr('height', (d) => chartHeight - yScale(d.value))
           .attr('width', xScale.bandwidth())
-          .style('fill', theme.palette.primary.main)
+          .style('fill', primaryColor)
 
         // Update existing  elements
         bars
@@ -203,7 +208,7 @@ export default function BarChart(props: BarChartProps) {
       }
     },
     /* The dependency array of useEffect. This block will run every time the input data or size change */
-    [props.data, props.height, props.width]
+    [props.data, props.height, props.width, primaryColor]
   )
 
   return <svg width={props.width} height={props.height} ref={d3Container} />

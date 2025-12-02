@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffectEvent } from 'react'
 import * as d3 from 'd3'
 import { useTheme } from '@mui/material'
 
@@ -123,12 +123,12 @@ export default function ScatterPlot(props: ScatterPlotProps) {
   /**
    * Returns the width, height of the actual chart drawing area (total SVG size minus margins)
    */
-  function getChartSize() {
+  const getChartSize = useEffectEvent(() => {
     return {
       chartWidth: props.width - margin.left - margin.right,
       chartHeight: props.height - margin.top - margin.bottom,
     }
-  }
+  })
 
   /**********************************************************
    *  Drawing
@@ -281,14 +281,14 @@ export default function ScatterPlot(props: ScatterPlotProps) {
     ctx.stroke()
   }
 
-  function draw() {
+  const draw = useEffectEvent(() => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d')
       if (ctx) {
         renderScene(ctx)
       }
     }
-  }
+  })
 
   /**
    * This useEffect block is run every time the data or component sizes change. We will do every chart updates here.
@@ -318,20 +318,30 @@ export default function ScatterPlot(props: ScatterPlotProps) {
    * the browser's animation loop timing. This decouples the drawing from the mousemove
    * events, which might occur much faster, and thus impact performance.
    */
-  function mouseSelectionUpdate() {
-    if (mouseDown.current) {
-      requestAnimationFrame(mouseSelectionUpdate)
-    }
+  const mouseSelectionUpdate = useEffectEvent(() => {
     draw()
-  }
+  })
 
-  function getCoordinatesFromMouseEvent(canvas: HTMLCanvasElement, event: MouseEvent): { x: number; y: number } {
+  const getCoordinatesFromMouseEvent = useEffectEvent((canvas: HTMLCanvasElement, event: MouseEvent): { x: number; y: number } => {
     const rect = canvas.getBoundingClientRect()
     return {
       x: ((event.clientX - rect.left) / (rect.right - rect.left)) * canvasWidth,
       y: ((event.clientY - rect.top) / (rect.bottom - rect.top)) * canvasHeight,
     }
-  }
+  })
+
+  const handleMouseUp = useEffectEvent(() => {
+    if (props.onSelection && mouseSelectionPoints.current.length > 2) {
+      // Convert to data domain coordinates
+      const polygonPoints = mouseSelectionPoints.current.map((point) => ({
+        x: d3ScaleX.current!.invert(point.x - margin.left),
+        y: d3ScaleY.current!.invert(point.y - margin.top),
+      }))
+      
+      const selectedDataPoints = getPointsWithinPolygon(polygonPoints, props.data)
+      props.onSelection(selectedDataPoints)
+    }
+  })
 
   /**
    * Called only after this component initially mounts.
@@ -343,7 +353,16 @@ export default function ScatterPlot(props: ScatterPlotProps) {
         const pos = getCoordinatesFromMouseEvent(canvasRef.current!, event)
         mouseDown.current = true
         mouseSelectionPoints.current = [pos]
-        requestAnimationFrame(mouseSelectionUpdate)
+        const loop = () => {
+          if (mouseDown.current) {
+            mouseSelectionUpdate()
+            requestAnimationFrame(loop)
+          }
+        }
+        if (mouseDown.current) {
+          mouseSelectionUpdate()
+          requestAnimationFrame(loop)
+        }
       }
       canvasRef.current.onmousemove = (event: MouseEvent) => {
         if (mouseDown.current) {
@@ -359,17 +378,7 @@ export default function ScatterPlot(props: ScatterPlotProps) {
         }
       }
       canvasRef.current.onmouseup = () => {
-        if (props.onSelection && mouseSelectionPoints.current.length > 2) {
-          // Convert to data domain coordinates
-          const polygonPoints = mouseSelectionPoints.current.map((point) => ({
-            x: d3ScaleX.current!.invert(point.x - margin.left),
-            y: d3ScaleY.current!.invert(point.y - margin.top),
-          }))
-
-          const selectedDataPoints = getPointsWithinPolygon(polygonPoints, props.data)
-          props.onSelection(selectedDataPoints)
-        }
-
+        handleMouseUp()
         mouseDown.current = false
         mouseSelectionPoints.current = []
       }
