@@ -3,21 +3,11 @@
 import React from 'react'
 import { Box, Button } from '@mui/material'
 import { Data } from '@/util/types'
-import BarChart from '@/components/d3/BarChart'
 
 export default function SseComponent() {
   const [source, setSource] = React.useState<EventSource | undefined>(undefined)
   const [dataArray, setDataArray] = React.useState<Data[]>([])
   const [connectionId, setConnectionId] = React.useState<string | undefined>(undefined)
-
-  const randomUpdate = () => {
-    const index = Math.floor(Math.random() * dataArray.length)
-    const randomValue = Math.floor(Math.random() * 10000000)
-    setDataArray((prev) => {
-      prev[index].value = randomValue
-      return Array.of(...prev)
-    })
-  }
 
   const handleStart = () => {
     const newSource = new EventSource('/api/sse')
@@ -61,19 +51,17 @@ export default function SseComponent() {
         <Button variant={'contained'} onClick={handleClear} sx={{ mx: 2 }}>
           Clear
         </Button>
-        <Button variant={'contained'} onClick={randomUpdate} sx={{ mx: 2 }}>
-          Random Update
-        </Button>
       </Box>
       <Box
         sx={{
-          width: '100%',
           display: 'flex',
-          justifyContent: 'center',
-          pt: 4,
+          alignItems: 'center',
+          flexDirection: 'column',
+          mt: 4,
+          height: 300,
         }}
       >
-        <BarChart width={1000} height={600} data={dataArray} />
+        {dataArray.map((val) => <Box key={val.label}>{`${val.label} - ${val.value}\n`}</Box>)}
       </Box>
     </Box>
   )
