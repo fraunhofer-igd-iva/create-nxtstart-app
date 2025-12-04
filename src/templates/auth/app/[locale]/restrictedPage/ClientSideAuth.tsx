@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import { useSession } from 'next-auth/react'
+import { authClient } from '@/app/api/auth/[...all]/authClient'
 
 export default function ClientSideAuth() {
   const [secretData, setSecretData] = React.useState(undefined)
-  const { data: session } = useSession()
+  const { data: session, error } = authClient.useSession()
   React.useEffect(() => {
     // if you have SWR installed for fetching, rather use that instead of the default fetch api in this case
     const fetchData = async () => {
@@ -26,7 +26,7 @@ export default function ClientSideAuth() {
       <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
         {secretData}
       </Typography>
-      {session && session.user && (
+      {!error && session && session.user && (
         <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
           {session?.user?.name}
         </Typography>

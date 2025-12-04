@@ -37,7 +37,7 @@ export const getPackages = async () =>
       { name: 'React Redux + Toolkit', value: 'redux' },
       { name: 'SWR Data Fetching', value: 'swr' },
       { name: 'D3 JS', value: 'd3' },
-      { name: 'Next Auth', value: 'nextAuth' },
+      { name: 'Authentication', value: 'auth' },
       { name: 'Prisma DB', value: 'prisma' },
       // i18n added by default
       //{ name: 'Internationalization', value: 'i18n', disabled: true },
@@ -64,7 +64,7 @@ export const getExamples = async (packages) =>
       { name: 'React Redux + Toolkit', value: 'redux', disabled: !packages.includes('redux') },
       { name: 'SWR Data Fetching', value: 'swr', disabled: !packages.includes('swr') },
       { name: 'D3 JS', value: 'd3', disabled: !packages.includes('d3') },
-      { name: 'Next Auth', value: 'nextAuth', disabled: !packages.includes('nextAuth') },
+      { name: 'Authentication', value: 'auth', disabled: !packages.includes('auth') },
       { name: 'Prisma DB', value: 'prisma', disabled: !packages.includes('prisma') },
       // files for i18n also added by default
       //{ name: 'Internationalization', value: 'i18n', disabled: true },

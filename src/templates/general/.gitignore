@@ -37,6 +37,9 @@ next-env.d.ts
 /cypress/videos
 cypress.env.json
 
+#better auth
+/better-auth_migrations/*
+
 # prisma
 /prisma/generated/
 

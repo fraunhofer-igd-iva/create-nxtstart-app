@@ -14,7 +14,7 @@ export const fullPackageList = [
   'animations',
   'redux',
   'd3',
-  'nextAuth',
+  'auth',
   'prisma',
   'i18n',
   'pwa',
@@ -31,7 +31,7 @@ const frozenVersionsPackageBundles = {
     devDep: [
       '@eslint/eslintrc@3.3.1',
       '@eslint/js@9.39.1',
-      '@next/eslint-plugin-next@16.0.4',
+      '@next/eslint-plugin-next@16.0.7',
       '@typescript-eslint/eslint-plugin@8.48.0',
       '@typescript-eslint/parser@8.48.0',
       'eslint-plugin-react-hooks@7.0.1',
@@ -39,7 +39,7 @@ const frozenVersionsPackageBundles = {
   },
   linting: {
     dep: [],
-    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.6.2'],
+    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.7.4'],
   },
   swr: {
     dep: ['swr@2.3.6'],
@@ -47,13 +47,13 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@7.3.5',
-      '@mui/material@7.3.5',
+      '@mui/icons-material@7.3.6',
+      '@mui/material@7.3.6',
       '@babel/runtime@7.28.4',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.1',
-      '@mui/material-nextjs@7.3.5',
+      '@mui/material-nextjs@7.3.6',
     ],
     devDep: [],
   },
@@ -69,13 +69,13 @@ const frozenVersionsPackageBundles = {
     dep: ['d3@7.9.0'],
     devDep: ['@types/d3@7.4.3'],
   },
-  nextAuth: {
-    dep: ['next-auth@4.24.13'],
-    devDep: [],
+  auth: {
+    dep: ['better-auth@1.4.5', 'better-sqlite3@12.5.0'],
+    devDep: ['@types/better-sqlite3@7.6.13'],
   },
   prisma: {
-    dep: ['@prisma/client@7.0.0', 'sqlite3@5.1.7', '@prisma/adapter-better-sqlite3@7.0.0', 'dotenv@17.2.3'],
-    devDep: ['prisma@7.0.0', 'tsx@4.20.6'],
+    dep: ['@prisma/client@7.1.0', 'better-sqlite3@12.5.0', '@prisma/adapter-better-sqlite3@7.1.0', 'dotenv@17.2.3'],
+    devDep: ['prisma@7.1.0', 'tsx@4.21.0', '@types/better-sqlite3@7.6.13'],
   },
   i18n: {
     dep: ['i18next@25.6.3', 'react-i18next@16.3.5', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
@@ -87,7 +87,7 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@15.7.0'],
+    devDep: ['cypress@15.7.1'],
   },
   sse: {
     dep: ['uuid@13.0.0'],
@@ -147,13 +147,13 @@ const packageBundles = {
     dep: ['d3'],
     devDep: ['@types/d3'],
   },
-  nextAuth: {
-    dep: ['next-auth'],
-    devDep: [],
+  auth: {
+    dep: ['better-auth', 'better-sqlite3'],
+    devDep: ['@types/better-sqlite3'],
   },
   prisma: {
-    dep: ['@prisma/client', 'sqlite3', '@prisma/adapter-better-sqlite3', 'dotenv'],
-    devDep: ['prisma', 'tsx'],
+    dep: ['@prisma/client', 'better-sqlite3', '@prisma/adapter-better-sqlite3', 'dotenv'],
+    devDep: ['prisma', 'tsx', '@types/better-sqlite3'],
   },
   i18n: {
     dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
@@ -234,28 +234,24 @@ DATABASE_URL="file:nxtstart.db"
   )
 }
 
-export function updateEnvNextAuth(projectPath) {
+export function updateEnvauth(projectPath) {
   fs.appendFileSync(
     path.join(projectPath, '.env'),
     `
-# Next Auth Variables
+AUTH_DB_URL="./auth.db"
 # For github apps: https://github.com/settings/developers
 GITHUB_ID=<enter github id>
-GITHUB_SECRET=<enter github secret>
-
-GOOGLE_CLIENT_ID=<enter google id>
-GOOGLE_CLIENT_SECRET=<enter google secret>
+GITHUB_SECRET=<enter github id>
 
 # Update according to your deployment address (You can leave this for local development)
-NEXTAUTH_URL=http://localhost:3000
+BETTER_AUTH_URL=http://localhost:3000
 
 # You should replace this secret when deploying your application
-SECRET=qwertysecretForTheN3xtJ5Template
-
+BETTER_AUTH_SECRET=qwertysecretForTheN3xtJ5Template
 `,
     function (err) {
       if (err) throw err
-      console.log(chalk.green('Added NextAuth .env!'))
+      console.log(chalk.green('Added auth .env!'))
     }
   )
 }

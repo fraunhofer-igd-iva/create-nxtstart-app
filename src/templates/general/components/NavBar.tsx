@@ -12,13 +12,13 @@ import {
   MenuItem,
   Typography,
   useColorScheme,
-  <§nextAuth§>Button,
+  <§auth§>Button,
   Tooltip,
-  Avatar,</§nextAuth§>
+  Avatar,</§auth§>
 } from '@mui/material'
 import { useRouter, usePathname } from 'next/navigation'
 import { Brightness4, Brightness7, Menu as MenuIcon } from '@mui/icons-material'
-<§nextAuth§>import { useSession, signIn, signOut } from 'next-auth/react'</§nextAuth§>
+<§auth§>import { authClient } from '@/app/api/auth/[...all]/authClient'</§auth§>
 import LanguageSelector from './LanguageSelector'
 
 interface LinkTabProps {
@@ -66,32 +66,32 @@ const validatePath = (path: string | null) => {
 }
 
 export default function NavBar() {
-  <§nextAuth§>const { data: session } = useSession()</§nextAuth§>
+  <§auth§>const { data: session } = authClient.useSession()</§auth§>
   const { mode, setMode } = useColorScheme()
   const router = useRouter()
   const pathname = usePathname()
   const theme = useTheme()
   const [activeTab, setActiveTab] = React.useState<string | false>(false)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
-  <§nextAuth§>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</§nextAuth§>
+  <§auth§>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</§auth§>
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget)
   }
 
-  <§nextAuth§>const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  <§auth§>const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
   }
 
-  </§nextAuth§>const handleCloseNavMenu = () => {
+  </§auth§>const handleCloseNavMenu = () => {
     setAnchorElNav(null)
   }
 
-  <§nextAuth§>const handleCloseUserMenu = () => {
+  <§auth§>const handleCloseUserMenu = () => {
     setAnchorElUser(null)
   }
 
-  </§nextAuth§>const handleNavigateFromMenu = (path: string) => {
+  </§auth§>const handleNavigateFromMenu = (path: string) => {
     router.push(path)
     handleCloseNavMenu()
   }
@@ -191,7 +191,7 @@ export default function NavBar() {
             </IconButton>
           </Box>
 
-          <§nextAuth§>{/* next auth login and user menu */}
+          <§auth§>{/* next auth login and user menu */}
           <Box sx={{ flexGrow: 0, display: 'flex', flexDirection: 'row', mr: 2 }}>
             {session && session.user && (
               <>
@@ -223,8 +223,9 @@ export default function NavBar() {
                   <Typography sx={{ mx: 2 }}>{session.user.name}</Typography>
                   <MenuItem
                     key={'logout'}
-                    onClick={() => {
-                      signOut()
+                    onClick={async () => {
+                      await authClient.signOut()
+                      router.refresh()
                     }}
                   >
                     <Typography color={'primary'}>Logout</Typography>
@@ -235,14 +236,14 @@ export default function NavBar() {
             {!session && (
               <Button
                 onClick={() => {
-                  signIn()
+                  router.push(`/signIn?callbackUrl=${pathname}`)
                 }}
                 sx={{ p: 0, color: theme.palette.text.primary, display: 'block' }}
               >
                 Login
               </Button>
             )}
-          </Box></§nextAuth§>
+          </Box></§auth§>
         </AppBar>
       )}
     </>

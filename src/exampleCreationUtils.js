@@ -57,3 +57,12 @@ export function seedSqliteDb(projectPath, packages, packageManager) {
     console.log(chalk.green(`Created SQLite database and seeded with example data!`))
   }
 }
+
+export function createAuthDB(projectPath, packages) {
+  if (packages.includes('auth')) {
+    shell.cd(projectPath)
+    shell.exec('npx @better-auth/cli@latest generate --yes')
+    shell.exec('npx @better-auth/cli@latest migrate --yes')
+    console.log(chalk.green(`Created Authentication example database!`))
+  }
+}

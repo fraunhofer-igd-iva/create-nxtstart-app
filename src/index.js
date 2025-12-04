@@ -24,11 +24,11 @@ import {
   addPackages,
   addRunScripts,
   updateEnvPrisma,
-  updateEnvNextAuth,
+  updateEnvauth,
   runFinalInstall,
   fullPackageList,
 } from './packageInstallationUtils.js'
-import { addExamplesJson, addExample, addEmptyCypressDirectories, seedSqliteDb } from './exampleCreationUtils.js'
+import { addExamplesJson, addExample, addEmptyCypressDirectories, seedSqliteDb, createAuthDB } from './exampleCreationUtils.js'
 import { postProcessFile, runPrettier, removeNpmIgnore } from './filePostProcessor.js'
 import * as path from 'path'
 import chalk from 'chalk'
@@ -121,9 +121,9 @@ function implementExamples() {
     updateEnvPrisma(targetPath)
   }
 
-  // additional file changes for nextAuth
-  if (packages.includes('nextAuth')) {
-    updateEnvNextAuth(targetPath)
+  // additional file changes for auth
+  if (packages.includes('auth')) {
+    updateEnvauth(targetPath)
   }
 
   if (examples.includes('cypress')) {
@@ -166,6 +166,15 @@ function finishCreation() {
         performInitialCommit(targetPath)
       }
     }
+    finalizeAuthExample()
+  }, 3000)
+}
+
+async function finalizeAuthExample() {
+  if(examples.includes('auth')) {
+    createAuthDB(targetPath, packages)
+  }
+  setTimeout(async () => {
     seedDb()
   }, 3000)
 }

@@ -4,9 +4,9 @@ import initTranslations from '@/app/i18n'
 import TranslationProvider from '@/components/TranslationProvider'
 import { PageProps } from '@/util/types'
 import { Metadata } from 'next'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions'
+import { auth } from '@/auth'
 import ClientSideAuth from './ClientSideAuth'
+import { headers } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'Restricted Page',
@@ -17,7 +17,9 @@ interface RestrictedPageData {
 }
 
 async function getPageData() {
-  const session = await getServerSession(authOptions)
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
   return {
     message: session
       ? 'You can view the restricted content because you are logged in. It was loaded before the page html was sent to the client using the server components.'

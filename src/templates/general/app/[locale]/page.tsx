@@ -89,7 +89,7 @@ const libraries: IndexCardProps[] = [
     description:
       'Easy to implement user authentication and session management. Allows for third party providers and own implmentations for the login.',
     hrefDocs: 'https://next-auth.js.org/getting-started/example',
-    hrefExample: examples.includes('nextAuth') ? '/restrictedPage' : undefined,
+    hrefExample: examples.includes('auth') ? '/restrictedPage' : undefined,
     additionalLinks: [],
   },
   {
