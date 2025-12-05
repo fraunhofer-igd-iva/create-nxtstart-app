@@ -124,11 +124,13 @@ To receive update from database after adjusting the scheme there directly:
 
 SQLite is chosen to give a easy entry into a database system with no further outside setup required. However, the featureset is fairly limited. Should your requirements need a more advanced database, the switch should be as easy as exchanging the `DATABASE_URL` in your `.env` and the `provider` attribute in `schema.prisma`. Then you need to run the commands in [Initialization](#initialization) (skip the seeding if not necessary).
 
-## Next Auth
+## Better Auth
 
 Set the necessary variables in `.env` and create the necessary applications on the third party sites you want to use.
 
-The example is using Github in the `.env`. See the [Docs](https://next-auth.js.org/configuration/providers/oauth#built-in-providers) for more details.
+In the Template there are two ways of authenticating implemented:
+- Oauth using Github as an example. Env variables necessary and a Github App.
+- Email/password using a local SQLite database including Sign Up and Log in
 
 ## D3
 
