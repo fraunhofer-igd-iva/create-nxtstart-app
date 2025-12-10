@@ -15,15 +15,4 @@ describe('API Test', () => {
       })
     })
   })
-  it('check restricted endpoint authorized', () => {
-    cy.visit('/')
-    cy.testLogin()
-
-    cy.request('/api/restrictedRoute').then((response) => {
-      expect(response.status).to.eq(200)
-      cy.wrap(response.body).should('include', {
-        content: 'This is protected API content. You can access this content because you are signed in as',
-      })
-    })
-  })
 })

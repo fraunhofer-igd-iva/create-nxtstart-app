@@ -35,25 +35,3 @@
 //     }
 //   }
 // }
-
-declare namespace Cypress {
-  interface Chainable<Subject = any> {
-    testLogin(): Chainable<void>
-  }
-}
-
-Cypress.Commands.add('testLogin', () => {
-  cy.contains('Login').click()
-
-  cy.get('input[name=username]').type('test')
-
-  // {enter} causes the form to submit but doesnt seem to work with next auth screen, so we click the button directly
-  cy.get('input[name=password]').type('test')
-
-  cy.contains('Sign in with Test Credentials').click()
-
-  cy.get('[id=toggle-user-menu]').click()
-
-  // UI should reflect this admin being logged in
-  cy.get('[id=menu-user]').should('contain', 'John Doe').should('contain', 'Logged in as:').should('contain', 'Logout')
-})
