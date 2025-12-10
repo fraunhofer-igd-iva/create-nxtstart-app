@@ -10,7 +10,7 @@ export function checkProjectFolder(projectPath) {
   return true
 }
 
-const frozenNextJsVersion = '16.0.7'
+const frozenNextJsVersion = '16.0.8'
 
 export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersions) {
   shell.cd(pathToParentDirectory)

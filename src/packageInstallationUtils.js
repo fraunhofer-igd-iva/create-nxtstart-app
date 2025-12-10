@@ -31,9 +31,9 @@ const frozenVersionsPackageBundles = {
     devDep: [
       '@eslint/eslintrc@3.3.1',
       '@eslint/js@9.39.1',
-      '@next/eslint-plugin-next@16.0.7',
-      '@typescript-eslint/eslint-plugin@8.48.0',
-      '@typescript-eslint/parser@8.48.0',
+      '@next/eslint-plugin-next@16.0.8',
+      '@typescript-eslint/eslint-plugin@8.49.0',
+      '@typescript-eslint/parser@8.49.0',
       'eslint-plugin-react-hooks@7.0.1',
     ],
   },
@@ -58,11 +58,11 @@ const frozenVersionsPackageBundles = {
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@12.23.24'],
+    dep: ['framer-motion@12.23.26'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.11.0', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.11.1', 'react-redux@9.2.0'],
     devDep: [],
   },
   d3: {
@@ -70,7 +70,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['@types/d3@7.4.3'],
   },
   auth: {
-    dep: ['better-auth@1.4.5', 'better-sqlite3@12.5.0'],
+    dep: ['better-auth@1.4.6', 'better-sqlite3@12.5.0'],
     devDep: ['@types/better-sqlite3@7.6.13'],
   },
   prisma: {
@@ -78,7 +78,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['prisma@7.1.0', 'tsx@4.21.0', '@types/better-sqlite3@7.6.13'],
   },
   i18n: {
-    dep: ['i18next@25.6.3', 'react-i18next@16.3.5', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
+    dep: ['i18next@25.7.2', 'react-i18next@16.4.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
     devDep: [],
   },
   pwa: {
