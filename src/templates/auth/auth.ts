@@ -12,8 +12,5 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    // workaround as callback URL for sign up was not working,
-    // if fixed => remove the following line and adjust sign up method in app\[locale]\signIn\SignupEmailComponent.tsx
-    autoSignIn: false,
   }
 })

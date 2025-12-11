@@ -3,10 +3,11 @@
 import { useState, useMemo } from 'react'
 import { Button, Box, TextField, Typography } from '@mui/material'
 import { authClient } from '@/app/api/auth/[...all]/authClient'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export default function SignupComponent() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const callbackURL = searchParams.get('callbackUrl') || '/'
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -82,17 +83,8 @@ export default function SignupComponent() {
       if (signUpResult?.error) {
         throw new Error(signUpResult.error?.message || 'Sign-up failed.')
       }
-
-      // Workaround as callback URL for sign up was not working, if fixed => enable auto sign in in auth.ts and remove the following lines
-      const signInResult = await authClient.signIn.email({
-        email: email.trim(),
-        password,
-        callbackURL,
-      })
-
-      if (signInResult?.error) {
-        throw new Error(signInResult.error?.message || 'Sign-in after sign-up failed.')
-      }
+      // workaround as callbackUrl prop for signUp is ignored or doesn't work
+      router.push(callbackURL)
     } catch (err: unknown) {
       const msg =
         err instanceof Error

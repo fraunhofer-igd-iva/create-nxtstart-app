@@ -225,6 +225,7 @@ export default function NavBar() {
                     key={'logout'}
                     onClick={async () => {
                       await authClient.signOut()
+                      setAnchorElUser(null)
                       router.refresh()
                     }}
                   >
