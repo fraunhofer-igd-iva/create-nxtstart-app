@@ -13,7 +13,7 @@ export async function generateMetadata(props: { params: PageProps }) {
   }
 }
 
-export default async function PrivacyPage(props: { params: PageProps }) {
+export default async function ImprintPage(props: { params: PageProps }) {
   const { locale } = await props.params
   const { t, options } = await initTranslations(locale, ['common'])
 
