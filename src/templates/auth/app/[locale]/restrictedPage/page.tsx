@@ -35,7 +35,7 @@ export default async function RestrictedPage(props: { params: PageProps }) {
   return (
     <TranslationProvider namespaces={options.ns} locale={locale}>
       <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant={'body1'} maxWidth={350} textAlign={'center'} sx={{ mb: 4 }}>
+        <Typography variant={'body1'} sx={{ mb: 4, maxWidth: 350, textAlign: 'center' }}>
           {pageData.message}
         </Typography>
         <ClientSideAuth />

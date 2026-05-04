@@ -84,11 +84,11 @@ const libraries: IndexCardProps[] = [
     additionalLinks: [],
   },
   {
-    imageLink: 'https://next-auth.js.org/img/logo/logo-sm.png',
-    title: 'Next Auth',
+    imageLink: 'https://better-auth.com/branding/svg/better-auth-mark-light.svg?dpl=dpl_BYZ8RZmPumL3C3gshSzqCMLxA3Rx',
+    title: 'Better Auth',
     description:
       'Easy to implement user authentication and session management. Allows for third party providers and own implmentations for the login.',
-    hrefDocs: 'https://next-auth.js.org/getting-started/example',
+    hrefDocs: 'https://better-auth.com/docs/introduction',
     hrefExample: examples.includes('auth') ? '/restrictedPage' : undefined,
     additionalLinks: [],
   },

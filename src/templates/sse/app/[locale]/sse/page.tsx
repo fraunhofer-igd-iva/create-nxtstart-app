@@ -15,7 +15,7 @@ export default async function SSEPage(props: { params: PageProps }) {
   return (
     <TranslationProvider namespaces={options.ns} locale={locale}>
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+        <Typography variant={'body1'} sx={{ maxWidth: 350, textAlign: 'center' }}>
           Press START to initiate data fetching via server-sent-events. STOP closes the connection. Press CLEAR to reset the data.
         </Typography>
         <SseComponent />

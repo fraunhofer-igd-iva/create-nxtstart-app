@@ -17,13 +17,13 @@ export default function MuiGridItem() {
   // checkout https://mui.com/material-ui/react-grid/ for detailed grid examples and documentation
   return (
     <Paper sx={{ padding: 2, maxWidth: '100dvw', backgroundColor: 'grey.300' }}>
-      <Grid container spacing={2} justifyContent={'center'} alignItems={'center'} maxWidth={'100dvw'}>
+      <Grid container spacing={2} sx={{ maxWidth: '100dvw', justifyContent: 'center', alignItems: 'center' }}>
         <Grid size={{ xs: 12 }}>
           <Item>
             <Typography variant={'h5'}>Title &quot;Lorem ipsum dolor sit amet&quot;</Typography>
           </Item>
         </Grid>
-        <Grid size={{ lg: 12, xl: 5 }} container spacing={2} direction={'column'}>
+        <Grid size={{ lg: 12, xl: 5 }} container spacing={2} sx={{ flexDirection: 'column' }}>
           <Grid>
             <Item>
               <Typography variant={'h5'}>Image Title</Typography>

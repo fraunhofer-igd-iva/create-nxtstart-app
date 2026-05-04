@@ -23,11 +23,11 @@ export default function ClientSideAuth() {
 
   return (
     <Box>
-      <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+      <Typography variant={'body1'} sx={{ maxWidth: 350, textAlign: 'center' }}>
         {secretData}
       </Typography>
       {!error && session && session.user && (
-        <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+        <Typography variant={'body1'} sx={{ maxWidth: 350, textAlign: 'center' }}>
           {session?.user?.name}
         </Typography>
       )}

@@ -43,7 +43,7 @@ export default async function PrismaPage(props: { params: PageProps }) {
   return (
     <TranslationProvider namespaces={options.ns} locale={locale}>
       <Box sx={{ my: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+        <Typography variant={'body1'} sx={{ maxWidth: 350, textAlign: 'center' }}>
           {t('cityList', { ns: 'prismaPage' })}
         </Typography>
         {pageData.cities.map((city: city) => (

@@ -32,9 +32,6 @@ export default function StateComponent() {
           id="outlined-number"
           label="Number"
           type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
           onChange={(e) => setIncrementAmount(Number(e.target.value))}
         />
         <Button variant="outlined" onClick={() => dispatch(incrementByAmount(Number(incrementAmount)))}>

@@ -100,7 +100,7 @@ export default async function D3Page(props: { params: PageProps }) {
   return (
     <TranslationProvider namespaces={options.ns} locale={locale}>
       <Box sx={{ my: 8, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <Typography variant={'body1'} maxWidth={350} textAlign={'center'}>
+        <Typography variant={'body1'} sx={{ maxWidth: 350, textAlign: 'center' }}>
           Two different kinds of D3 graphs. The bar chart is rendered using svg objects, the multi line chart uses the
           d3 canvas.
         </Typography>
