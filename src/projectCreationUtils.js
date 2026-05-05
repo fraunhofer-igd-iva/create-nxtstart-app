@@ -11,6 +11,7 @@ export function checkProjectFolder(projectPath) {
 }
 
 const frozenNextJsVersion = '16.0.8'
+const yarnVersion = '4.13.0' // change back to 'stable' after build script issues are resolved with better sqlite https://github.com/WiseLibs/better-sqlite3/issues/1463
 
 export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersions) {
   shell.cd(pathToParentDirectory)
@@ -29,7 +30,7 @@ export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersi
 export function initNodeYarn(pathToParentDirectory, pathToProject, useLatestVersions) {
   shell.cd(pathToParentDirectory)
   // set yarn version in parent dict so installation does not fail
-  shell.exec('yarn set version stable')
+  shell.exec(`yarn set version ${yarnVersion}`)
   // clean up package.json thats created when switching yarn versions
   shell.rm('package.json')
 
@@ -40,7 +41,7 @@ export function initNodeYarn(pathToParentDirectory, pathToProject, useLatestVers
   if(result.code === 0) {
     shell.cd(pathToProject)
     // set yarn version for new project
-    shell.exec('yarn set version stable')
+    shell.exec(`yarn set version ${yarnVersion}`)
 
     // disable default telemetry
     shell.exec('yarn next telemetry disable')
