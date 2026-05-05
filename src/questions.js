@@ -12,8 +12,10 @@ export const getPackageManager = async () =>
     message: 'Select a package manager',
     choices: [
       {
-        name: 'yarn',
+        name: 'yarn (temporarily disabled)',
         value: 'yarn',
+        // tmp disabled because of sqlite install/build issues with yarn
+        disabled: true,
       },
       {
         name: 'npm',
