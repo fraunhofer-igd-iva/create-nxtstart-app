@@ -29,40 +29,40 @@ const frozenVersionsPackageBundles = {
   general: {
     dep: [],
     devDep: [
-      '@eslint/eslintrc@3.3.1',
-      '@eslint/js@9.39.1',
-      '@next/eslint-plugin-next@16.0.8',
-      '@typescript-eslint/eslint-plugin@8.49.0',
-      '@typescript-eslint/parser@8.49.0',
-      'eslint-plugin-react-hooks@7.0.1',
+      '@eslint/eslintrc@3.3.5',
+      '@eslint/js@10.0.1',
+      '@next/eslint-plugin-next@16.2.7',
+      '@typescript-eslint/eslint-plugin@8.60.1',
+      '@typescript-eslint/parser@8.60.1',
+      'eslint-plugin-react-hooks@7.1.1',
     ],
   },
   linting: {
     dep: [],
-    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.7.4'],
+    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.8.3'],
   },
   swr: {
-    dep: ['swr@2.3.6'],
+    dep: ['swr@2.4.1'],
     devDep: [],
   },
   mui: {
     dep: [
-      '@mui/icons-material@7.3.6',
-      '@mui/material@7.3.6',
-      '@babel/runtime@7.28.4',
+      '@mui/icons-material@9.0.1',
+      '@mui/material@9.0.1',
+      '@babel/runtime@7.29.7',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.1',
-      '@mui/material-nextjs@7.3.6',
+      '@mui/material-nextjs@9.0.1',
     ],
     devDep: [],
   },
   animations: {
-    dep: ['framer-motion@12.23.26'],
+    dep: ['framer-motion@12.40.0'],
     devDep: [],
   },
   redux: {
-    dep: ['@reduxjs/toolkit@2.11.1', 'react-redux@9.2.0'],
+    dep: ['@reduxjs/toolkit@2.12.0', 'react-redux@9.3.0'],
     devDep: [],
   },
   d3: {
@@ -70,15 +70,16 @@ const frozenVersionsPackageBundles = {
     devDep: ['@types/d3@7.4.3'],
   },
   auth: {
-    dep: ['better-auth@1.4.6', 'better-sqlite3@12.5.0'],
+    // TODO remove pinned version after this is fixed https://github.com/better-auth/better-auth/issues/9868
+    dep: ['better-auth@1.6.11', 'better-sqlite3@12.10.0'],
     devDep: ['@types/better-sqlite3@7.6.13'],
   },
   prisma: {
-    dep: ['@prisma/client@7.1.0', 'better-sqlite3@12.5.0', '@prisma/adapter-better-sqlite3@7.1.0', 'dotenv@17.2.3'],
-    devDep: ['prisma@7.1.0', 'tsx@4.21.0', '@types/better-sqlite3@7.6.13'],
+    dep: ['@prisma/client@7.8.0', 'better-sqlite3@12.10.0', '@prisma/adapter-better-sqlite3@7.8.0', 'dotenv@17.4.2'],
+    devDep: ['prisma@7.8.0', 'tsx@4.22.4', '@types/better-sqlite3@7.6.13'],
   },
   i18n: {
-    dep: ['i18next@25.7.2', 'react-i18next@16.4.0', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.5'],
+    dep: ['i18next@26.3.0', 'react-i18next@17.0.8', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.8'],
     devDep: [],
   },
   pwa: {
@@ -87,10 +88,10 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@15.7.1'],
+    devDep: ['cypress@15.16.0'],
   },
   sse: {
-    dep: ['uuid@13.0.0'],
+    dep: ['uuid@14.0.0'],
     devDep: ['@types/uuid@11.0.0'],
   },
   webWorker: {
@@ -99,7 +100,7 @@ const frozenVersionsPackageBundles = {
   },
   husky: {
     dep: [],
-    devDep: ['husky@9.1.7', 'lint-staged@16.2.7'],
+    devDep: ['husky@9.1.7', 'lint-staged@17.0.7'],
   },
 }
 
@@ -148,7 +149,8 @@ const packageBundles = {
     devDep: ['@types/d3'],
   },
   auth: {
-    dep: ['better-auth', 'better-sqlite3'],
+    // TODO remove pinned version after this is fixed https://github.com/better-auth/better-auth/issues/9868
+    dep: ['better-auth@1.6.11', 'better-sqlite3'],
     devDep: ['@types/better-sqlite3'],
   },
   prisma: {
