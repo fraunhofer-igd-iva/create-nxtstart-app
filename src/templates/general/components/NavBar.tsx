@@ -71,7 +71,7 @@ export default function NavBar() {
   const router = useRouter()
   const pathname = usePathname()
   const theme = useTheme()
-  const [activeTab, setActiveTab] = React.useState<string | false>(false)
+  const activeTab = validatePath(pathname)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
   <§auth§>const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)</§auth§>
 
@@ -96,13 +96,7 @@ export default function NavBar() {
     handleCloseNavMenu()
   }
 
-  React.useEffect(() => {
-    const path = validatePath(pathname)
-    setActiveTab(path)
-  }, [pathname])
-
   const handleChange = async (event: React.SyntheticEvent, newValue: string) => {
-    setActiveTab(newValue)
     router.push(newValue)
   }
 
