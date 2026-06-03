@@ -13,7 +13,7 @@ export default function LanguageSelector() {
   const router = useRouter()
   const currentPathname = usePathname()
 
-  const handleChange = (e: SelectChangeEvent) => {
+  const handleChange = async (e: SelectChangeEvent) => {
     const newLocale = e.target.value
 
     // set cookie for next-i18n-router
@@ -22,16 +22,16 @@ export default function LanguageSelector() {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
     const expires = date.toUTCString()
     document.cookie = `NEXT_LOCALE=${newLocale};expires=${expires};path=/`
+    
+    await i18n.changeLanguage(newLocale)
 
     // redirect to the new locale path
     if (currentLocale === i18nConfig.defaultLocale && !i18nConfig.prefixDefault) {
-      router.push('/' + newLocale + currentPathname)
+      router.replace('/' + newLocale + currentPathname)
     } else {
-      router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`))
+      router.replace(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`))
     }
-
-    // "fix" for footer not refreshing locale correctly
-    setTimeout(() => router.refresh(), 50)
+    router.refresh()
   }
 
   return (
