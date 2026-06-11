@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import { Card, CardContent, Typography, CardActions, Avatar, useTheme } from '@mui/material'
 import Link from 'next/link'
 
