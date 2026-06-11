@@ -5,39 +5,55 @@ import { Box, Button } from '@mui/material'
 import { Data } from '@/util/types'
 
 export default function SseComponent() {
-  const [source, setSource] = React.useState<EventSource | undefined>(undefined)
+  const sourceRef = React.useRef<EventSource | null>(null)
+  const connectionIdRef = React.useRef<string | null>(null)
   const [dataArray, setDataArray] = React.useState<Data[]>([])
-  const [connectionId, setConnectionId] = React.useState<string | undefined>(undefined)
 
   const handleStart = () => {
     const newSource = new EventSource('/api/sse')
+    sourceRef.current = newSource
+
     newSource.onmessage = (event) => {
+      const parsed = JSON.parse(event.data)
       if (event.lastEventId) {
-        setConnectionId(event.lastEventId)
+        connectionIdRef.current = event.lastEventId
       }
-      setDataArray((prev) => [...prev, JSON.parse(event.data)])
+
+      setDataArray((prev) => {
+        const next = [...prev, parsed]
+
+        if (
+          next.length > 0 &&
+          next.length === next[0].totalDataPoints
+        ) {
+          newSource.close()
+          sourceRef.current = null
+          if (event.lastEventId) {
+            fetch('/api/sse', {
+              method: 'POST',
+              body: JSON.stringify({ id: event.lastEventId }),
+            })
+          }
+        }
+
+        return next
+      })
     }
-    setSource(newSource)
   }
 
   const handleStop = React.useCallback(() => {
-    if (source && connectionId) {
+    const source = sourceRef.current
+    const id = connectionIdRef.current
+    if (source && id) {
       source.close()
-      setSource(undefined)
-      fetch(`/api/sse`, { method: 'POST', body: JSON.stringify({ id: connectionId }) })
+      sourceRef.current = null
+      fetch(`/api/sse`, { method: 'POST', body: JSON.stringify({ id: id }) })
     }
-  }, [source, connectionId])
+  }, [])
 
   const handleClear = () => {
     setDataArray([])
   }
-
-  // properly kill the connection after receiving all events (requires knowledge about total number of events)
-  React.useEffect(() => {
-    if (dataArray.length > 0 && dataArray.length === dataArray[0].totalDataPoints) {
-      handleStop()
-    }
-  }, [dataArray, handleStop])
 
   return (
     <Box>
@@ -61,7 +77,9 @@ export default function SseComponent() {
           height: 300,
         }}
       >
-        {dataArray.map((val) => <Box key={val.label}>{`${val.label} - ${val.value}\n`}</Box>)}
+        {dataArray.map((val) => (
+          <Box key={val.label}>{`${val.label} - ${val.value}\n`}</Box>
+        ))}
       </Box>
     </Box>
   )

@@ -10,12 +10,7 @@ interface BarChartProps {
 }
 
 export default function BarChartContainer(props: BarChartProps) {
-  const [dataCities, setDataCities] = React.useState<Data[]>([])
-
-  // Server-Side-Rendering seems to conflict with the rotated X labels in the bar chart, therefore a useEffect is used
-  React.useEffect(() => {
-    setDataCities(props.dataCities)
-  }, [props.dataCities])
+  const [dataCities, setDataCities] = React.useState<Data[]>(props.dataCities)
 
   const randomBarUpdate = () => {
     const index = Math.floor(Math.random() * dataCities.length)
