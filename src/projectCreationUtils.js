@@ -10,7 +10,7 @@ export function checkProjectFolder(projectPath) {
   return true
 }
 
-const frozenNextJsVersion = '16.0.8'
+const frozenNextJsVersion = '16.2.9'
 const yarnVersion = '4.13.0' // change back to 'stable' after build script issues are resolved with better sqlite https://github.com/WiseLibs/better-sqlite3/issues/1463
 
 export function initNodeNpm(pathToParentDirectory, pathToProject, useLatestVersions) {

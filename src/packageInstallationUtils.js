@@ -30,16 +30,16 @@ const frozenVersionsPackageBundles = {
     dep: [],
     devDep: [
       '@eslint/eslintrc@3.3.5',
-      '@eslint/js@10.0.1',
-      '@next/eslint-plugin-next@16.2.7',
-      '@typescript-eslint/eslint-plugin@8.60.1',
-      '@typescript-eslint/parser@8.60.1',
+      '@eslint/js@9.39.4',
+      '@next/eslint-plugin-next@16.2.9',
+      '@typescript-eslint/eslint-plugin@8.61.0',
+      '@typescript-eslint/parser@8.61.0',
       'eslint-plugin-react-hooks@7.1.1',
     ],
   },
   linting: {
     dep: [],
-    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.8.3'],
+    devDep: ['eslint-config-prettier@10.1.8', 'prettier@3.8.4'],
   },
   swr: {
     dep: ['swr@2.4.1'],
@@ -47,13 +47,13 @@ const frozenVersionsPackageBundles = {
   },
   mui: {
     dep: [
-      '@mui/icons-material@9.0.1',
-      '@mui/material@9.0.1',
+      '@mui/icons-material@9.1.1',
+      '@mui/material@9.1.1',
       '@babel/runtime@7.29.7',
       '@emotion/cache@11.14.0',
       '@emotion/react@11.14.0',
       '@emotion/styled@11.14.1',
-      '@mui/material-nextjs@9.0.1',
+      '@mui/material-nextjs@9.1.1',
     ],
     devDep: [],
   },
@@ -70,8 +70,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['@types/d3@7.4.3'],
   },
   auth: {
-    // TODO remove pinned version after this is fixed https://github.com/better-auth/better-auth/issues/9868
-    dep: ['better-auth@1.6.11', 'better-sqlite3@12.10.0'],
+    dep: ['better-auth@1.6.16', 'better-sqlite3@12.10.0'],
     devDep: ['@types/better-sqlite3@7.6.13'],
   },
   prisma: {
@@ -79,7 +78,7 @@ const frozenVersionsPackageBundles = {
     devDep: ['prisma@7.8.0', 'tsx@4.22.4', '@types/better-sqlite3@7.6.13'],
   },
   i18n: {
-    dep: ['i18next@26.3.0', 'react-i18next@17.0.8', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.8'],
+    dep: ['i18next@26.3.1', 'react-i18next@17.0.8', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.8'],
     devDep: [],
   },
   pwa: {
@@ -88,7 +87,7 @@ const frozenVersionsPackageBundles = {
   },
   cypress: {
     dep: [],
-    devDep: ['cypress@15.16.0'],
+    devDep: ['cypress@15.17.0'],
   },
   sse: {
     dep: ['uuid@14.0.0'],
@@ -149,8 +148,7 @@ const packageBundles = {
     devDep: ['@types/d3'],
   },
   auth: {
-    // TODO remove pinned version after this is fixed https://github.com/better-auth/better-auth/issues/9868
-    dep: ['better-auth@1.6.11', 'better-sqlite3'],
+    dep: ['better-auth', 'better-sqlite3'],
     devDep: ['@types/better-sqlite3'],
   },
   prisma: {
