@@ -74,8 +74,8 @@ const frozenVersionsPackageBundles = {
     devDep: ['@types/better-sqlite3@7.6.13'],
   },
   prisma: {
-    dep: ['@prisma/client@7.8.0', 'better-sqlite3@12.10.0', '@prisma/adapter-better-sqlite3@7.8.0', 'dotenv@17.4.2'],
-    devDep: ['prisma@7.8.0', 'tsx@4.22.4', '@types/better-sqlite3@7.6.13'],
+    dep: ['@prisma/client@7.10.0', 'better-sqlite3@12.10.0', '@prisma/adapter-better-sqlite3@7.8.0', 'dotenv@17.4.2'],
+    devDep: ['@prisma/prisma7@7.10.0', 'tsx@4.22.4', '@types/better-sqlite3@7.6.13'],
   },
   i18n: {
     dep: ['i18next@26.3.1', 'react-i18next@17.0.8', 'i18next-resources-to-backend@1.2.1', 'next-i18n-router@5.5.8'],
@@ -153,7 +153,7 @@ const packageBundles = {
   },
   prisma: {
     dep: ['@prisma/client', 'better-sqlite3', '@prisma/adapter-better-sqlite3', 'dotenv'],
-    devDep: ['prisma', 'tsx', '@types/better-sqlite3'],
+    devDep: ['@prisma/prisma7', 'tsx', '@types/better-sqlite3'],
   },
   i18n: {
     dep: ['i18next', 'react-i18next', 'i18next-resources-to-backend', 'next-i18n-router'],
