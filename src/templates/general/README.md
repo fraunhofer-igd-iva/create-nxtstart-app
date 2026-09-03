@@ -84,15 +84,15 @@ The examples implemented in this template are built using a cities sample databa
 To update the db using prisma.scheme:
 
 - Update File
-- Run `yarn prisma db push` (or `npx prisma db push` for npm) (may reset tables or entire database)
-- OR do proper migrate using `yarn prisma migrate dev` (or `npx prisma migrate dev` for npm)
-- Run `yarn prisma generate` (or `npx prisma generate` for npm) (generates prisma client)
+- Run `npx prisma db push` (may reset tables or entire database)
+- OR do proper migrate using `npx prisma migrate dev`
+- Run `npx prisma generate` (generates prisma client)
 
 To receive update from database after adjusting the scheme there directly:
 
 - Update DB
-- Run `yarn prisma db pull` (or `npx prisma db pull` for npm) (updates schema)
-- Run `yarn prisma generate` (or `npx prisma generate` for npm) (generates prisma client)
+- Run `npx prisma db pull` (updates schema)
+- Run `npx prisma generate` (generates prisma client)
 
 ### Migrating from SQLite
 
